@@ -1,10 +1,25 @@
 {
-  "name": "Route 66 Music Trip v33",
-  "short_name": "Route66 v33",
+  "name": "Route 66 Music Trip 2026",
+  "short_name": "Route66",
+  "description": "Offlinefähige Route-66-Reiseplanung mit Tagesplan, Hotels, Highlights und MusicBars.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#070b0f",
-  "theme_color": "#111111",
-  "icons": []
+  "theme_color": "#071018",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

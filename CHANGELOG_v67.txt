@@ -1,0 +1,9 @@
+v67 · Offline-PWA-Upgrade
+
+Geändert:
+- Service Worker auf v67 angehoben und App-Shell erweitert.
+- PWA-Manifest aktualisiert, inklusive lokaler App-Icons.
+- Offline-Banner ergänzt: zeigt Offline-Modus, Wieder-online und Update-Hinweis.
+- Install-Button vorbereitet, wenn Browser die PWA-Installation anbietet.
+- Google-Maps-Fallback ergänzt: Tagesplan bleibt sichtbar, wenn Karte offline nicht lädt.
+- Navigation/HTML-Fallback verbessert, damit index.html bei Offline-Navigation geladen wird.

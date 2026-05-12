@@ -17,3 +17,16 @@ Korrigierte Hotels / Termine:
 
 ## Deployment
 Alle Dateien in dein GitHub-Repo kopieren und bestehende Dateien ersetzen. Danach GitHub Pages neu laden. Falls noch alte Daten sichtbar sind: Browser-Cache bzw. PWA-Cache einmal leeren.
+
+
+## v67 Offline-PWA
+
+Dieses Paket macht die Reise-App deutlich zuverlässiger offline nutzbar.
+
+Wichtig nach dem GitHub-Upload:
+1. GitHub Pages öffnen, solange Internet vorhanden ist.
+2. Einmal komplett laden lassen.
+3. Optional im Browser / Smartphone als App installieren.
+4. Danach bleiben Tagesplan, Fahrplan, Hotels, Highlights und MusicBars offline verfügbar.
+
+Google Maps kann offline nicht vollständig funktionieren. Dafür gibt es jetzt einen sichtbaren Karten-Fallback.
