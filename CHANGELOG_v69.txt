@@ -1,0 +1,6 @@
+v69 · Willis Tower Skydeck Link-Fix
+
+Geändert:
+- Willis Tower Skydeck bekommt eine präzisere Google-Maps-Suche mit Adresse: Skydeck Chicago / Willis Tower, 233 S Wacker Dr, Chicago.
+- Alias-Einträge ergänzt, damit Klicks auf „Willis Tower“, „Willis Tower Skydeck“ und „Skydeck Chicago“ denselben Marker finden.
+- Service-Worker-Cache auf v69 erhöht, damit die PWA das Update zuverlässig lädt.

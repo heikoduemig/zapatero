@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Route 66 Music Trip · v65 Date Fix</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#071018">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root {
+  --bg: #070b0f;
+  --panel: #111820;
+  --panel2: #17232d;
+  --line: rgba(148, 185, 195, .22);
+  --text: #f6fbff;
+  --muted: #a8bac2;
+  --cyan: #46d6e6;
+  --blue: #1a73e8;
+  --shadow: 0 18px 60px rgba(0, 0, 0, .45);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --anchor-offset-desktop: 120px;
+  --anchor-offset-mobile: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--anchor-offset-desktop);
+}
+
+body {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 calc(76px + var(--safe-bottom));
+  overflow-x: hidden;
+  background: radial-gradient(circle at 20% -10%, rgba(70, 214, 230, .16), transparent 36%), var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+a,
+button,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(70, 214, 230, .18);
+}
+
+button,
+a.button,
+.place-row a,
+.nav a,
+.filters button {
+  min-height: 42px;
+}
+
+header {
+  display: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 34px);
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+
+.app-subtitle,
+header p {
+  margin: 6px 0 0;
+  color: #74f0ff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.nav,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.nav {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar,
+.day-tabs::-webkit-scrollbar,
+.map-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.nav a,
+.filters button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: #f4fbff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.nav a {
+  white-space: nowrap;
+}
+
+.filters button.active,
+.button {
+  background: var(--blue);
+}
+
+.day-hero {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(16, 25, 34, .96), rgba(9, 14, 20, .94));
+  box-shadow: 0 10px 32px rgba(0, 0, 0, .22);
+  backdrop-filter: blur(16px);
+}
+
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+}
+
+.day-tabs button {
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  scroll-snap-align: start;
+  white-space: nowrap;
+}
+
+.day-tabs button.active {
+  border-color: rgba(255, 255, 255, .25);
+  background: var(--blue);
+}
+
+.today-card {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(70, 214, 230, .12), rgba(26, 115, 232, .16));
+  box-shadow: var(--shadow);
+}
+
+.today-card h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 38px);
+  letter-spacing: -.04em;
+}
+
+.today-card p {
+  margin: 7px 0 0;
+  color: #c9d8dd;
+}
+
+.today-facts {
+  display: grid;
+  gap: 8px;
+}
+
+.fact {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 15px;
+  background: rgba(0, 0, 0, .22);
+}
+
+.fact b {
+  display: block;
+  color: #8ef4ff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.fact span {
+  display: block;
+  margin-top: 3px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.quick-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.quick-card {
+  min-height: 100%;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .045);
+}
+
+.quick-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: #8ef4ff;
+  font-size: 17px;
+}
+
+.quick-card ul {
+  margin: 0;
+  padding: 0;
+  color: #e6f2f5;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.quick-card li {
+  position: relative;
+  margin: 8px 0;
+  padding: 10px 11px 10px 30px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .045);
+}
+
+.quick-card li::before {
+  content: '•';
+  position: absolute;
+  left: 12px;
+  color: #8ef4ff;
+  font-weight: 900;
+}
+
+.quick-card li:first-child {
+  border-color: rgba(70, 214, 230, .24);
+  background: rgba(70, 214, 230, .12);
+}
+
+.mobile-quick-jump {
+  display: none;
+}
+
+.map-toggle-wrap {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.map-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.map-wrap {
+  position: relative;
+  padding: 12px 10px 10px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 24px 24px;
+  background: #05080b;
+}
+
+#map {
+  width: 100%;
+  height: 52vh;
+  min-height: 380px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #eef3f4;
+  box-shadow: var(--shadow);
+}
+
+.map-collapsed #map {
+  height: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.status {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  z-index: 5;
+  max-width: calc(100% - 30px);
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 14px;
+  background: rgba(5, 9, 13, .85);
+  color: #fff;
+  font-size: 13px;
+}
+
+.map-collapsed .status {
+  display: none;
+}
+
+.map-layer-panel {
+  position: absolute;
+  top: 14px;
+  left: 22px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 44px);
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 18px;
+  background: rgba(5, 9, 13, .82);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .32);
+  backdrop-filter: blur(14px);
+}
+
+.map-layer-panel span {
+  color: #8ef4ff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.map-filters {
+  gap: 6px;
+  margin-top: 0;
+}
+
+.map-filters button {
+  padding: 8px 11px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 22px 18px 36px;
+}
+
+.section,
+.map-wrap,
+.day-hero,
+#tag,
+#karte,
+#fahrplan,
+#highlights,
+#musicbars,
+#hotels,
+#food,
+#distilleries,
+#route66,
+#sonstiges {
+  scroll-margin-top: var(--anchor-offset-desktop);
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(17, 24, 31, .9), rgba(11, 16, 22, .88));
+  box-shadow: 0 14px 45px rgba(0, 0, 0, .24);
+}
+
+.section h2 {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 2.5vw, 34px);
+  letter-spacing: -.035em;
+  line-height: 1.1;
+}
+
+.section details {
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.section summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.section summary::-webkit-details-marker {
+  display: none;
+}
+
+.section summary::after {
+  content: 'Aufklappen';
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(70, 214, 230, .10);
+  color: #8ef4ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.section details[open] summary::after {
+  content: 'Minimieren';
+}
+
+.section.collapsible {
+  padding: 0;
+}
+
+.section.collapsible details {
+  padding: 18px 20px;
+}
+
+.section.open-default {
+  padding: 20px;
+}
+
+.header + .day-hero,
+.section.open-default,
+.section.collapsible,
+.fahrplan-section {
+  scroll-margin-top: 130px;
+}
+
+.meta {
+  margin-bottom: 8px;
+  color: #8eeaf5;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.note,
+.day-note {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.day-note {
+  margin: 10px 0 0;
+}
+
+.empty-hint {
+  padding: 12px;
+  border: 1px dashed rgba(255, 255, 255, .13);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .04);
+  color: var(--muted);
+}
+
+table {
+  width: 100%;
+  margin-top: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-collapse: separate;
+  border-radius: 16px;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, .09);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: rgba(255, 255, 255, .075);
+  color: #fff;
+}
+
+td {
+  color: #dce7ea;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .025));
+}
+
+.card h3 {
+  margin: 4px 0 8px;
+  font-size: 18px;
+}
+
+.card p {
+  color: #c9d8dd;
+  line-height: 1.5;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(70, 214, 230, .16);
+  color: #8ef4ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 12px;
+}
+
+.place-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .045);
+}
+
+.place-row strong {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.place-row span {
+  display: block;
+  margin-top: 3px;
+  color: #b9c8ce;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.place-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.place-row a.secondary {
+  background: rgba(255, 255, 255, .08);
+}
+
+.place-row select {
+  max-width: 150px;
+  padding: 7px 8px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  background: #0e1720;
+  color: #fff;
+  font-size: 12px;
+}
+
+.category-music {
+  border-left: 4px solid #9b5cff;
+}
+
+.category-food {
+  border-left: 4px solid #ff9f43;
+}
+
+.category-hotel {
+  border-left: 4px solid #4ea8ff;
+}
+
+.category-highlight {
+  border-left: 4px solid var(--cyan);
+}
+
+.city-block {
+  margin: 0 0 18px;
+}
+
+.city-block h3 {
+  margin: 0 0 10px;
+  color: #8ef4ff;
+  font-size: 22px;
+  letter-spacing: -.02em;
+}
+
+.editor-tools {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.editor-tools button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: #f4fbff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.fahrplan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.leg-card {
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-left: 4px solid var(--cyan);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025));
+}
+
+.leg-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.leg-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.leg-pill {
+  padding: 9px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 13px;
+  background: rgba(0, 0, 0, .24);
+}
+
+.leg-pill b {
+  display: block;
+  color: #8ef4ff;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.leg-pill span {
+  display: block;
+  margin-top: 3px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.leg-stops {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: #dce7ea;
+  line-height: 1.45;
+}
+
+.leg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.leg-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.priority-must {
+  background: rgba(255, 180, 0, .22);
+  color: #ffe08a;
+}
+
+.priority-top {
+  background: rgba(70, 214, 230, .18);
+  color: #8ef4ff;
+}
+
+.gm-style .gm-style-iw-c {
+  color: #111;
+}
+
+.bottom-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  padding: 8px 8px calc(8px + var(--safe-bottom));
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  background: rgba(5, 9, 13, .92);
+  backdrop-filter: blur(18px);
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 54px;
+  border: 1px solid rgba(255, 255, 255, .06);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .04);
+  color: #dff8ff;
+  font-size: 11px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.bottom-nav a span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.bottom-nav a:active {
+  transform: translateY(1px);
+  background: rgba(70, 214, 230, .14);
+}
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  .day-hero {
+    position: relative;
+    top: auto;
+  }
+
+  .today-card {
+    grid-template-columns: 1fr;
+  }
+
+  .today-facts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .quick-sections {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #map {
+    height: 42vh;
+    min-height: 360px;
+  }
+
+  main {
+    padding-inline: 18px;
+  }
+
+  .list,
+  .grid,
+  .fahrplan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section.open-default,
+  .section.collapsible details {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: var(--anchor-offset-mobile);
+  }
+
+  body {
+    padding-bottom: calc(88px + var(--safe-bottom));
+    background: var(--bg);
+    font-size: 15px;
+  }
+
+  .section,
+  .map-wrap,
+  .day-hero,
+  #tag,
+  #karte,
+  #fahrplan,
+  #highlights,
+  #musicbars,
+  #hotels,
+  #food,
+  #distilleries,
+  #route66,
+  #sonstiges {
+    scroll-margin-top: var(--anchor-offset-mobile);
+  }
+
+  .day-hero {
+    position: relative;
+    top: auto;
+    z-index: 5;
+    padding: 10px 10px 12px;
+    border-bottom-color: rgba(255, 255, 255, .08);
+    box-shadow: none;
+  }
+
+  .day-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0 2px 10px;
+    overflow-x: auto;
+  }
+
+  .day-tabs button {
+    flex: 0 0 auto;
+    min-width: 72px;
+    min-height: 48px;
+    padding: 10px 13px;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+
+  .day-tabs button.active {
+    box-shadow: 0 8px 20px rgba(26, 115, 232, .25);
+  }
+
+  .today-card {
+    display: block;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .today-card h2 {
+    margin-bottom: 6px;
+    font-size: 23px;
+    line-height: 1.12;
+  }
+
+  .today-card p {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .today-facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .fact {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .fact b {
+    font-size: 10px;
+  }
+
+  .fact span {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .quick-sections {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .quick-card {
+    padding: 12px;
+    border-radius: 17px;
+  }
+
+  .quick-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+  }
+
+  .quick-card li {
+    padding: 9px 10px 9px 28px;
+    font-size: 14px;
+  }
+
+  .mobile-quick-jump {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .mobile-quick-jump a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .map-toggle-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .map-toggle-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 16px;
+  }
+
+  .map-wrap {
+    padding: 8px;
+    border-radius: 0;
+  }
+
+  #map {
+    height: 34vh;
+    min-height: 260px;
+    border-radius: 18px;
+  }
+
+  .map-collapsed #map {
+    height: 0;
+    min-height: 0;
+  }
+
+  .map-layer-panel {
+    position: static;
+    display: block;
+    max-width: none;
+    margin: 0 0 8px;
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  .map-layer-panel span {
+    display: none;
+  }
+
+  .map-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin: 0;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .map-filters button {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 9px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  main {
+    padding: 12px 9px 26px;
+  }
+
+  .section {
+    margin-bottom: 12px;
+    border-radius: 18px;
+  }
+
+  .section.open-default,
+  .section.collapsible details {
+    padding: 14px;
+  }
+
+  .section h2 {
+    margin-bottom: 8px;
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  .section summary {
+    min-height: 64px;
+  }
+
+  .meta {
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .note {
+    font-size: 14px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .fahrplan-grid,
+  .list,
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 17px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .city-block h3 {
+    margin: 6px 0 8px;
+    font-size: 18px;
+  }
+
+  .place-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .055);
+  }
+
+  .place-row a,
+  .button,
+  .leg-actions a {
+    width: 100%;
+    min-height: 46px;
+    border-radius: 14px;
+  }
+
+  .place-row select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 40px;
+  }
+
+  .status {
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  .leg-card {
+    padding: 13px;
+    border-radius: 17px;
+  }
+
+  .leg-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .leg-pill {
+    padding: 9px;
+  }
+
+  .leg-actions a {
+    border-radius: 14px;
+  }
+
+  .bottom-nav {
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: rgba(5, 9, 13, .94);
+  }
+
+  .bottom-nav a {
+    min-height: 56px;
+    border-radius: 16px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .today-facts,
+  .leg-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-quick-jump {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .day-tabs button {
+    padding-inline: 11px;
+    font-size: 11px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  body {
+    padding-bottom: 12px;
+  }
+
+  #map {
+    height: 70vh;
+  }
+
+  .quick-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bottom-nav {
+    display: none;
+  }
+}
+
+.day-place-link{
+  width:100%;
+  background:none;
+  border:none;
+  color:inherit;
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+  padding:0;
+}
+.day-place-link:hover{
+  opacity:.9;
+}
+
+
+.pulse-highlight{
+  animation:pulseGlow 1.8s ease;
+}
+@keyframes pulseGlow{
+  0%{box-shadow:0 0 0 rgba(59,130,246,0);}
+  30%{box-shadow:0 0 35px rgba(59,130,246,.45);}
+  100%{box-shadow:0 0 0 rgba(59,130,246,0);}
+}
+
+
+/* Desktop / Workstation toolbar improvements */
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+.toolbar-btn{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+
+@media (min-width: 1200px){
+  .toolbar{
+    justify-content:flex-start;
+  }
+}
+
+@media (max-width: 900px){
+  .toolbar{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:6px;
+  }
+
+  .toolbar::-webkit-scrollbar{
+    height:6px;
+  }
+}
+
+
+.map-toggle-wrap{
+  display:flex !important;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  overflow:visible;
+}
+.map-toggle-btn{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+@media (max-width: 760px){
+  .map-toggle-wrap{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+}
+.pulse-highlight{
+  animation:pulseGlow 1.8s ease;
+}
+@keyframes pulseGlow{
+  0%{box-shadow:0 0 0 rgba(59,130,246,0);}
+  30%{box-shadow:0 0 35px rgba(59,130,246,.45);}
+  100%{box-shadow:0 0 0 rgba(59,130,246,0);}
+}
+
+/* v68 Online-/Offline-App-Feinschliff */
+.offline-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(78px + var(--safe-bottom));
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(70, 214, 230, .28);
+  border-radius: 18px;
+  background: rgba(5, 9, 13, .94);
+  color: #fff;
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  backdrop-filter: blur(14px);
+}
+.offline-banner.show { display: flex; }
+.offline-banner strong { color: #8ef4ff; }
+.offline-banner span { color: #c9d8dd; font-size: 13px; }
+.offline-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.offline-actions button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+.offline-actions button.primary { background: var(--blue); border-color: rgba(255,255,255,.18); }
+.offline-map-fallback {
+  display: none;
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px dashed rgba(70, 214, 230, .35);
+  background: linear-gradient(135deg, rgba(70,214,230,.08), rgba(26,115,232,.10));
+  color: #eaf7fb;
+}
+.offline-map-fallback h3 { margin: 0 0 8px; font-size: 22px; }
+.offline-map-fallback p { margin: 0; color: #b9cbd2; line-height: 1.45; }
+.map-offline #map { display: none; }
+.map-offline .offline-map-fallback { display: block; }
+
+.app-mode-badge {
+  position: fixed;
+  right: 12px;
+  top: calc(10px + var(--safe-top));
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(5, 9, 13, .78);
+  color: #eaf7fb;
+  font-size: 12px;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 32px rgba(0,0,0,.25);
+}
+.app-mode-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #7cff9b;
+  box-shadow: 0 0 12px rgba(124,255,155,.75);
+}
+.app-mode-badge.offline .app-mode-dot {
+  background: #ffd166;
+  box-shadow: 0 0 12px rgba(255,209,102,.75);
+}
+@media (max-width: 760px) {
+  .app-mode-badge { top: auto; bottom: calc(132px + var(--safe-bottom)); right: 12px; }
+}
+
+@media (max-width: 760px) {
+  .offline-banner {
+    bottom: calc(72px + var(--safe-bottom));
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .offline-actions { width:100%; justify-content:stretch; }
+  .offline-actions button { flex:1; }
+}
+
+</style>
+</head>
+<body>
+<div class="app-mode-badge" id="appModeBadge"><span class="app-mode-dot"></span><span id="appModeText">Online</span></div>
+<div class="offline-banner" id="offlineBanner" role="status" aria-live="polite">
+  <div><strong id="offlineTitle">Online & offline bereit</strong><br><span id="offlineText">Die App speichert Tagesplan, Hotels und Stops lokal. Karten funktionieren online.</span></div>
+  <div class="offline-actions">
+    <button id="installAppBtn" class="primary" type="button" hidden>App installieren</button>
+    <button id="reloadAppBtn" type="button" hidden>Update laden</button>
+    <button id="closeOfflineBanner" type="button">OK</button>
+  </div>
+</div>
+<header>
+  <h1>Route 66 Music Trip</h1>
+  <p class="app-subtitle">Tagesansicht v68 · Online/Offline App · Highlights · MusicBars</p>
+  <nav class="nav">
+    <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a>
+  </nav>
+  <div class="editor-tools"><button onclick="resetCategoryEdits()">Kategorien zurücksetzen</button><button onclick="clearResolvedCache()">Orte neu auflösen</button></div>
+</header>
+
+<section class="day-hero" id="tag">
+  <div class="day-tabs" id="dayTabs"></div>
+  <div id="dayOverview" class="today-card"></div>
+  <div class="quick-sections">
+    <article class="quick-card"><h3>Top Highlights</h3><div id="todayHighlights"></div></article>
+    <article class="quick-card"><h3>MusicBars</h3><div id="todayMusic"></div></article>
+  </div>
+  <div class="map-toggle-wrap">
+<button class="map-toggle-btn" onclick="toggleMap()">🗺️ Karte öffnen/minimieren</button>
+<button class="map-toggle-btn" onclick="focusSelectedDayRegionOnMap()">🎯 Zielregion anzeigen</button>
+<a class="map-toggle-btn" href="https://maps.app.goo.gl/H57aFyUcHksxyvDs7?g_st=ac" target="_blank">📍 Google Maps</a>
+<button class="map-toggle-btn" onclick="scrollToSection('highlights')">⭐ Zu Top Highlights</button>
+<button class="map-toggle-btn" onclick="scrollToSection('musicbars')">🎵 Zu MusicBars</button>
+</div>
+<div class="mobile-quick-jump">
+    <a href="#highlights">Highlights</a>
+    <a href="#musicbars">MusicBars</a>
+  </div>
+</section>
+
+<div class="map-wrap" id="karte">
+  <div class="map-layer-panel">
+    <span>Layer:</span>
+    <div class="filters map-filters">
+      <button class="active" data-filter="all">Alle</button>
+      <button data-filter="hotel">Hotels</button>
+      <button data-filter="highlight">Top Highlights</button>
+      <button data-filter="food">Food</button>
+      <button data-filter="music">MusicBars</button>
+      <button data-filter="distillery">Distilleries</button>
+      <button data-filter="route66">Route66 Stops</button>
+      <button data-filter="other">Sonstiges</button>
+    </div>
+  </div>
+  <div id="map"></div>
+  <div class="offline-map-fallback" id="offlineMapFallback">
+    <h3>🗺️ Karte offline nicht verfügbar</h3>
+    <p>Dein Tagesplan, Fahrplan, Hotels, Highlights und MusicBars bleiben offline sichtbar. Sobald wieder Internet verfügbar ist, lädt Google Maps automatisch bzw. nach einem Reload.</p>
+  </div>
+  <div class="status" id="status">Starte Karte…</div>
+</div>
+
+<main>
+
+
+<section class="section open-default fahrplan-section" id="fahrplan">
+
+
+  <div class="meta">Fahrplan</div>
+  <h2>Etappen, Abfahrten & Ankünfte</h2>
+  <p class="note">Plan für eine entspannte Route mit realistischen Pausen. Zeiten sind Empfehlungen und können je nach Verkehr, Fotostopps und Essen angepasst werden.</p>
+  <div class="fahrplan-grid" id="fahrplanGrid"></div>
+</section>
+  <section class="section open-default" id="highlights"><div class="meta">Top Highlights</div><h2>Highlights für den gewählten Tag</h2><div id="highlightList"></div></section>
+  <section class="section open-default" id="musicbars"><div class="meta">MusicBars</div><h2>MusicBars für den gewählten Tag</h2><div id="musicList"></div></section>
+
+  <section class="section collapsible" id="hotels"><details><summary><div><div class="meta">Hotels</div><h2>Hotels</h2></div></summary><div class="grid" id="hotelGrid"></div></details></section>
+  <section class="section collapsible" id="food"><details><summary><div><div class="meta">Food</div><h2>Food</h2></div></summary><div id="foodList"></div></details></section>
+  <section class="section collapsible" id="distilleries"><details><summary><div><div class="meta">Distilleries</div><h2>Distilleries</h2></div></summary><div id="distilleryList"></div></details></section>
+  <section class="section collapsible" id="route66"><details><summary><div><div class="meta">Route66 Stops</div><h2>Route66 Stops</h2></div></summary><div id="route66List"></div></details></section>
+  <section class="section collapsible" id="sonstiges"><details><summary><div><div class="meta">Sonstiges</div><h2>Sonstiges</h2></div></summary><div id="otherList"></div></details></section>
+</main>
+
+<script src="./routeData.v35.js"></script>
+<script src="./musicBars.js"></script>
+<script src="./route66MustStops.js"></script>
+<script>
+(function(){
+  const extra = Array.isArray(window.route66MustStops) ? window.route66MustStops : [];
+  if (!Array.isArray(window.RAW_PLACES)) window.RAW_PLACES = [];
+  const existing = new Set(window.RAW_PLACES.map(p => (p.name || '').toLowerCase().trim()));
+  const mapped = extra
+    .filter(p => p && p.name && !existing.has(p.name.toLowerCase().trim()))
+    .map(p => ({
+      name: p.name,
+      note: p.text || '',
+      description: p.text || '',
+      address: `${p.name} ${p.city || ''}`.trim(),
+      category: p.type || p.category || 'sight',
+      city: p.city || '',
+      coords: p.coords,
+      googleMapsUrl: p.googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((p.name || '') + ' ' + (p.city || ''))}`,
+      query: `${p.name} ${p.city || ''}`.trim(),
+      text: p.text || ''
+    }));
+  window.RAW_PLACES = [...window.RAW_PLACES, ...mapped];
+  window.ALL_PLACES = window.RAW_PLACES;
+})();
+</script>
+<script>
+const API_KEY = "AIzaSyA8644C1bG05JivRoEANWGzN4Tir4tnLvY";
+
+function isExcludedRouteOutlier(p){
+  const t = `${p?.name||""} ${p?.note||""} ${p?.description||""} ${p?.address||""} ${p?.formattedAddress||""} ${p?.query||""}`.toLowerCase();
+  return t.includes("401 s 4th st")
+    || t.includes("leoti")
+    || t.includes("67861")
+    || t.includes("kansas")
+    || t.includes("16825 d st")
+    || t.includes("victorville")
+    || t.includes("92395")
+    || t.includes("12 western ave")
+    || t.includes("kennebunk")
+    || t.includes("04043");
+}
+let RAW_PLACES = (window.RAW_PLACES || []).filter(p => !isExcludedRouteOutlier(p));
+const DAY_PLAN = window.DAY_PLAN || [];
+let selectedDayId = (DAY_PLAN[0] && DAY_PLAN[0].id) || "";
+if (Array.isArray(window.musicBars)) {
+  const existingNames = new Set(RAW_PLACES.map(p => (p.name || "").toLowerCase()));
+  window.musicBars.forEach(p => {
+    if (!existingNames.has((p.name || "").toLowerCase())) {
+      const item = {...p, category:"music", query:`${p.name} ${p.city || ""}`};
+      if(!isExcludedRouteOutlier(item)) RAW_PLACES.push(item);
+    }
+  });
+}
+forceKnownPlaceData(RAW_PLACES);
+
+let map, service, infoWindow;
+let markers = new Map();
+let resolvedPlaces = [];
+const cacheKey = "route66ResolvedPlacesV59";
+const categoryEditKey = "route66CategoryOverridesV59";
+
+function getCategoryOverrides() {
+  try { return JSON.parse(localStorage.getItem(categoryEditKey) || "{}"); }
+  catch(e) { return {}; }
+}
+
+function saveCategoryOverrides(overrides) {
+  localStorage.setItem(categoryEditKey, JSON.stringify(overrides));
+}
+
+function placeKey(p) {
+  return `${p.name || ""}__${p.address || ""}`.toLowerCase();
+}
+
+
+
+function forceKnownPlaceData(list = resolvedPlaces){
+  if (!Array.isArray(list)) return;
+
+  const fixed = {
+    "kingston mines": {
+      name: "Kingston Mines",
+      city: "Chicago",
+      lat: 41.9316,
+      lng: -87.6601,
+      coords: [-87.6601, 41.9316],
+      category: "music",
+      type: "music",
+      note: "legendäre Late-Night-Blues-Sessions",
+      text: "Musik / Bars · Legendärer Blues Club",
+      address: "2548 N Halsted St, Chicago, IL",
+      formattedAddress: "2548 N Halsted St, Chicago, IL",
+      query: "Kingston Mines Chicago",
+      googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Kingston+Mines+Chicago"
+    },
+    "buddy guy's legends": { category: "music", type: "music", city: "Chicago" },
+    "rosa's lounge": { category: "music", type: "music", city: "Chicago" },
+    "green mill": { category: "music", type: "music", city: "Chicago" },
+    "blue chicago": { category: "music", type: "music", city: "Chicago" },
+    "house of blues chicago": { category: "music", type: "music", city: "Chicago" },
+    "the hideout": { category: "music", type: "music", city: "Chicago" },
+    "carol's pub": { category: "music", type: "music", city: "Chicago" }
+  };
+
+  list.forEach(p => {
+    const key = (p.name || "").toLowerCase().trim();
+    if (fixed[key]) Object.assign(p, fixed[key]);
+  });
+}
+
+function forceKnownCategories(){
+  forceKnownPlaceData(resolvedPlaces);
+}
+
+function applyCategoryOverrides() {
+  const overrides = getCategoryOverrides();
+  resolvedPlaces.forEach(p => {
+    const k = placeKey(p);
+    if (overrides[k]) p.category = overrides[k];
+  });
+  forceKnownCategories();
+}
+
+function changeCategory(key, category) {
+  const overrides = getCategoryOverrides();
+  overrides[key] = category;
+  saveCategoryOverrides(overrides);
+  applyCategoryOverrides();
+
+renderMarkers(document.querySelector(".filters button.active")?.dataset.filter || "all");
+  renderLists();
+}
+
+function categorySelect(p) {
+  const key = placeKey(p);
+  const options = [
+    ["hotel","Hotels"],
+    ["sight","Top Highlights"],
+    ["food","Food"],
+    ["music","MusicBars"],
+    ["distillery","Distilleries"],
+    ["other","Sonstiges"]
+  ];
+  return `<select title="Kategorie ändern" onchange="changeCategory('${key.replace(/'/g, "\\'")}', this.value)">
+    ${options.map(([v,l]) => `<option value="${v}" ${p.category===v ? "selected" : ""}>${l}</option>`).join("")}
+  </select>`;
+}
+
+function resetCategoryEdits() {
+  localStorage.removeItem(categoryEditKey);
+  applyCategoryOverrides();
+
+renderMarkers("all");
+  renderLists();
+  document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+  document.querySelector('.filters button[data-filter="all"]').classList.add("active");
+}
+
+function clearResolvedCache() {
+  localStorage.removeItem(cacheKey);
+  location.reload();
+}
+
+
+const colors = {
+  music:"#fbbc04", hotel:"#4285f4", food:"#34a853", sight:"#ea4335", hidden:"#a142f4", distillery:"#9c6b30", other:"#607d8b"
+};
+
+function looksRoute66(p){
+  const t = `${p.name||""} ${p.note||""} ${p.description||""} ${p.address||""} ${p.query||""}`.toLowerCase();
+  // Keine bloße "66"-Erkennung mehr: reduziert Fehlzuordnungen bei Adressen/Telefonnummern.
+  return /route\s*-?\s*66|historic route|mother road|muffler man|chain of rocks|gemini giant|blue whale|pops 66|courthouse museum|service station|gas station|drive-in|roadside|cars inspired|caverns/.test(t);
+}
+
+function groupForPlace(p){
+  if (p.category === "hotel") return "hotel";
+  if (p.category === "music") return "music";
+  if (p.category === "food") return "food";
+  if (p.category === "distillery") return "distillery";
+
+  const isToyStore = /spielzeug/i.test(p.note || "");
+  const isLegoStore = /lego/i.test(p.name || "");
+
+  // Spielzeugläden und LEGO Stores bleiben auf der Karte,
+  // erscheinen aber nicht mehr unter Highlights / Sehenswürdigkeiten.
+  if (isToyStore || isLegoStore) return "other";
+
+  if (p.category === "sight" || p.category === "hidden") {
+    return looksRoute66(p) ? "route66" : "highlight";
+  }
+
+  if (looksRoute66(p)) return "route66";
+  return "other";
+}
+
+function categoryLabel(c) {
+  return {
+    music:"MusicBar", hotel:"Hotel", food:"Food", sight:"Top Highlight",
+    hidden:"Top Highlight", distillery:"Distillery", other:"Sonstiges"
+  }[c] || "Sonstiges";
+}
+
+function groupLabel(g){
+  return {hotel:"Hotels", highlight:"Top Highlights", food:"Food", music:"MusicBars", distillery:"Distilleries", route66:"Route66 Stops", other:"Sonstiges"}[g] || "Sonstiges";
+}
+
+
+function smartUSAQuery(raw) {
+  let q = (raw.query || raw.name || "").trim();
+  const t = `${raw.name || ""} ${raw.note || ""} ${raw.address || ""}`.toLowerCase();
+
+  if (/(chicago|illinois)/.test(t)) return `${q} Chicago Illinois USA Route 66`;
+  if (/(st\.?\s*louis|saint louis|missouri)/.test(t)) return `${q} St. Louis Missouri USA Route 66`;
+  if (/(tulsa|oklahoma)/.test(t)) return `${q} Tulsa Oklahoma USA Route 66`;
+  if (/(lawton|wichita falls|medicine park)/.test(t)) return `${q} Oklahoma Texas USA Route 66`;
+  if (/(austin|new braunfels|gruene|texas)/.test(t)) return `${q} Texas USA`;
+
+  return `${q} USA Route 66`;
+}
+
+function setStatus(txt) { document.getElementById("status").textContent = txt; }
+
+function makeMarkerIcon(color) {
+  return {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: color,
+    fillOpacity: 1,
+    strokeColor: "#ffffff",
+    strokeWeight: 2,
+    scale: 8
+  };
+}
+
+function normalizeKnownCoords(raw) {
+  if (Number.isFinite(raw.lat) && Number.isFinite(raw.lng)) return {lat: raw.lat, lng: raw.lng};
+  if (Array.isArray(raw.coords) && raw.coords.length >= 2) {
+    const lng = Number(raw.coords[0]);
+    const lat = Number(raw.coords[1]);
+    if (Number.isFinite(lat) && Number.isFinite(lng)) return {lat, lng};
+  }
+  return null;
+}
+
+function searchPlace(raw) {
+  const knownCoords = normalizeKnownCoords(raw);
+  if (knownCoords) {
+    return Promise.resolve({
+      ...raw,
+      lat: knownCoords.lat,
+      lng: knownCoords.lng,
+      resolvedName: raw.resolvedName || raw.name,
+      formattedAddress: raw.formattedAddress || raw.address || ""
+    });
+  }
+
+  return new Promise(resolve => {
+    service.findPlaceFromQuery({
+      query: smartUSAQuery(raw),
+      fields: ["name","geometry","formatted_address","place_id","rating","user_ratings_total"]
+    }, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results && results[0] && results[0].geometry) {
+        const r = results[0];
+        resolve({
+          ...raw,
+          resolvedName: r.name,
+          lat: r.geometry.location.lat(),
+          lng: r.geometry.location.lng(),
+          formattedAddress: r.formatted_address || "",
+          placeId: r.place_id || "",
+          rating: r.rating || "",
+          ratingsTotal: r.user_ratings_total || ""
+        });
+      } else {
+        resolve({...raw, error: status || "NO_RESULT"});
+      }
+    });
+  });
+}
+
+async function resolveInBatches(items, batchSize = 8) {
+  const output = [];
+  for (let i = 0; i < items.length; i += batchSize) {
+    const batch = items.slice(i, i + batchSize);
+    setStatus(`Löse Orte auf… ${Math.min(i + batch.length, items.length)} / ${items.length}`);
+    const resolvedBatch = await Promise.all(batch.map(searchPlace));
+    output.push(...resolvedBatch.filter(p => !isExcludedRouteOutlier(p)));
+    await new Promise(r => setTimeout(r, 180));
+  }
+  return output;
+}
+
+async function resolveAllPlaces() {
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      resolvedPlaces = JSON.parse(cached).filter(p => !isExcludedRouteOutlier(p));
+      forceKnownPlaceData(resolvedPlaces);
+      setStatus(`Geladen aus Cache: ${resolvedPlaces.filter(p=>p.lat).length} Orte`);
+      return;
+    } catch(e) {}
+  }
+
+  const withKnownCoords = [];
+  const needsLookup = [];
+  RAW_PLACES.forEach(p => normalizeKnownCoords(p) ? withKnownCoords.push(p) : needsLookup.push(p));
+
+  resolvedPlaces = [
+    ...withKnownCoords.map(p => {
+      const coords = normalizeKnownCoords(p);
+      return {
+        ...p,
+        lat: coords.lat,
+        lng: coords.lng,
+        resolvedName: p.resolvedName || p.name,
+        formattedAddress: p.formattedAddress || p.address || ""
+      };
+    }).filter(p => !isExcludedRouteOutlier(p)),
+    ...(await resolveInBatches(needsLookup))
+  ];
+
+  forceKnownPlaceData(resolvedPlaces);
+  try { localStorage.setItem(cacheKey, JSON.stringify(resolvedPlaces)); } catch(e) {}
+  setStatus(`Fertig: ${resolvedPlaces.filter(p=>p.lat).length} Orte gefunden`);
+}
+
+function createPopup(p) {
+  const rating = p.rating ? `<p><strong>Bewertung:</strong> ${p.rating} ⭐ (${p.ratingsTotal || 0})</p>` : "";
+  const addr = p.formattedAddress ? `<p>${p.formattedAddress}</p>` : "";
+  const note = p.note ? `<p><strong>${p.note}</strong></p>` : "";
+  const maps = p.placeId
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}`
+    : p.googleMapsUrl;
+  return `<div style="max-width:260px;color:#111">
+    <h3 style="margin:0 0 8px">${p.name}</h3>
+    <p style="margin:0 0 6px"><em>${categoryLabel(p.category)}</em></p>
+    ${note}${addr}${rating}
+    <a href="${maps}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 10px;border-radius:999px;background:#1a73e8;color:white;text-decoration:none;font-weight:700">In Google Maps öffnen</a>
+  </div>`;
+}
+
+function markerKey(p) {
+  return `${p.name || ""}__${p.lat || ""}__${p.lng || ""}`.toLowerCase();
+}
+
+function getOrCreateMarker(p) {
+  const key = markerKey(p);
+  if (markers.has(key)) {
+    const marker = markers.get(key);
+    marker.setIcon(makeMarkerIcon(colors[p.category] || colors.other));
+    marker.setTitle(p.name);
+    return marker;
+  }
+
+  const marker = new google.maps.Marker({
+    position: {lat:p.lat, lng:p.lng},
+    map,
+    title: p.name,
+    icon: makeMarkerIcon(colors[p.category] || colors.other)
+  });
+  marker.addListener("click", () => {
+    infoWindow.setContent(createPopup(p));
+    infoWindow.open(map, marker);
+  });
+  markers.set(key, marker);
+  return marker;
+}
+
+function renderMarkers(filter="all") {
+  const bounds = new google.maps.LatLngBounds();
+  let visibleCount = 0;
+
+  resolvedPlaces.forEach(p => {
+    if (!p.lat || !p.lng) return;
+    const marker = getOrCreateMarker(p);
+    const isVisible = filter === "all" || groupForPlace(p) === filter || p.category === filter;
+    marker.setVisible(isVisible);
+    if (isVisible) {
+      visibleCount++;
+      bounds.extend(marker.getPosition());
+    }
+  });
+
+  if (visibleCount) map.fitBounds(bounds);
+  setStatus(`${visibleCount} Marker angezeigt · ${filter === "all" ? "Alle" : groupLabel(filter)}`);
+}
+
+
+
+function cityForPlace(p) {
+  const t = `${p.name || ""} ${p.address || ""} ${p.formattedAddress || ""} ${p.query || ""}`.toLowerCase();
+  if (t.includes("chicago") || t.includes("illinois")) return "Chicago";
+  if (t.includes("st. louis") || t.includes("saint louis") || t.includes("missouri")) return "St. Louis";
+  if (t.includes("tulsa")) return "Tulsa";
+  if (t.includes("lawton") || t.includes("wichita falls") || t.includes("medicine park") || t.includes("meers")) return "Lawton / Wichita Falls";
+  if (t.includes("austin") || t.includes("new braunfels") || t.includes("gruene")) return "Austin";
+  return "Unterwegs / Route 66";
+}
+
+function renderCityGrouped(container, places) {
+  const cityOrder = ["Chicago", "St. Louis", "Tulsa", "Lawton / Wichita Falls", "Austin", "Unterwegs / Route 66"];
+  const grouped = {};
+  places.forEach(p => {
+    const city = cityForPlace(p);
+    if (!grouped[city]) grouped[city] = [];
+    grouped[city].push(p);
+  });
+
+  container.innerHTML = cityOrder
+    .filter(city => grouped[city] && grouped[city].length)
+    .map(city => `
+      <section class="city-block">
+        <h3>${city}</h3>
+        <div class="list">
+          ${grouped[city].sort((a,b) => a.name.localeCompare(b.name)).map(row).join("")}
+        </div>
+      </section>
+    `).join("");
+}
+
+function mapsUrlFor(p){
+  return p.placeId ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}` : p.googleMapsUrl;
+}
+
+function row(p) {
+  const maps = mapsUrlFor(p);
+  return `<div class="place-row"><div><strong>${p.name}</strong><span>${groupLabel(groupForPlace(p))}${p.note ? " · " + p.note : ""}</span></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a href="${maps}" target="_blank" rel="noopener noreferrer">Maps</a></div></div>`;
+}
+
+
+
+
+
+const PLACE_ALIASES = {
+  "willis tower": "Willis Tower Skydeck",
+  "willis tower skydeck": "Willis Tower Skydeck",
+  "skydeck chicago": "Willis Tower Skydeck",
+  "skydeck chicago at willis tower": "Willis Tower Skydeck",
+  "360 chicago": "360 CHICAGO Observation Deck",
+  "360 chicago observation deck": "360 CHICAGO Observation Deck",
+  "millennium park": "Millennium Park / Cloud Gate",
+  "cloud gate": "Millennium Park / Cloud Gate",
+  "the bean": "Millennium Park / Cloud Gate",
+  "wicker park logan square": "Wicker Park",
+  "lou mitchells als route 66 fruhstuck": "Lou Mitchell's",
+  "lou mitchells": "Lou Mitchell's",
+  "buddy guys legends": "Buddy Guy's Legends",
+  "kingston mines": "Kingston Mines",
+  "rosas lounge": "Rosa's Lounge",
+  "route 66 begin sign": "Route 66 Begin Sign",
+  "chicago music exchange": "Chicago Music Exchange",
+  "gateway arch": "Gateway Arch",
+  "citygarden": "Citygarden",
+  "cherokee street": "Cherokee Street",
+  "bbs jazz blues and soups": "BB's Jazz Blues and Soups",
+  "venice cafe": "Venice Cafe",
+  "cuba murals": "Cuba Murals",
+  "blue whale of catoosa": "Blue Whale of Catoosa",
+  "rock cafe": "Rock Cafe",
+  "golden driller": "Golden Driller",
+  "pops 66": "Pops 66",
+  "arcadia round barn": "Arcadia Round Barn",
+  "cyrus avery plaza": "Cyrus Avery Plaza",
+  "buck atoms cosmic curios": "Buck Atom's Cosmic Curios on 66",
+  "woody guthrie center": "Woody Guthrie Center",
+  "drysdales western wear": "Drysdales Western Wear",
+  "medicine park": "Medicine Park",
+  "south congress": "South Congress",
+  "waterloo records": "Waterloo Records",
+  "barton springs": "Barton Springs Pool",
+  "congress bridge bats": "Congress Avenue Bridge Bats",
+  "mount bonnell": "Mount Bonnell",
+  "gruene hall": "Gruene Hall",
+  "continental club": "The Continental Club",
+  "antones": "Antone's",
+  "the white horse": "The White Horse",
+  "broken spoke": "Broken Spoke",
+  "architecture boat tour": "Architecture Boat Tour",
+  "navy pier": "Navy Pier",
+  "magnificent mile": "Magnificent Mile",
+  "deep dish pizza": "Deep Dish Pizza",
+  "union station": "Union Station",
+  "forest park": "Forest Park",
+  "cathedral basilica of saint louis": "Cathedral Basilica of Saint Louis",
+  "city museum": "City Museum",
+  "anheuser busch brewery": "Anheuser-Busch Brewery",
+  "ted drewes frozen custard": "Ted Drewes Frozen Custard",
+  "philbrook museum of art": "Philbrook Museum of Art",
+  "gathering place": "Gathering Place",
+  "tulsa art deco district": "Tulsa Art Deco District",
+  "center of the universe": "Center of the Universe",
+  "the vanguard": "The Vanguard",
+  "tulsa theater": "Tulsa Theater",
+  "maggies music box": "Maggie's Music Box",
+  "the shrine": "The Shrine",
+  "hunt club": "Hunt Club",
+  "oklahoma route 66 museum": "Oklahoma Route 66 Museum",
+  "national cowboy western heritage museum": "National Cowboy & Western Heritage Museum",
+  "oklahoma city national memorial": "Oklahoma City National Memorial",
+  "wichita mountains wildlife refuge": "Wichita Mountains Wildlife Refuge",
+  "holy city of the wichitas": "Holy City of the Wichitas",
+  "the deli": "The Deli",
+  "the jones assembly": "The Jones Assembly",
+  "tower theatre okc": "Tower Theatre OKC",
+  "hole in the wall": "Hole in the Wall",
+  "stubbs bar b q": "Stubb's Bar-B-Q",
+  "mohawk austin": "Mohawk Austin",
+  "saxon pub": "Saxon Pub",
+  "c boys heart soul": "C-Boy's Heart & Soul",
+  "texas state capitol": "Texas State Capitol",
+  "cathedral of junk": "Cathedral of Junk",
+  "lady bird lake": "Lady Bird Lake",
+  "museum of the weird": "Museum of the Weird",
+  "peter pan mini golf": "Peter Pan Mini Golf"
+};
+
+function normalizePlaceName(v){
+  return (v || "").toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/&/g, " and ")
+    .replace(/route\-66/g, "route 66")
+    .replace(/\boptional\b/g, "")
+    .replace(/\bals hauptabend\b/g, "")
+    .replace(/\bals alternative\b/g, "")
+    .replace(/\bnur wenn noch energie da ist\b/g, "")
+    .replace(/\bnur als lockerer einstieg\b/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function canonicalPlaceLabel(label){
+  const n = normalizePlaceName(label);
+  return PLACE_ALIASES[n] || label;
+}
+
+function findResolvedPlaceByLabel(label){
+  const canonical = canonicalPlaceLabel(label);
+  const n = normalizePlaceName(canonical);
+
+  let found = resolvedPlaces.find(p => normalizePlaceName(p.name || "") === n);
+  if (found) return found;
+
+  found = resolvedPlaces.find(p => {
+    const hay = normalizePlaceName(`${p.name || ""} ${p.query || ""} ${p.address || ""} ${p.text || ""}`);
+    return hay.includes(n);
+  });
+  if (found) return found;
+
+  const tokens = n.split(" ").filter(t => t.length > 2);
+  found = resolvedPlaces.find(p => {
+    const hay = normalizePlaceName(`${p.name || ""} ${p.query || ""} ${p.address || ""} ${p.text || ""}`);
+    return tokens.length && tokens.every(t => hay.includes(t));
+  });
+  return found || null;
+}
+
+function focusPlaceOnMap(label){
+  const p = findResolvedPlaceByLabel(label);
+  const mapWrap = document.querySelector(".map-wrap");
+  if (mapWrap) mapWrap.classList.remove("map-collapsed");
+
+  if (!p || !map || !p.lat || !p.lng) {
+    setStatus(`⚠️ Kein Kartenmarker gefunden · ${label}`);
+    console.warn("Kein Kartenmarker gefunden:", label, p);
+    return false;
+  }
+
+  const position = {lat: Number(p.lat), lng: Number(p.lng)};
+  map.setCenter(position);
+  map.setZoom(15);
+
+  const marker = getOrCreateMarker(p);
+  marker.setVisible(true);
+  google.maps.event.trigger(marker, "click");
+
+  if (google.maps.Animation) {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(() => marker.setAnimation(null), 1400);
+  }
+
+  setStatus(`Marker fokussiert · ${p.name}`);
+  setTimeout(() => {
+    document.getElementById("karte")?.scrollIntoView({behavior:"smooth", block:"start"});
+  }, 120);
+
+  return true;
+}
+
+function interactiveListHTML(items){
+  if (!items || !items.length) {
+    return `<p class="empty-hint">Für diesen Tag ist hier nichts Fixes hinterlegt.</p>`;
+  }
+
+  return `<ul>${
+    items.map(x => `
+      <li>
+        <button
+          type="button"
+          class="day-place-link"
+          data-place-name="${String(x).replace(/"/g, "&quot;")}"
+          title="Auf Karte anzeigen"
+        >${x}</button>
+      </li>
+    `).join("")
+  }</ul>`;
+}
+
+document.addEventListener("click", function(e){
+  const btn = e.target.closest(".day-place-link");
+  if (!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  focusPlaceOnMap(btn.dataset.placeName || btn.textContent || "");
+}, true);
+
+function listHTML(items){
+  if (!items || !items.length) return `<p class="empty-hint">Für diesen Tag ist hier nichts Fixes hinterlegt.</p>`;
+  return `<ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+}
+
+function placeMatchesDay(p, day){
+  const city = cityForPlace(p);
+  if (day.city === "Unterwegs / Route 66") return city === "Unterwegs / Route 66" || looksRoute66(p);
+  return city === day.city || (day.title.includes(city) && city !== "Unterwegs / Route 66");
+}
+
+function getSelectedDay(){ return DAY_PLAN.find(d=>d.id===selectedDayId) || DAY_PLAN[0]; }
+
+
+function targetRegionForDay(day){
+  const title = `${day.title || ""} ${day.city || ""}`.toLowerCase();
+
+  if (day.id === "2026-05-17") {
+    return { label:"Illinois Route 66 · Chicago → St. Louis", bounds:[
+      {lat:41.88,lng:-87.63},
+      {lat:40.88,lng:-88.63},
+      {lat:39.78,lng:-89.65},
+      {lat:38.62,lng:-90.18}
+    ]};
+  }
+  if (day.id === "2026-05-19") {
+    return { label:"Missouri / Oklahoma Route 66 · St. Louis → Tulsa", bounds:[
+      {lat:38.62,lng:-90.18},
+      {lat:38.06,lng:-91.40},
+      {lat:36.19,lng:-95.75},
+      {lat:36.15,lng:-95.99}
+    ]};
+  }
+  if (day.id === "2026-05-21") {
+    return { label:"Texas Transfer · Lawton → Austin", bounds:[
+      {lat:34.62,lng:-98.43},
+      {lat:32.75,lng:-97.33},
+      {lat:30.27,lng:-97.74}
+    ]};
+  }
+  if (day.id === "2026-05-14" || day.id === "2026-05-15" || day.id === "2026-05-16" || (title.includes("chicago") && !title.includes("st. louis"))) {
+    return { label:"Chicago", center:{lat:41.8890,lng:-87.6298}, zoom:12 };
+  }
+  if (day.id === "2026-05-18" || (title.includes("st. louis") && !title.includes("tulsa"))) {
+    return { label:"St. Louis", center:{lat:38.6247,lng:-90.1848}, zoom:12 };
+  }
+  if (title.includes("tulsa") && !title.includes("lawton")) {
+    return { label:"Tulsa", center:{lat:36.1540,lng:-95.9928}, zoom:12 };
+  }
+  if (day.id === "2026-05-20" || title.includes("lawton")) {
+    return { label:"Lawton / Medicine Park", center:{lat:34.6250,lng:-98.4350}, zoom:10 };
+  }
+  if (day.id === "2026-05-22" || day.id === "2026-05-23" || title.includes("austin")) {
+    return { label:"Austin", center:{lat:30.2672,lng:-97.7431}, zoom:12 };
+  }
+
+  return { label: day.title || "Gewählter Tag", center:{lat:39.5,lng:-98.35}, zoom:5 };
+}
+
+function focusSelectedDayRegionOnMap(){
+  if (!map) return;
+  const day = getSelectedDay();
+  const region = targetRegionForDay(day);
+
+  const mapWrap = document.querySelector(".map-wrap");
+  if (mapWrap) mapWrap.classList.remove("map-collapsed");
+
+  if (region.bounds && region.bounds.length) {
+    const bounds = new google.maps.LatLngBounds();
+    region.bounds.forEach(p => bounds.extend(new google.maps.LatLng(p.lat, p.lng)));
+    map.fitBounds(bounds);
+  } else if (region.center) {
+    map.setCenter(region.center);
+    map.setZoom(region.zoom || 12);
+  }
+
+  setStatus(`Zielregion angezeigt · ${region.label}`);
+}
+
+function renderDayTabs(){
+  const tabs = document.getElementById("dayTabs");
+  tabs.innerHTML = DAY_PLAN.map(d=>`<button class="${d.id===selectedDayId ? "active" : ""}" data-day="${d.id}">${d.label || ""} · ${(d.title || "").split(" → ")[0]}</button>`).join("");
+  tabs.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+    selectedDayId = btn.dataset.day;
+    localStorage.setItem("route66SelectedDay", selectedDayId);
+    renderDayView();
+    renderLists();
+    if (map) focusSelectedDayRegionOnMap();
+  }));
+}
+
+function renderDayView(){
+  const day = getSelectedDay();
+  renderDayTabs();
+  document.getElementById("dayOverview").innerHTML = `
+    <div><div class="meta">Gewählter Tag</div><h2>${day.label || ""} · ${day.title || ""}</h2><p>${day.route || ""}</p><p class="day-note">${day.time || ""}</p></div>
+    <div class="today-facts"><div class="fact"><b>Strecke</b><span>${day.route}</span></div><div class="fact"><b>Distanz</b><span>${day.km}</span></div><div class="fact"><b>Fokus</b><span>${day.city}</span></div></div>`;
+  document.getElementById("todayHighlights").innerHTML = interactiveListHTML((day.highlights || []).slice(0, 5));
+  document.getElementById("todayMusic").innerHTML = interactiveListHTML((day.music || []).slice(0, 5));
+}
+
+function renderTextList(container, titleItems){
+  container.innerHTML = `<div class="list">${titleItems.map(item=>`<div class="place-row"><div><strong>${item}</strong><span>Tagesplan</span></div></div>`).join("")}</div>`;
+}
+
+function renderLists() {
+  const day = getSelectedDay();
+  const hotelGrid = document.getElementById("hotelGrid");
+  const musicList = document.getElementById("musicList");
+  const foodList = document.getElementById("foodList");
+  const distilleryList = document.getElementById("distilleryList");
+  const route66List = document.getElementById("route66List");
+  const otherList = document.getElementById("otherList");
+  const highlightList = document.getElementById("highlightList");
+
+  const dayPlaces = resolvedPlaces.filter(p=>placeMatchesDay(p, day));
+  const hotels = resolvedPlaces.filter(p=>groupForPlace(p)==="hotel");
+
+  const orderByDayList = (places, list) => {
+    const wanted = (list || []).map(x => normalizePlaceName(canonicalPlaceLabel(x)));
+    return places.sort((a,b) => {
+      const an = normalizePlaceName(a.name || "");
+      const bn = normalizePlaceName(b.name || "");
+      const ai = wanted.findIndex(w => an.includes(w) || w.includes(an));
+      const bi = wanted.findIndex(w => bn.includes(w) || w.includes(bn));
+      return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
+    });
+  };
+
+  const dayHighlights = orderByDayList(
+    dayPlaces.filter(p=>groupForPlace(p)==="highlight" || groupForPlace(p)==="route66"),
+    day.highlights
+  );
+
+  if (highlightList) highlightList.innerHTML = dayHighlights.length ? `<div class="list">${dayHighlights.map(row).join("")}</div>` : `<p class="empty-hint">Keine passenden Highlights für diesen Tag gefunden. Nutze die Karte oder Route66 Stops.</p>`;
+
+  if (musicList) {
+    const dayMusic = orderByDayList(dayPlaces.filter(p=>groupForPlace(p)==="music"), day.music);
+    musicList.innerHTML = dayMusic.length ? `<div class="list">${dayMusic.map(row).join("")}</div>` : `<p class="empty-hint">Keine MusicBars für diesen Tag gefunden. Empfehlungen stehen oben in der Tageskarte.</p>`;
+  }
+
+  hotelGrid.innerHTML = hotels.sort((a,b)=>cityForPlace(a).localeCompare(cityForPlace(b))).map(p => {
+    const maps = mapsUrlFor(p);
+    return `<article class="card"><div class="tag">${cityForPlace(p)}</div><h3>${p.name}</h3><p>${p.formattedAddress || p.address || ""}</p><a class="button" href="${maps}" target="_blank" rel="noopener noreferrer">In Google Maps öffnen</a></article>`;
+  }).join("");
+
+  if (foodList) renderCityGrouped(foodList, resolvedPlaces.filter(p=>groupForPlace(p)==="food"));
+  if (distilleryList) renderCityGrouped(distilleryList, resolvedPlaces.filter(p=>groupForPlace(p)==="distillery"));
+  if (route66List) renderCityGrouped(route66List, resolvedPlaces.filter(p=>groupForPlace(p)==="route66"));
+  if (otherList) renderCityGrouped(otherList, resolvedPlaces.filter(p=>groupForPlace(p)==="other"));
+}
+
+
+
+async function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat:39.5,lng:-98.35},
+    zoom: 5,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true
+  });
+  service = new google.maps.places.PlacesService(map);
+  infoWindow = new google.maps.InfoWindow();
+
+  selectedDayId = localStorage.getItem("route66SelectedDay") || DAY_PLAN[0].id;
+  renderDayView();
+  await resolveAllPlaces();
+  applyCategoryOverrides();
+
+renderMarkers("all");
+  renderLists();
+  setTimeout(() => focusSelectedDayRegionOnMap(), 250);
+
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      renderMarkers(btn.dataset.filter);
+    });
+  });
+}
+</script>
+<script>
+function initOfflineApp(reason){
+  const status = document.getElementById("status");
+  const mapWrap = document.querySelector(".map-wrap");
+  if (mapWrap) mapWrap.classList.add("map-offline");
+  if (status) status.textContent = reason || "Offline-Modus: Tagesplanung ist verfügbar, Google Maps nicht.";
+  try {
+    selectedDayId = localStorage.getItem("route66SelectedDay") || DAY_PLAN[0].id;
+    resolvedPlaces = RAW_PLACES.map(p => {
+      const coords = Array.isArray(p.coords) ? p.coords : null;
+      return { ...p, lng: p.lng || (coords ? coords[0] : undefined), lat: p.lat || (coords ? coords[1] : undefined) };
+    });
+    applyCategoryOverrides();
+    renderDayView();
+    renderLists();
+  } catch(e) {
+    console.warn("Offline fallback render failed", e);
+  }
+}
+
+(function loadGoogleMaps(){
+  const status = document.getElementById("status");
+  if(!API_KEY){
+    if(status) status.textContent = "Google-Maps-Key fehlt oder ist nicht für diese Domain freigegeben.";
+    initOfflineApp("Google-Maps-Key fehlt. Offline-Tagesplanung ist verfügbar.");
+    return;
+  }
+  if(!navigator.onLine){
+    initOfflineApp("Offline-Modus: Tagesplanung ist verfügbar, Google Maps lädt später wieder online.");
+    return;
+  }
+  const script = document.createElement("script");
+  script.async = true;
+  script.defer = true;
+  script.onerror = () => initOfflineApp("Google Maps konnte nicht geladen werden. Tagesplanung bleibt offline nutzbar.");
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(API_KEY)}&libraries=places&callback=initMap`;
+  document.head.appendChild(script);
+})();
+</script>
+<nav class="bottom-nav" aria-label="Schnellnavigation">
+  <a href="#tag"><span>☀️</span>Heute</a>
+  <a href="#karte"><span>🗺️</span>Karte</a>
+  <a href="#fahrplan"><span>🚗</span>Plan</a>
+  <a href="#highlights"><span>⭐</span>Top</a>
+  <a href="#musicbars"><span>🎸</span>Music</a>
+</nav>
+
+<script>
+document.addEventListener("click", function(e) {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute("href");
+  if (!id || id === "#") return;
+  const el = document.querySelector(id);
+  if (!el) return;
+  e.preventDefault();
+  const offset = window.innerWidth <= 760 ? 10 : 120;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({top:y, behavior:"smooth"});
+});
+</script>
+
+<script>
+(function pwaEnhancements(){
+  const banner = document.getElementById('offlineBanner');
+  const title = document.getElementById('offlineTitle');
+  const text = document.getElementById('offlineText');
+  const closeBtn = document.getElementById('closeOfflineBanner');
+  const installBtn = document.getElementById('installAppBtn');
+  const reloadBtn = document.getElementById('reloadAppBtn');
+  let deferredInstallPrompt = null;
+
+  function showBanner(kind){
+    if(!banner) return;
+    if(kind === 'offline'){
+      title.textContent = 'Offline-Modus aktiv';
+      text.textContent = 'Tagesplan, Fahrplan, Hotels, Highlights und MusicBars sind lokal verfügbar. Google Maps benötigt Internet.';
+    } else if(kind === 'online'){
+      title.textContent = 'Wieder online';
+      text.textContent = 'Google Maps und externe Links funktionieren wieder. Offline-Daten bleiben gespeichert.';
+    } else if(kind === 'update'){
+      title.textContent = 'Update verfügbar';
+      text.textContent = 'Eine neue Version liegt bereit. Lade sie, damit alle Reiseänderungen sichtbar sind.';
+      reloadBtn.hidden = false;
+    } else {
+      title.textContent = 'Offline bereit';
+      text.textContent = 'Die Reise-App ist installiert bzw. lokal zwischengespeichert.';
+    }
+    banner.classList.add('show');
+  }
+
+  closeBtn?.addEventListener('click', () => banner?.classList.remove('show'));
+  window.addEventListener('offline', () => showBanner('offline'));
+  window.addEventListener('online', () => showBanner('online'));
+  if(!navigator.onLine) window.addEventListener('load', () => showBanner('offline'));
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    installBtn.hidden = false;
+    showBanner('install');
+  });
+  installBtn?.addEventListener('click', async () => {
+    if(!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice.catch(() => null);
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+
+  reloadBtn?.addEventListener('click', () => window.location.reload());
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+      try {
+        const reg = await navigator.serviceWorker.register('./service-worker.js');
+        if(reg.waiting) showBanner('update');
+        reg.addEventListener('updatefound', () => {
+          const worker = reg.installing;
+          worker?.addEventListener('statechange', () => {
+            if(worker.state === 'installed' && navigator.serviceWorker.controller) showBanner('update');
+          });
+        });
+      } catch(e) {
+        console.warn('Service Worker konnte nicht registriert werden', e);
+      }
+    });
+  }
+})();
+</script>
+
+
+
+
+<script>
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  el.classList.add("pulse-highlight");
+  setTimeout(() => el.classList.remove("pulse-highlight"), 1800);
+}
+
+function toggleMap(){document.querySelector('.map-wrap')?.classList.toggle('map-collapsed');}
+
+const routePlanV33 = window.routePlanV33 || [];
+const essentialHighlightsV33 = window.essentialHighlightsV33 || [];
+const essentialMusicBarsV33 = window.essentialMusicBarsV33 || [];
+function renderFahrplanV33(){
+  const grid = document.getElementById('fahrplanGrid');
+  if(!grid) return;
+  grid.innerHTML = routePlanV33.map(leg => `
+    <article class="leg-card">
+      <div class="priority-badge priority-must">${leg.date}</div>
+      <h3>${leg.title}</h3>
+      <p class="note"><strong>${leg.route}</strong><br>${leg.focus}</p>
+      <div class="leg-meta">
+        <div class="leg-pill"><b>Abfahrt</b><span>${leg.depart}</span></div>
+        <div class="leg-pill"><b>Ankunft</b><span>${leg.arrive}</span></div>
+        <div class="leg-pill"><b>Strecke</b><span>${leg.distance}</span></div>
+        <div class="leg-pill"><b>Typ</b><span>${leg.distance === "lokal" ? "Stadttag" : "Fahrtag"}</span></div>
+      </div>
+      <ul class="leg-stops">${leg.stops.map(s => `<li>${s}</li>`).join('')}</ul>
+      <div class="leg-actions"><a href="${leg.maps}" target="_blank">Route in Google Maps</a></div>
+    </article>
+  `).join('');
+}
+
+function renderEssentialsV33(){
+  const hl = document.getElementById('highlightList');
+  if(hl){
+    hl.innerHTML = essentialHighlightsV33.map(p => `
+      <div class="place-row category-highlight">
+        <div>
+          <div class="priority-badge priority-must">MUST SEE</div>
+          <strong>${p.name}</strong>
+          <span>${p.why}</span>
+        </div>
+        <a href="${p.url}" target="_blank">Google Maps</a>
+      </div>
+    `).join('');
+  }
+  const music = document.getElementById('musicList');
+  if(music){
+    music.innerHTML = essentialMusicBarsV33.map(p => `
+      <div class="place-row category-music">
+        <div>
+          <div class="priority-badge priority-top">TOP MUSICBAR</div>
+          <strong>${p.name}</strong>
+          <span>${p.city}${p.role ? " · " + p.role : ""}</span>
+        </div>
+        <a href="${p.url}" target="_blank">Google Maps</a>
+      </div>
+    `).join('');
+  }
+}
+
+function removeOffRouteNoiseV33(){
+  const offRouteWords = [
+    "Los Angeles","San Francisco","San Diego","Sacramento","Las Vegas","Nevada","California","Kalifornien",
+    "Phoenix","Tucson","Arizona","Albuquerque","New Mexico","Salt Lake City","Denver","Utah","Colorado",
+    "Amarillo","Adrian","Shamrock","Tucumcari","Santa Rosa","Holbrook","Winslow","Oatman","Amboy",
+    "Oro Grande","Newberry Springs","Santa Monica","Meteor Crater","Cadillac Ranch","Wigwam","Roy's Motel",
+    "Blue Swallow","U-Drop Inn","MidPoint","Bagdad Café","Bottle Tree"
+  ];
+  const clean = p => !offRouteWords.some(w => JSON.stringify(p).toLowerCase().includes(w.toLowerCase()));
+  ["RAW_PLACES","ALL_PLACES","places"].forEach(key => {
+    if(Array.isArray(window[key])) window[key] = window[key].filter(clean);
+  });
+}
+
+window.addEventListener('load', () => {
+    renderFahrplanV33();
+  renderEssentialsV33();
+  removeOffRouteNoiseV33();
+  setTimeout(removeOffRouteNoiseV33, 800);
+});
+</script>
+
+
+<script>
+(function(){
+  function getOffset(){
+    // Auf Desktop gibt es oben die horizontale Navigation; auf Mobile bewusst fast keinen Offset.
+    return window.innerWidth <= 760 ? 16 : 118;
+  }
+
+  function scrollToTarget(target){
+    if(!target) return;
+    const y = target.getBoundingClientRect().top + window.pageYOffset - getOffset();
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+
+  document.addEventListener('click', function(e){
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    const id = decodeURIComponent(link.getAttribute('href').slice(1));
+    if(!id) return;
+    const target = document.getElementById(id);
+    if(!target) return;
+    e.preventDefault();
+    history.pushState(null, '', '#' + id);
+    scrollToTarget(target);
+  }, true);
+
+  window.addEventListener('load', function(){
+    if(location.hash){
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      setTimeout(() => scrollToTarget(target), 120);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
+
