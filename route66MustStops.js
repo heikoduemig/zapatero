@@ -1126,8 +1126,7 @@ window.route66MustStops = [
   "type": "highlight",
   "category": "Top Highlights",
   "text": "🌆 Pflichtblick · Glasbalkon & Skyline",
-  "address": "233 S Wacker Dr, Chicago, IL 60606",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Skydeck+Chicago+Willis+Tower+233+S+Wacker+Dr+Chicago"
+  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Willis+Tower+Skydeck+Chicago"
 },
 {
   "name": "Art Institute of Chicago",
@@ -1248,17 +1247,20 @@ window.route66MustStops = [
   "category": "Top Highlights",
   "text": "🚲 Spaziergang / Bike am Lake Michigan",
   "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lakefront+Trail+Chicago"
-},
-  {
-    "name": "The Range Austin",
-    "city": "Austin",
-    "coords": [
-      -97.7809106,
-      30.172496
-    ],
-    "type": "highlight",
-    "category": "Top Highlights",
-    "text": "🔥 PFLICHTTERMIN · 11:30 reserviert",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Range+Austin+8301+S+IH+35+Frontage+Rd"
-  }
+}
+
+,
+{
+  "name": "The Range Austin",
+  "city": "Austin",
+  "coords": [
+    -97.7314,
+    30.2218
+  ],
+  "type": "highlight",
+  "category": "Top Highlights",
+  "text": "🎯 Reservierung 11:30 · Pflichttermin",
+  "googleMapsUrl": "https://therangeaustin.com/"
+}
+
 ];

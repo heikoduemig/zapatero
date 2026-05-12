@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v69-willis-skydeck-link-fix';
+const CACHE_NAME = 'route66-trip-v70-range-austin';
 const APP_SHELL = [
   './',
   './index.html',

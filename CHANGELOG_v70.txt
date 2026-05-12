@@ -1,9 +1,13 @@
-v70 · The Range Austin Fix
+v70 · The Range Austin + Titel-Fix
 
 Geändert:
-- Korrigierte Basis: verwendet aktuelle v70-Dateien statt versehentlich v65.
+- Browser-Tab-Titel von v65 auf v70 korrigiert.
 - The Range Austin am 23.05.2026 als Pflichttermin ergänzt.
-- Reservierung 11:30 in Highlights ergänzt.
-- Top Highlight / Kartenmarker ergänzt.
+- Reservierung 11:30 in Tages-Highlights ergänzt.
+- The Range Austin als Top Highlight / Kartenmarker ergänzt.
 - Offizieller Link hinterlegt: https://therangeaustin.com/
-- Service Worker Cache auf v70 gesetzt.
+- Service Worker Cache auf route66-trip-v70-range-austin gesetzt.
+
+Wichtig:
+- index.html ersetzen, sonst bleibt im Browser-Tab weiterhin v65 stehen.
+- Nach Upload GitHub Pages neu laden und PWA/Browser-Cache ggf. löschen.
