@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v65-date-fix-hotels';
+const CACHE_NAME = 'route66-trip-v66-fahrplan-fix';
 const APP_SHELL = [
   './', './index.html', './manifest.webmanifest', './routeData.v35.js', './musicBars.js', './route66MustStops.js'
 ];
