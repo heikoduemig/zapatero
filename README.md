@@ -1,32 +1,44 @@
-# Route66 GitHub Paket v66
+# Route66 GitHub Paket v68 · Online/Offline App
 
-Update: Fahrplan-Bereich korrigiert.
+Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
-Dieses Paket ersetzt die bisherigen Dateien vollständig.
+## Nutzung
 
-Wichtigste Änderung:
-- Der Bereich „Etappen, Abfahrten & Ankünfte“ nutzt jetzt dieselbe korrigierte Timeline wie die Tagesansicht.
+1. Alle Dateien aus diesem ZIP in das GitHub-Repo kopieren und bestehende Dateien ersetzen.
+2. GitHub Pages neu laden.
+3. Seite einmal online öffnen, damit der Service Worker die App-Dateien speichert.
+4. Auf dem Smartphone als App installieren:
+   - iPhone/Safari: Teilen → „Zum Home-Bildschirm“
+   - Android/Chrome: Menü → „App installieren“
 
-Korrigierte Hotels / Termine:
-- 14.–16.05.2026: citizenM Chicago Downtown
-- 17.–18.05.2026: Hotel Lumière at the Arch STL
-- 19.05.2026: The Mayo Tulsa
-- 20.05.2026: Apache Casino Hotel Lawton
-- 21.–23.05.2026: citizenM Austin
-- 23.05.2026: Abreise Austin
+## Offline verfügbar
 
-## Deployment
-Alle Dateien in dein GitHub-Repo kopieren und bestehende Dateien ersetzen. Danach GitHub Pages neu laden. Falls noch alte Daten sichtbar sind: Browser-Cache bzw. PWA-Cache einmal leeren.
+- Tagesplan
+- Etappen, Abfahrten & Ankünfte
+- Hotels
+- Highlights
+- MusicBars
+- lokale Route-Daten
+- App-Layout und Icons
 
+## Online benötigt
 
-## v67 Offline-PWA
+- Google Maps Karte
+- Google-Maps-Navigation
+- externe Links
 
-Dieses Paket macht die Reise-App deutlich zuverlässiger offline nutzbar.
+Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt. Sobald wieder Internet vorhanden ist, funktioniert die Karte wieder nach Reload bzw. automatisch je nach Browser.
 
-Wichtig nach dem GitHub-Upload:
-1. GitHub Pages öffnen, solange Internet vorhanden ist.
-2. Einmal komplett laden lassen.
-3. Optional im Browser / Smartphone als App installieren.
-4. Danach bleiben Tagesplan, Fahrplan, Hotels, Highlights und MusicBars offline verfügbar.
+## Wichtig bei Updates
 
-Google Maps kann offline nicht vollständig funktionieren. Dafür gibt es jetzt einen sichtbaren Karten-Fallback.
+Die Cache-Version wurde auf `route66-trip-v68-online-offline-app` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+
+## Dateien
+
+- `index.html` – App/UI
+- `routeData.v35.js` – Tagesplan und Fahrplan
+- `route66MustStops.js` – Must-Stops und Highlights
+- `musicBars.js` – Musik-/Bar-Empfehlungen
+- `manifest.webmanifest` – PWA-Metadaten
+- `service-worker.js` – Offline-Cache
+- `icon-192.png`, `icon-512.png` – App-Icons

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v67-offline-pwa';
+const CACHE_NAME = 'route66-trip-v68-online-offline-app';
 const APP_SHELL = [
   './',
   './index.html',
@@ -67,4 +67,11 @@ self.addEventListener('fetch', event => {
       return cached || fetchPromise;
     })
   );
+});
+
+
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });

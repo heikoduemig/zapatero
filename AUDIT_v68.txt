@@ -1,0 +1,12 @@
+Audit v68
+
+OK:
+- App-Shell wird gecacht: index.html, manifest, Route-Daten, MusicBars, MustStops, Icons.
+- App kann als PWA installiert werden.
+- Offline-Nutzung zeigt Tagesplan, Hotels, Etappen, Highlights und Musik/Bars weiterhin lokal an.
+- Google Maps/Google APIs werden bewusst nicht gecacht und benötigen online Zugriff.
+- Kartenbereich zeigt offline Fallback statt leerer Karte.
+- Cache-Busting auf route66-trip-v68-online-offline-app.
+
+Hinweis:
+- Für echte Offline-Navigation zusätzlich Google Maps Offlinekarten auf dem Smartphone speichern.

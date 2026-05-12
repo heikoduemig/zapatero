@@ -1287,7 +1287,7 @@ tbody tr:last-child td {
   100%{box-shadow:0 0 0 rgba(59,130,246,0);}
 }
 
-/* v67 Offline-/PWA-Feinschliff */
+/* v68 Online-/Offline-App-Feinschliff */
 .offline-banner {
   position: fixed;
   left: 12px;
@@ -1334,6 +1334,41 @@ tbody tr:last-child td {
 .offline-map-fallback p { margin: 0; color: #b9cbd2; line-height: 1.45; }
 .map-offline #map { display: none; }
 .map-offline .offline-map-fallback { display: block; }
+
+.app-mode-badge {
+  position: fixed;
+  right: 12px;
+  top: calc(10px + var(--safe-top));
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(5, 9, 13, .78);
+  color: #eaf7fb;
+  font-size: 12px;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 32px rgba(0,0,0,.25);
+}
+.app-mode-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #7cff9b;
+  box-shadow: 0 0 12px rgba(124,255,155,.75);
+}
+.app-mode-badge.offline .app-mode-dot {
+  background: #ffd166;
+  box-shadow: 0 0 12px rgba(255,209,102,.75);
+}
+@media (max-width: 760px) {
+  .app-mode-badge { top: auto; bottom: calc(132px + var(--safe-bottom)); right: 12px; }
+}
+
 @media (max-width: 760px) {
   .offline-banner {
     bottom: calc(72px + var(--safe-bottom));
@@ -1347,8 +1382,9 @@ tbody tr:last-child td {
 </style>
 </head>
 <body>
+<div class="app-mode-badge" id="appModeBadge"><span class="app-mode-dot"></span><span id="appModeText">Online</span></div>
 <div class="offline-banner" id="offlineBanner" role="status" aria-live="polite">
-  <div><strong id="offlineTitle">Offline bereit</strong><br><span id="offlineText">Die Tagesplanung ist lokal gespeichert. Google Maps braucht weiterhin Internet.</span></div>
+  <div><strong id="offlineTitle">Online & offline bereit</strong><br><span id="offlineText">Die App speichert Tagesplan, Hotels und Stops lokal. Karten funktionieren online.</span></div>
   <div class="offline-actions">
     <button id="installAppBtn" class="primary" type="button" hidden>App installieren</button>
     <button id="reloadAppBtn" type="button" hidden>Update laden</button>
@@ -1357,7 +1393,7 @@ tbody tr:last-child td {
 </div>
 <header>
   <h1>Route 66 Music Trip</h1>
-  <p class="app-subtitle">Tagesansicht v67 · Offline-PWA · Highlights · MusicBars</p>
+  <p class="app-subtitle">Tagesansicht v68 · Online/Offline App · Highlights · MusicBars</p>
   <nav class="nav">
     <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a>
   </nav>

@@ -1,13 +1,29 @@
 {
   "name": "Route 66 Music Trip 2026",
   "short_name": "Route66",
-  "description": "Offlinefähige Route-66-Reiseplanung mit Tagesplan, Hotels, Highlights und MusicBars.",
-  "start_url": "./index.html",
+  "description": "Online- und offlinefähige Route-66-Reiseplanung mit Tagesplan, Hotels, Highlights, MusicBars und Karten-Fallback.",
+  "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#070b0f",
   "theme_color": "#071018",
+  "shortcuts": [
+    {
+      "name": "Tagesplan",
+      "short_name": "Tage",
+      "description": "Route-66-Tagesplan öffnen",
+      "url": "./index.html?source=pwa#plan",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Karte",
+      "short_name": "Karte",
+      "description": "Route-66-Karte öffnen",
+      "url": "./index.html?source=pwa#karte",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "./icon-192.png",
