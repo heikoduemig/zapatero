@@ -1,0 +1,54 @@
+{
+  "placeCount": 279,
+  "missing": [
+    {
+      "date": "2026-05-14",
+      "title": "Chicago Ankunft",
+      "field": "highlights",
+      "item": "Riverwalk als lockerer Einstieg",
+      "target": "riverwalk als lockerer einstieg"
+    },
+    {
+      "date": "2026-05-14",
+      "title": "Chicago Ankunft",
+      "field": "highlights",
+      "item": "Millennium Park / Bean",
+      "target": "millennium park bean"
+    },
+    {
+      "date": "2026-05-14",
+      "title": "Chicago Ankunft",
+      "field": "highlights",
+      "item": "Deep Dish Pizza",
+      "target": "deep dish pizza"
+    },
+    {
+      "date": "2026-05-16",
+      "title": "Chicago → St. Louis",
+      "field": "music",
+      "item": "St. Louis nur optional ruhig starten",
+      "target": "st louis nur optional ruhig starten"
+    },
+    {
+      "date": "2026-05-17",
+      "title": "St. Louis",
+      "field": "music",
+      "item": "BB's Jazz, Blues & Soups als Alternative",
+      "target": "bbs jazz blues soups als alternative"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Lawton → Austin",
+      "field": "highlights",
+      "item": "Barton Springs optional",
+      "target": "barton springs optional"
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Austin",
+      "field": "highlights",
+      "item": "Congress Bridge Bats",
+      "target": "congress bridge bats"
+    }
+  ]
+}

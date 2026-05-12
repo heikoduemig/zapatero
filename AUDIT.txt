@@ -1,0 +1,33 @@
+{
+  "places": 255,
+  "missing": [
+    {
+      "date": "2026-05-16",
+      "title": "Chicago → St. Louis",
+      "field": "music",
+      "item": "St. Louis nur optional ruhig starten",
+      "normalized": "st louis nur  ruhig starten"
+    },
+    {
+      "date": "2026-05-18",
+      "title": "St. Louis → Tulsa",
+      "field": "music",
+      "item": "Tulsa Abend optional: Mercury Lounge kurz",
+      "normalized": "tulsa abend  mercury lounge kurz"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Tulsa",
+      "field": "music",
+      "item": "The Colony als Singer-Songwriter-Alternative",
+      "normalized": "the colony als singer songwriter alternative"
+    },
+    {
+      "date": "2026-05-20",
+      "title": "Tulsa → Lawton",
+      "field": "mandatory",
+      "item": "Früh ins Hotel / Erholung",
+      "normalized": "fr h ins hotel erholung"
+    }
+  ]
+}
