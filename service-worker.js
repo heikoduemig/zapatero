@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v70-range-austin';
+const CACHE_NAME = 'route66-trip-v71-day-button-fix';
 const APP_SHELL = [
   './',
   './index.html',

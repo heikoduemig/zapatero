@@ -1,4 +1,4 @@
-# Route66 GitHub Paket v70 · Online/Offline App
+# Route66 GitHub Paket v71 · Online/Offline App
 
 Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
@@ -31,7 +31,7 @@ Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt
 
 ## Wichtig bei Updates
 
-Die Cache-Version wurde auf `route66-trip-v70-range-austin` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+Die Cache-Version wurde auf `route66-trip-v71-range-austin` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
 
 ## Dateien
 
