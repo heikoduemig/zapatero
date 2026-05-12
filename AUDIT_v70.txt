@@ -1,0 +1,7 @@
+AUDIT v70
+
+OK: The Range Austin ist am 23.05.2026 im DAY_PLAN als Pflichttermin um 11:30 eingetragen.
+OK: The Range Austin erscheint in den Highlights für den gewählten Austin-Abreisetag.
+OK: The Range Austin ist in route66MustStops.js als Top Highlights eingetragen.
+OK: Service Worker Cache-Version ist v70.
+Hinweis: Nach Deployment PWA/App einmal neu laden bzw. Cache leeren, falls alte Daten angezeigt werden.

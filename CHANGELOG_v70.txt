@@ -1,0 +1,7 @@
+v70 · The Range Austin Termin ergänzt
+
+Geändert:
+- 23.05.2026 Austin/Samstag: The Range Austin als Pflichttermin um 11:30 ergänzt.
+- The Range Austin in den Tages-Highlights für den gewählten Tag ergänzt.
+- The Range Austin als Top Highlight mit Karten-/Google-Maps-Link ergänzt.
+- Service-Worker-Cache auf v70 gesetzt.
