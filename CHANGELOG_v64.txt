@@ -1,7 +1,0 @@
-v64 · Chicago Top Highlights Expansion
-
-Geändert:
-- route66MustStops.js: zusätzliche Chicago-Top-Highlight-Marker eingefügt.
-- routeData.v35.js: DAY_PLAN für 14.–16.05 Chicago von 10 auf 22 Highlights erweitert.
-- service-worker.js: Cache-Busting auf v64.
-- README.md: Deployment-Hinweise aktualisiert.
