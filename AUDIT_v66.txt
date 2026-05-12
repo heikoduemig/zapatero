@@ -1,7 +1,0 @@
-AUDIT v66
-
-OK: DAY_PLAN enthält korrigierte Hoteltermine 14.–23.05.2026.
-OK: routePlanV33 / Fahrplan-Bereich wurde an dieselbe Timeline angepasst.
-OK: 23.05.2026 Austin-Abreise ergänzt.
-OK: Service Worker Cache auf v66 erhöht.
-Hinweis: Nach Deployment ggf. PWA/Browser-Cache leeren, falls GitHub Pages noch alte Dateien zeigt.
