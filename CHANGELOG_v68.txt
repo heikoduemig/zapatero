@@ -1,9 +1,0 @@
-v68 · Online/Offline App Version
-
-Geändert:
-- PWA bleibt eine einzige App für Online- und Offline-Nutzung.
-- Online/Offline-Status-Badge ergänzt.
-- Offline-Karten-Fallback bleibt aktiv, Tagesplan und Daten bleiben lokal verfügbar.
-- Manifest um PWA-Shortcuts für Tagesplan und Karte erweitert.
-- Service Worker Cache-Version auf v68 gesetzt.
-- Update-Flow verbessert: neue Version kann direkt geladen werden.
