@@ -1,6 +1,0 @@
-v83 · TV Dokus merged
-
-- Doppelte TV-Dokus-Karten entfernt
-- Nur noch eine gemeinsame TV-Dokus-Sektion
-- Bestehende Route-/Doku-Inhalte beibehalten
-- Service Worker Cache aktualisiert
