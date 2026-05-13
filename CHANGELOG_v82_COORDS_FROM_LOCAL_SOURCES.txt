@@ -1,0 +1,12 @@
+v82 · Koordinaten aus vorhandenen lokalen Quellen ergänzt
+
+Geändert:
+- routeData.v36.js erstellt.
+- 112 Einträge aus RAW_PLACES mit direkten Koordinaten ergänzt.
+- Quellen: route66MustStops.js, musicBars.js und exakte LOCAL_COORDS aus dem bestehenden Karten-Audit.
+- index.html referenziert jetzt routeData.v36.js.
+- Service-Worker-Cache auf route66-trip-v82-coords erhöht.
+
+Hinweis:
+- Der Google-Maps-Kurzlink/Listenlink war ohne Login bzw. ohne kostenpflichtige Google Places/Geocoding API nicht zuverlässig auslesbar.
+- Orte ohne verlässliche Koordinate bleiben sichtbar, aber als lokaler Fallback/geschätzt.

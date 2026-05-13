@@ -51,3 +51,11 @@ Orte mit hinterlegten Koordinaten bleiben exakt. Für Einträge, die bisher nur 
 - Doppelte Einträge übernehmen vorhandene exakte Koordinaten.
 - Falsch einsortierte Orte wurden in die passenden Layer verschoben.
 - Lokal geschätzte Marker bleiben sichtbar, aber werden intern als Fallback markiert.
+
+
+## Änderungen v82
+
+- `routeData.v36.js` ergänzt direkte Koordinaten an Google-Maps-Listen-Einträgen, wo bereits exakte lokale Koordinaten aus `route66MustStops.js`, `musicBars.js` oder dem lokalen `LOCAL_COORDS`-Audit vorhanden waren.
+- 112 zusätzliche RAW_PLACES-Einträge bekommen dadurch direkte `coords` und werden nicht mehr nur über lokale Fallbacks gesetzt.
+- Der Service Worker nutzt `route66-trip-v82-coords`, damit Smartphones/PWA die neuen Daten laden.
+- Der Link zur Google-Maps-Liste konnte ohne Google-Login/Places-API nicht direkt maschinell ausgelesen werden; Einträge ohne verlässliche Koordinaten bleiben bewusst im lokalen Fallback.

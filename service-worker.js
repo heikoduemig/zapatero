@@ -1,9 +1,9 @@
-const CACHE_NAME = 'route66-trip-v79-map-complete';
+const CACHE_NAME = 'route66-trip-v82-coords';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './routeData.v35.js',
+  './routeData.v36.js',
   './musicBars.js',
   './route66MustStops.js',
   './icon-192.png',
