@@ -1,9 +1,0 @@
-v80 · TV Dokus + offizielle YouTube Clips
-
-Geändert:
-- TV-Dokus-Karte ganz unten bleibt erhalten.
-- Kartentitel bleibt ohne Emoji: „TV Dokus“.
-- Offizielle YouTube-Buttons ergänzt, wo ein offizieller oder institutioneller Clip sinnvoll verfügbar ist.
-- Keine privaten Reuploads/User-Videos eingebaut.
-- Doku-Links bleiben direkt auf Beiträgen, Episoden oder konkreten Infoseiten.
-- Service-Worker-Cache auf v80 aktualisiert.
