@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v81-official-tv-docs';
+const CACHE_NAME = 'route66-trip-v82-route-specific-docs';
 const APP_SHELL = [
   './',
   './index.html',
