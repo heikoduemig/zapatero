@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v77-free-osm';
+const CACHE_NAME = 'route66-trip-v79-map-complete';
 const APP_SHELL = [
   './',
   './index.html',

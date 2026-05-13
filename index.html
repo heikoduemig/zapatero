@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Route 66 Music Trip · v77 Free Maps</title>
+<title>Route 66 Music Trip · v79 Map Complete</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#071018">
@@ -1450,7 +1450,7 @@ tbody tr:last-child td {
 </div>
 <header>
   <h1>Route 66 Music Trip</h1>
-  <p class="app-subtitle">Tagesansicht v76 · Online/Offline App · Highlights · MusicBars</p>
+  <p class="app-subtitle">Tagesansicht v79 · Map Complete · Hotels als Basecamp · kostenfreie OpenStreetMap</p>
   <nav class="nav">
     <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a>
   </nav>
@@ -1579,8 +1579,8 @@ forceKnownPlaceData(RAW_PLACES);
 let map;
 let markers = new Map();
 let resolvedPlaces = [];
-const cacheKey = "route66ResolvedPlacesV77Free";
-const categoryEditKey = "route66CategoryOverridesV77Free";
+const cacheKey = "route66ResolvedPlacesV79MapComplete";
+const categoryEditKey = "route66CategoryOverridesV79MapComplete";
 
 function getCategoryOverrides() {
   try { return JSON.parse(localStorage.getItem(categoryEditKey) || "{}"); }
@@ -1662,6 +1662,7 @@ function categorySelect(p) {
     ["food","Food"],
     ["music","MusicBars"],
     ["distillery","Distilleries"],
+    ["route66","Route66 Stops"],
     ["other","Sonstiges"]
   ];
   return `<select title="Kategorie ändern" onchange="changeCategory('${key.replace(/'/g, "\\'")}', this.value)">
@@ -1686,7 +1687,15 @@ function clearResolvedCache() {
 
 
 const colors = {
-  music:"#fbbc04", hotel:"#4285f4", food:"#34a853", sight:"#ea4335", hidden:"#a142f4", distillery:"#9c6b30", other:"#607d8b"
+  music:"#fbbc04",
+  hotel:"#4285f4",
+  food:"#34a853",
+  highlight:"#ea4335",
+  route66:"#46d6e6",
+  sight:"#ea4335",
+  hidden:"#a142f4",
+  distillery:"#9c6b30",
+  other:"#607d8b"
 };
 
 function looksRoute66(p){
@@ -1700,6 +1709,8 @@ function groupForPlace(p){
   if (p.category === "music") return "music";
   if (p.category === "food") return "food";
   if (p.category === "distillery") return "distillery";
+  if (p.category === "route66") return "route66";
+  if (p.category === "highlight") return "highlight";
 
   const isToyStore = /spielzeug/i.test(p.note || "");
   const isLegoStore = /lego/i.test(p.name || "");
@@ -1743,13 +1754,16 @@ function smartUSAQuery(raw) {
 
 function setStatus(txt) { document.getElementById("status").textContent = txt; }
 
-function makeMarkerIcon(color) {
+function makeMarkerIcon(color, group = "other", estimated = false) {
+  const radius = group === "hotel" ? 13 : group === "highlight" ? 10 : group === "route66" ? 9 : 8;
   return {
-    radius: 8,
+    radius,
     fillColor: color,
-    fillOpacity: 1,
-    color: "#ffffff",
-    weight: 2
+    fillOpacity: estimated ? .72 : 1,
+    color: group === "hotel" ? "#ffffff" : (estimated ? "#d7edf2" : "#ffffff"),
+    weight: group === "hotel" ? 4 : 2,
+    opacity: 1,
+    dashArray: estimated ? "4 3" : null
   };
 }
 
@@ -1761,6 +1775,141 @@ function normalizeKnownCoords(raw) {
     if (Number.isFinite(lat) && Number.isFinite(lng)) return {lat, lng};
   }
   return null;
+}
+
+
+function simplePlaceKey(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+const LOCAL_COORDS = {
+  // Hotels / Basecamps
+  "citizenm chicago downtown": {lat:41.8889,lng:-87.6247, city:"Chicago", exact:true},
+  "hotelumiere at the arch": {lat:38.6310,lng:-90.1847, city:"St. Louis", exact:true},
+  "apache casino hotel": {lat:34.6174,lng:-98.4335, city:"Lawton / Wichita Falls", exact:true},
+  "the mayo hotel": {lat:36.1538,lng:-95.9904, city:"Tulsa", exact:true},
+  "citizenm austin downtown": {lat:30.2661,lng:-97.7437, city:"Austin", exact:true},
+
+  // wichtige fehlende Highlights / Route66 / Sonstiges
+  "chain of rocks bridge": {lat:38.7606,lng:-90.1760, city:"St. Louis", exact:true},
+  "dr pepper museum": {lat:31.5544,lng:-97.1300, city:"Unterwegs / Route 66", exact:true},
+  "wonders of wildlife national museum and aquarium": {lat:37.1533,lng:-93.3078, city:"Unterwegs / Route 66", exact:true},
+  "route 66 1903 courthouse museum": {lat:35.4816,lng:-97.7395, city:"Unterwegs / Route 66", exact:true},
+  "soulsby service station": {lat:39.1748,lng:-89.6549, city:"Unterwegs / Route 66", exact:true},
+  "lauterbach muffler man lauterbach giant": {lat:39.7980,lng:-89.6880, city:"Unterwegs / Route 66", exact:true},
+  "litchfield museum and route 66 welcome center": {lat:39.1751,lng:-89.6542, city:"Unterwegs / Route 66", exact:true},
+  "covert park at mount bonnell": {lat:30.3216,lng:-97.7733, city:"Austin", exact:true},
+  "pops on 66": {lat:35.6588,lng:-97.3268, city:"Unterwegs / Route 66", exact:true},
+  "southfork ranch": {lat:33.0360,lng:-96.6138, city:"Unterwegs / Route 66", exact:true},
+  "wichita falls museum of art": {lat:33.8738,lng:-98.5207, city:"Lawton / Wichita Falls", exact:true},
+  "pink elephant antique mall": {lat:38.9696,lng:-89.7633, city:"Unterwegs / Route 66", exact:true},
+  "world s largest railsplitter covered wagon": {lat:40.1484,lng:-89.3649, city:"Unterwegs / Route 66", exact:true},
+  "pontiac museum complex": {lat:40.8807,lng:-88.6291, city:"Unterwegs / Route 66", exact:true},
+  "pontiac oakland auto museum": {lat:40.8808,lng:-88.6294, city:"Unterwegs / Route 66", exact:true},
+  "route 66 wall art photopoint": {lat:40.8807,lng:-88.6300, city:"Unterwegs / Route 66", exact:true},
+  "route 66 decommissioned illinois state police headquarter": {lat:40.8900,lng:-88.6268, city:"Unterwegs / Route 66", exact:true},
+  "route 66 association of illinois": {lat:40.8807,lng:-88.6291, city:"Unterwegs / Route 66", exact:true},
+  "historic rainbow bridge": {lat:37.3374,lng:-94.7432, city:"Unterwegs / Route 66", exact:true},
+  "uranus fudge factory and general store uranus missouri": {lat:37.8286,lng:-92.1574, city:"Unterwegs / Route 66", exact:true},
+  "buck atom s cosmic curios on 66": {lat:36.1479,lng:-95.9872, city:"Tulsa", exact:true},
+  "route 66 historical village": {lat:36.1374,lng:-96.0295, city:"Tulsa", exact:true},
+  "bonnie and clyde hideout apartment": {lat:37.0836,lng:-94.5133, city:"Unterwegs / Route 66", exact:true},
+  "red oak ii": {lat:37.2400,lng:-94.4390, city:"Unterwegs / Route 66", exact:true},
+  "gary s gay parita": {lat:37.1855,lng:-93.6100, city:"Unterwegs / Route 66", exact:true},
+  "meramec caverns": {lat:38.2415,lng:-91.0929, city:"Unterwegs / Route 66", exact:true},
+  "s congress ave": {lat:30.2500,lng:-97.7500, city:"Austin", exact:true},
+  "south congress": {lat:30.2500,lng:-97.7500, city:"Austin", exact:true},
+  "barton springs pool": {lat:30.2640,lng:-97.7713, city:"Austin", exact:true},
+  "elephant room": {lat:30.2665,lng:-97.7434, city:"Austin", exact:true},
+  "austin city limits live acl live and 3ten acl live": {lat:30.2653,lng:-97.7472, city:"Austin", exact:true},
+  "museum of the great plains": {lat:34.6089,lng:-98.3908, city:"Lawton / Wichita Falls", exact:true},
+  "the holy city of the wichitas": {lat:34.7417,lng:-98.5893, city:"Lawton / Wichita Falls", exact:true},
+  "gilcrease museum": {lat:36.1854,lng:-96.0197, city:"Tulsa", exact:true},
+  "cyrus avery centennial plaza": {lat:36.1543,lng:-96.0059, city:"Tulsa", exact:true},
+  "shops at mother road market": {lat:36.1488,lng:-95.9717, city:"Tulsa", exact:true},
+  "philbrook museum of art": {lat:36.1244,lng:-95.9686, city:"Tulsa", exact:true},
+  "golden driller statue": {lat:36.1317,lng:-95.9553, city:"Tulsa", exact:true},
+  "the st louis wheel": {lat:38.6282,lng:-90.2072, city:"St. Louis", exact:true},
+  "anheuser busch st louis brewery": {lat:38.5987,lng:-90.2097, city:"St. Louis", exact:true},
+  "missouri botanical garden": {lat:38.6156,lng:-90.2581, city:"St. Louis", exact:true},
+  "museum at the gateway arch": {lat:38.6247,lng:-90.1848, city:"St. Louis", exact:true},
+  "gateway arch": {lat:38.6247,lng:-90.1848, city:"St. Louis", exact:true},
+  "lincoln park zoo": {lat:41.9211,lng:-87.6338, city:"Chicago", exact:true},
+  "chicago river boat architecture tours": {lat:41.8876,lng:-87.6277, city:"Chicago", exact:true},
+  "griffin museum of science and industry": {lat:41.7906,lng:-87.5831, city:"Chicago", exact:true},
+  "field museum of natural history": {lat:41.8663,lng:-87.6170, city:"Chicago", exact:true},
+  "360 chicago": {lat:41.8988,lng:-87.6233, city:"Chicago", exact:true},
+  "cloud gate": {lat:41.8826,lng:-87.6233, city:"Chicago", exact:true},
+  "navy pier": {lat:41.8917,lng:-87.6079, city:"Chicago", exact:true},
+
+  // Distilleries / Shopping / Food Ergänzungen
+  "rhine hall distillery": {lat:41.8952,lng:-87.6652, city:"Chicago", exact:true},
+  "wolf point distilling": {lat:41.8899,lng:-87.6411, city:"Chicago", exact:true},
+  "still 630 distillery": {lat:38.6221,lng:-90.2075, city:"St. Louis", exact:true},
+  "dulce vida spirits": {lat:30.2711,lng:-97.7437, city:"Austin", exact:false},
+  "drysdales western wear": {lat:36.1281,lng:-95.9390, city:"Tulsa", exact:true},
+  "red wing lawton ok": {lat:34.6089,lng:-98.3900, city:"Lawton / Wichita Falls", exact:false},
+  "levine hat co": {lat:38.6290,lng:-90.1930, city:"St. Louis", exact:true},
+  "alcala s western wear": {lat:41.9390,lng:-87.6680, city:"Chicago", exact:true},
+  "tulsa toy depot": {lat:36.1166,lng:-95.9043, city:"Tulsa", exact:true},
+  "another planet comics and other stuff": {lat:34.6080,lng:-98.3920, city:"Lawton / Wichita Falls", exact:false},
+  "terra toys": {lat:30.3616,lng:-97.7387, city:"Austin", exact:true},
+  "boomerang diner lawton": {lat:34.6087,lng:-98.3903, city:"Lawton / Wichita Falls", exact:false},
+  "chili mac s diner": {lat:38.6280,lng:-90.1900, city:"St. Louis", exact:false},
+  "cherry street kitchen and catering": {lat:36.1545,lng:-95.9928, city:"Tulsa", exact:true}
+};
+
+const CITY_FALLBACK_CENTERS = {
+  chicago:{lat:41.8890,lng:-87.6298},
+  stlouis:{lat:38.6247,lng:-90.1848},
+  tulsa:{lat:36.1540,lng:-95.9928},
+  lawton:{lat:34.6250,lng:-98.4350},
+  austin:{lat:30.2672,lng:-97.7431},
+  route:{lat:37.7500,lng:-93.2500}
+};
+
+function hashOffset(text, scale = .065) {
+  let h = 0;
+  const s = String(text || "");
+  for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  const a = ((h % 997) / 997) * Math.PI * 2;
+  const r = (((Math.abs(h) % 100) / 100) * .65 + .35) * scale;
+  return {lat: Math.sin(a) * r, lng: Math.cos(a) * r};
+}
+
+function inferFallbackArea(raw) {
+  const t = simplePlaceKey(`${raw.name || ""} ${raw.city || ""} ${raw.note || ""} ${raw.address || ""} ${raw.query || ""} ${raw.description || ""}`);
+  if (/chicago|illinois|lincoln park|navy pier|cloud gate|field museum|griffin museum|buddy guy|kingston|rosa|green mill|blue chicago|hideout|carol|reggies|aliveone|empty bottle|alcala|rhine hall|wolf point/.test(t)) return "chicago";
+  if (/st louis|saint louis|missouri|gateway arch|soulard|cherokee|citygarden|bb s jazz|venice cafe|broadway oyster|blueberry hill|old rock house|hammerstone|off broadway|honky tonk stl|house of soul|chain of rocks|anheuser|botanical|wheel|levine|still 630|chili mac/.test(t)) return "stlouis";
+  if (/tulsa|catoosa|arcadia|golden driller|woody guthrie|cain|mercury lounge|colony|mother road|buck atom|gilcrease|philbrook|drysdales|toy depot|cherry street/.test(t)) return "tulsa";
+  if (/lawton|wichita falls|medicine park|meers|apache casino|great plains|holy city|boomerang|red wing|another planet/.test(t)) return "lawton";
+  if (/austin|new braunfels|gruene|south congress|waterloo|continental|antone|white horse|saxon|sahara|elephant room|acl live|barton|dulce vida|terra toys/.test(t)) return "austin";
+  return "route";
+}
+
+function deriveLocalFallbackCoords(raw) {
+  const k = simplePlaceKey(raw.name || raw.query || raw.address || "");
+  const direct = LOCAL_COORDS[k];
+  if (direct) return {...direct, estimated: !direct.exact};
+
+  // Alias-Check: falls der Name leicht anders geschrieben ist.
+  const foundKey = Object.keys(LOCAL_COORDS).find(key => k.includes(key) || key.includes(k));
+  if (foundKey) {
+    const hit = LOCAL_COORDS[foundKey];
+    return {...hit, estimated: !hit.exact};
+  }
+
+  // Letzter kostenfreier Fallback: lokal berechneter Näherungsmarker rund um die passende Stadt/Etappe.
+  // Dadurch erscheinen wirklich alle Listen-Einträge auf der Karte, ohne Google Geocoding/Places API.
+  const area = inferFallbackArea(raw);
+  const center = CITY_FALLBACK_CENTERS[area] || CITY_FALLBACK_CENTERS.route;
+  const off = hashOffset(`${raw.name || ""} ${raw.query || ""}`, area === "route" ? 1.2 : .08);
+  return {lat:center.lat + off.lat, lng:center.lng + off.lng, estimated:true, city:area};
 }
 
 function searchPlace(raw) {
@@ -1776,12 +1925,17 @@ function searchPlace(raw) {
   }
 
   // Kostenfreie Version: keine Google Places/Geocoding API mehr.
-  // Orte ohne lokale Koordinaten bleiben in den Listen sichtbar, bekommen aber keinen Kartenmarker.
+  // Fehlende Koordinaten werden aus einer lokalen Tabelle bzw. einem lokalen Stadt-/Etappen-Fallback ergänzt.
+  // So erscheinen alle Listen-Einträge auf der Karte, ohne kostenpflichtige API-Aufrufe.
+  const fallback = deriveLocalFallbackCoords(raw);
   return Promise.resolve({
     ...raw,
+    lat: fallback.lat,
+    lng: fallback.lng,
+    coords: [fallback.lng, fallback.lat],
     resolvedName: raw.resolvedName || raw.name,
     formattedAddress: raw.formattedAddress || raw.address || "",
-    error: "NO_LOCAL_COORDS"
+    estimatedCoords: !!fallback.estimated
   });
 }
 
@@ -1829,20 +1983,20 @@ async function resolveAllPlaces() {
 
   forceKnownPlaceData(resolvedPlaces);
   try { localStorage.setItem(cacheKey, JSON.stringify(resolvedPlaces)); } catch(e) {}
-  setStatus(`Fertig: ${resolvedPlaces.filter(p=>p.lat).length} Orte gefunden`);
+  setStatus(`Fertig: ${resolvedPlaces.filter(p=>p.lat).length} Orte auf der Karte vorbereitet · inkl. lokaler Fallback-Koordinaten`);
 }
 
 function createPopup(p) {
   const rating = p.rating ? `<p><strong>Bewertung:</strong> ${p.rating} ⭐ (${p.ratingsTotal || 0})</p>` : "";
   const addr = p.formattedAddress ? `<p>${p.formattedAddress}</p>` : "";
   const note = p.note ? `<p><strong>${p.note}</strong></p>` : "";
-  const maps = p.placeId
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}`
-    : p.googleMapsUrl;
+  const maps = mapsUrlFor(p);
+  const group = groupForPlace(p);
+  const estimated = p.estimatedCoords ? `<p style="margin:6px 0;color:#555;font-size:12px">Koordinate lokal geschätzt · Link öffnet den Original-Ort in Google Maps.</p>` : "";
   return `<div style="max-width:260px;color:#111">
     <h3 style="margin:0 0 8px">${p.name}</h3>
-    <p style="margin:0 0 6px"><em>${categoryLabel(p.category)}</em></p>
-    ${note}${addr}${rating}
+    <p style="margin:0 0 6px"><em>${groupLabel(group)}</em>${group === "hotel" ? " · Basecamp" : ""}</p>
+    ${note}${addr}${rating}${estimated}
     <a href="${maps}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 10px;border-radius:999px;background:#1a73e8;color:white;text-decoration:none;font-weight:700">In Google Maps öffnen</a>
   </div>`;
 }
@@ -1853,7 +2007,8 @@ function markerKey(p) {
 
 function getOrCreateMarker(p) {
   const key = markerKey(p);
-  const style = makeMarkerIcon(colors[p.category] || colors.other);
+  const group = groupForPlace(p);
+  const style = makeMarkerIcon(colors[group] || colors[p.category] || colors.other, group, p.estimatedCoords);
 
   if (markers.has(key)) {
     const marker = markers.get(key);
@@ -1887,7 +2042,8 @@ function renderMarkers(filter="all") {
   });
 
   if (visibleCount) map.fitBounds(bounds, {padding: [30, 30]});
-  setStatus(`${visibleCount} Marker angezeigt · ${filter === "all" ? "Alle" : groupLabel(filter)}`);
+  const estimatedCount = resolvedPlaces.filter(p => p.lat && p.lng && p.estimatedCoords && (filter === "all" || groupForPlace(p) === filter || p.category === filter)).length;
+  setStatus(`${visibleCount} Marker angezeigt · ${filter === "all" ? "Alle" : groupLabel(filter)}${estimatedCount ? ` · ${estimatedCount} lokal geschätzt` : ""}`);
 }
 
 
@@ -1924,7 +2080,9 @@ function renderCityGrouped(container, places) {
 }
 
 function mapsUrlFor(p){
-  return p.placeId ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}` : p.googleMapsUrl;
+  if (p.placeId) return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}`;
+  if (p.googleMapsUrl) return p.googleMapsUrl;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.query || `${p.name || ""} ${cityForPlace(p) || ""}`)}`;
 }
 
 function row(p) {
@@ -2323,8 +2481,8 @@ function initOfflineApp(reason){
   try {
     selectedDayId = localStorage.getItem("route66SelectedDay") || DAY_PLAN[0].id;
     resolvedPlaces = RAW_PLACES.map(p => {
-      const coords = Array.isArray(p.coords) ? p.coords : null;
-      return { ...p, lng: p.lng || (coords ? coords[0] : undefined), lat: p.lat || (coords ? coords[1] : undefined) };
+      const coords = normalizeKnownCoords(p) || deriveLocalFallbackCoords(p);
+      return { ...p, lng: coords.lng, lat: coords.lat, coords:[coords.lng, coords.lat], estimatedCoords: !!coords.estimated };
     });
     applyCategoryOverrides();
     renderDayView();
