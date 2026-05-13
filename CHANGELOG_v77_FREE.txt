@@ -1,0 +1,15 @@
+v77 FREE · OpenStreetMap/Leaflet statt Google Maps API
+
+Geändert:
+- Google Maps JavaScript API vollständig entfernt.
+- Google Places API / Geocoding API vollständig entfernt.
+- API-Key aus index.html entfernt.
+- Karte auf Leaflet + OpenStreetMap umgestellt.
+- Marker werden nur noch aus lokal vorhandenen Koordinaten erzeugt.
+- Orte ohne lokale Koordinaten bleiben in Listen sichtbar, erzeugen aber keinen kostenpflichtigen API-Aufruf mehr.
+- Google-Maps-Links zur Navigation bleiben erhalten, da sie nur die normale Google-Maps-App/Webseite öffnen.
+- Service Worker Cache auf route66-trip-v77-free-osm gesetzt.
+
+Wichtig:
+- Es entstehen durch die App keine Google Maps API Kosten mehr.
+- Die Kartentiles kommen von OpenStreetMap. Für private Nutzung reicht das in der Regel aus.
