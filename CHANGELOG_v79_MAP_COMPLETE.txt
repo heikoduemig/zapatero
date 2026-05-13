@@ -1,9 +1,0 @@
-v79 · MAP COMPLETE FREE
-
-Geändert:
-- Alle Listen-Kategorien erscheinen jetzt auf der Leaflet/OpenStreetMap-Karte.
-- Hotels werden als größere Basecamp-/Zentralmarker angezeigt.
-- Fehlende Koordinaten werden lokal ergänzt: zuerst aus lokaler Tabelle, dann per kostenfreiem Stadt-/Etappen-Fallback.
-- Keine Google Maps API, keine Places API, keine Geocoding API, kein API-Key.
-- Google Maps bleibt nur als externer Normal-Link erhalten.
-- Cache-Version auf route66-trip-v79-map-complete erhöht.
