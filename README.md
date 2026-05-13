@@ -1,4 +1,4 @@
-# Route66 GitHub Paket v75 · Online/Offline App
+# Route66 GitHub Paket v76 · Online/Offline App
 
 Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
@@ -31,7 +31,7 @@ Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt
 
 ## Wichtig bei Updates
 
-Die Cache-Version wurde auf `route66-trip-v75-clean-buttons-range-2205` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+Die Cache-Version wurde auf `route66-trip-v76-icon-mobile-maps` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
 
 ## Dateien
 
@@ -42,3 +42,10 @@ Die Cache-Version wurde auf `route66-trip-v75-clean-buttons-range-2205` gesetzt.
 - `manifest.webmanifest` – PWA-Metadaten
 - `service-worker.js` – Offline-Cache
 - `icon-192.png`, `icon-512.png` – App-Icons
+
+
+## Änderungen v76
+
+- App-Icons optisch nachgeschärft: stärkere Linien, bessere Safe Area, zentriertere Typografie und mehr Luft bei „USA“.
+- Mobile Schnellnavigation um einen prominenten Button „📍 Google Maps Route öffnen“ ergänzt.
+- Browser-Titel und Service-Worker-Cache auf v76 aktualisiert.

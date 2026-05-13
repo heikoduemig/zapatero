@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Route 66 Music Trip</title>
+<title>Route 66 Music Trip · v76</title>
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#071018">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -986,6 +987,15 @@ tbody tr:last-child td {
     text-decoration: none;
   }
 
+  .mobile-quick-jump a.mobile-google-maps {
+    grid-column: 1 / -1;
+    min-height: 48px;
+    border-color: rgba(70, 214, 230, .42);
+    background: linear-gradient(135deg, rgba(70, 214, 230, .22), rgba(26, 115, 232, .72));
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(26, 115, 232, .24);
+  }
+
   .map-toggle-wrap {
     display: grid;
     grid-template-columns: 1fr;
@@ -1418,7 +1428,7 @@ tbody tr:last-child td {
 </div>
 <header>
   <h1>Route 66 Music Trip</h1>
-  <p class="app-subtitle">Tagesansicht v70 · Online/Offline App · Highlights · MusicBars</p>
+  <p class="app-subtitle">Tagesansicht v76 · Online/Offline App · Highlights · MusicBars</p>
   <nav class="nav">
     <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a>
   </nav>
@@ -1440,6 +1450,7 @@ tbody tr:last-child td {
 <button class="map-toggle-btn" onclick="scrollToSection('musicbars')">🎵 Zu MusicBars</button>
 </div>
 <div class="mobile-quick-jump">
+    <a class="mobile-google-maps" href="https://maps.app.goo.gl/H57aFyUcHksxyvDs7?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps Route öffnen</a>
     <a href="#highlights">Highlights</a>
     <a href="#musicbars">MusicBars</a>
   </div>
