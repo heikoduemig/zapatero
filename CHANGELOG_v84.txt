@@ -1,9 +1,0 @@
-v84 · YouTube TV Dokus
-
-- Alle doppelten TV-Dokus-Sektionen entfernt
-- Genau eine TV-Dokus-Karte am Seitenende
-- Keine 404-anfälligen Mediathek-Unterseiten mehr
-- Links führen zu YouTube-Suchen mit offiziellem Herausgeber-/Serienbezug
-- Route-spezifisch: Chicago, Illinois Route 66, St. Louis, Tulsa, Lawton, Austin
-- Musik-, Instrumente-, BBQ- und Americana-Dokus mit Route-Bezug ergänzt
-- Service Worker Cache auf v84 aktualisiert
