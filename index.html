@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Route 66 Music Trip</title>
+<title>Route 66 Music Trip · v80 TV Dokus + YouTube</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#071018">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -393,7 +393,8 @@ main {
 #food,
 #distilleries,
 #route66,
-#sonstiges {
+#sonstiges,
+#tvdokus {
   scroll-margin-top: var(--anchor-offset-desktop);
 }
 
@@ -872,7 +873,8 @@ tbody tr:last-child td {
   #food,
   #distilleries,
   #route66,
-  #sonstiges {
+  #sonstiges,
+#tvdokus {
     scroll-margin-top: var(--anchor-offset-mobile);
   }
 
@@ -1403,6 +1405,48 @@ tbody tr:last-child td {
   border-color: rgba(70, 214, 230, .35);
 }
 
+
+/* TV-Dokus Karte sichtbar ganz unten */
+#tvdokus {
+  display: block !important;
+  margin-top: 24px;
+  margin-bottom: 96px;
+}
+#tvdokus summary {
+  border-radius: 18px;
+}
+#tvdokus .tv-card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+
+.tv-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tv-links .button {
+  min-height: 38px;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+
+.tv-links .button.secondary {
+  background: rgba(255, 255, 255, .08);
+}
+
 </style>
 </head>
 <body>
@@ -1418,9 +1462,9 @@ tbody tr:last-child td {
 </div>
 <header>
   <h1>Route 66 Music Trip</h1>
-  <p class="app-subtitle">Tagesansicht v70 · Online/Offline App · Highlights · MusicBars</p>
+  <p class="app-subtitle">Tagesansicht v80 · Online/Offline App · Highlights · MusicBars · TV Dokus</p>
   <nav class="nav">
-    <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a>
+    <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a><a href="#tvdokus">TV Dokus</a>
   </nav>
   <div class="editor-tools"><button onclick="resetCategoryEdits()">Kategorien zurücksetzen</button><button onclick="clearResolvedCache()">Orte neu auflösen</button></div>
 </header>
@@ -1486,6 +1530,394 @@ tbody tr:last-child td {
   <section class="section collapsible" id="distilleries"><details><summary><div><div class="meta">Distilleries</div><h2>Distilleries</h2></div></summary><div id="distilleryList"></div></details></section>
   <section class="section collapsible" id="route66"><details><summary><div><div class="meta">Route66 Stops</div><h2>Route66 Stops</h2></div></summary><div id="route66List"></div></details></section>
   <section class="section collapsible" id="sonstiges"><details><summary><div><div class="meta">Sonstiges</div><h2>Sonstiges</h2></div></summary><div id="otherList"></div></details></section>
+
+
+  <section class="section collapsible" id="tvdokus">
+    <details>
+      <summary>
+        <div>
+          <div class="meta">TV · Dokumentationen · Route 66</div>
+          <h2>TV Dokus</h2>
+        </div>
+      </summary>
+
+      <p class="note">Direkte Links zu TV-/Mediathek-, Sender- oder offiziellen Doku-Seiten für Restaurants, Route-66-Kuriositäten und Sehenswürdigkeiten entlang Chicago → St. Louis → Tulsa → Lawton → Austin.</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Chicago</span>
+          <h3>Lou Mitchell's</h3>
+          <p>Historischer Route-66-Startpunkt und klassischer Diner-Stop.</p>
+          <p><a class="button" href="https://interactive.wttw.com/playlist/2021/05/20/route-66-begins-chicago" target="_blank" rel="noopener">WTTW / PBS Feature</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Chicago</span>
+          <h3>Route 66 Begins in Chicago</h3>
+          <p>TV-Beitrag über den Start der Route 66 in Chicago.</p>
+          <p><a class="button" href="https://interactive.wttw.com/playlist/2021/05/20/route-66-begins-chicago" target="_blank" rel="noopener">PBS Chicago</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>Gateway Arch</h3>
+          <p>Wahrzeichen von St. Louis aus mehreren US-Dokumentationen.</p>
+          <p><a class="button" href="https://www.pbs.org/video/america-from-the-ground-up-the-gateway-arch/" target="_blank" rel="noopener">PBS Doku</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>Ted Drewes Frozen Custard</h3>
+          <p>Route-66-Klassiker für Frozen Custard auf der Chippewa Street.</p>
+          <p><a class="button" href="https://www.foodnetwork.com/restaurants/photos/route-66-restaurants" target="_blank" rel="noopener">Food Network Route 66</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>City Museum</h3>
+          <p>Skurriles Kunst-, Kletter- und Architektur-Labyrinth mitten in St. Louis.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/city-museum" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Route 66</span>
+          <h3>Blue Whale of Catoosa</h3>
+          <p>Eine der bekanntesten Route-66-Kuriositäten nahe Tulsa.</p>
+          <p><a class="button" href="https://www.travelok.com/listings/view.profile/id.1807" target="_blank" rel="noopener">Travel Oklahoma</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Tally's Good Food Café</h3>
+          <p>Diner in Tulsa, bekannt aus Diners, Drive-Ins and Dives.</p>
+          <p><a class="button" href="https://www.foodnetwork.com/shows/diners-drive-ins-and-dives" target="_blank" rel="noopener">Food Network</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Center of the Universe</h3>
+          <p>Akustische Kuriosität in Downtown Tulsa.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/center-of-the-universe" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Golden Driller</h3>
+          <p>Riesige Öl-Arbeiter-Statue und Tulsa-Landmark.</p>
+          <p><a class="button" href="https://www.travelok.com/listings/view.profile/id.11589" target="_blank" rel="noopener">Travel Oklahoma</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Oklahoma</span>
+          <h3>Rock Cafe</h3>
+          <p>Route-66-Restaurant in Stroud und Inspiration für Pixar Cars.</p>
+          <p><a class="button" href="https://www.route66roadtrip.com/route-66-attractions/rock-cafe.htm" target="_blank" rel="noopener">Route 66 Roadtrip</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Lawton</span>
+          <h3>Wichita Mountains Wildlife Refuge</h3>
+          <p>Bisons, Longhorns und spektakuläre Landschaften bei Lawton.</p>
+          <p><a class="button" href="https://www.pbs.org/video/oklahoma-wichita-mountains/" target="_blank" rel="noopener">US Fish & Wildlife</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Lawton</span>
+          <h3>Holy City of the Wichitas</h3>
+          <p>Ungewöhnliche Bibel-Filmkulisse in den Wichita Mountains.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/the-holy-city-of-the-wichitas-cache-oklahoma" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Franklin Barbecue</h3>
+          <p>Berühmter BBQ-Spot, bekannt aus PBS, Netflix und Anthony-Bourdain-Formaten.</p>
+          <p><a class="button" href="https://www.pbs.org/video/bbq-franklin-brisket/" target="_blank" rel="noopener">PBS: BBQ with Franklin</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Chef’s Table: BBQ</h3>
+          <p>Netflix-Serie über Barbecue, mit Texas-BBQ-Kontext und Aaron Franklin.</p>
+          <p><a class="button" href="https://www.netflix.com/title/81292974" target="_blank" rel="noopener">Netflix</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Anthony Bourdain: Austin</h3>
+          <p>Austin-Food-Guide zur Parts-Unknown-Episode.</p>
+          <p><a class="button" href="https://explorepartsunknown.com/destination/austin/" target="_blank" rel="noopener">Parts Unknown</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>South Congress Avenue</h3>
+          <p>Musik, Food, Neon, Murals und Austin-Streetlife.</p>
+          <p><a class="button" href="https://explorepartsunknown.com/destination/austin/" target="_blank" rel="noopener">Austin Travel</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Cathedral of Junk</h3>
+          <p>Eine der schrägsten Kuriositäten der Stadt.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/cathedral-of-junk" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+
+        <div class="card">
+          <span class="tag">Route 66 · Illinois</span>
+          <h3>Gemini Giant</h3>
+          <p>Berühmter Muffler Man in Wilmington – einer der ikonischen „Weird Americana“-Stops.</p>
+          <p><a class="button tv-card-link" href="https://www.roadsideamerica.com/story/2148" target="_blank" rel="noopener">Roadside America</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Route 66 · Illinois</span>
+          <h3>Pontiac Route 66 Museum</h3>
+          <p>Museums- und Mural-Stopp mit viel Route-66-Geschichte.</p>
+          <p><a class="button tv-card-link" href="https://www.route66museum.org/" target="_blank" rel="noopener">Route 66 Museum</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis · Route 66</span>
+          <h3>Chain of Rocks Bridge</h3>
+          <p>Historische Route-66-Brücke mit markanter Kurve über den Mississippi.</p>
+          <p><a class="button tv-card-link" href="https://www.nps.gov/subjects/travelroute66/chain-of-rocks-bridge.htm" target="_blank" rel="noopener">National Park Service</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Oklahoma · Route 66</span>
+          <h3>Pops 66</h3>
+          <p>Neon-Cola-Flasche, Diner und moderner Route-66-Klassiker in Arcadia.</p>
+          <p><a class="button tv-card-link" href="https://www.travelok.com/listings/view.profile/id.18462" target="_blank" rel="noopener">Travel Oklahoma</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Oklahoma · Route 66</span>
+          <h3>Arcadia Round Barn</h3>
+          <p>Runde historische Scheune direkt an der Route 66.</p>
+          <p><a class="button tv-card-link" href="https://www.nps.gov/places/arcadia-round-barn.htm" target="_blank" rel="noopener">National Park Service</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa · Musik</span>
+          <h3>Cain’s Ballroom</h3>
+          <p>Legendäre Western-Swing- und Country-Bühne, passend zu Ken Burns Country Music.</p>
+          <p><a class="button tv-card-link" href="https://www.pbs.org/kenburns/country-music" target="_blank" rel="noopener">PBS Country Music</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Chicago · Musik</span>
+          <h3>Green Mill</h3>
+          <p>Historischer Jazzclub mit Chicago-Mafia- und Musikgeschichte.</p>
+          <p><a class="button tv-card-link" href="https://explorepartsunknown.com/chicago/" target="_blank" rel="noopener">Parts Unknown Chicago</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Texas · TV-Geschichte</span>
+          <h3>Southfork Ranch</h3>
+          <p>Drehort der TV-Serie Dallas – ein starker Abstecher für Serien- und TV-Nostalgie.</p>
+          <p><a class="button tv-card-link" href="https://southforkranch.com/" target="_blank" rel="noopener">Southfork Ranch</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Texas · Food History</span>
+          <h3>Dr Pepper Museum</h3>
+          <p>Americana- und Softdrink-Geschichte in Waco auf dem Weg Richtung Austin.</p>
+          <p><a class="button tv-card-link" href="https://drpeppermuseum.com/" target="_blank" rel="noopener">Dr Pepper Museum</a></p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+<section id="tvdokus" class="section collapsible">
+  <details>
+    <summary>
+      <div>
+        <div class="meta">TV · Dokumentationen · Offizielle YouTube-Clips</div>
+        <h2>TV Dokus</h2>
+      </div>
+    </summary>
+
+    <p class="note">Direkte Links zu offiziellen TV-/Doku-Seiten und – wo verfügbar – offiziellen YouTube-Kanälen oder institutionellen Clips. Keine privaten Reuploads.</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="tag">Chicago</span>
+        <h3>Lou Mitchell's / Route 66 Start</h3>
+        <p>Historischer Startpunkt der Route 66 in Chicago, passend zu PBS-/WTTW-Route-66-Beiträgen.</p>
+        <div class="tv-links">
+          <a class="button" href="https://interactive.wttw.com/playlist/2021/05/20/route-66-begins-chicago" target="_blank" rel="noopener">Doku / Beitrag</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Chicago</span>
+        <h3>Green Mill Jazz Club</h3>
+        <p>Legendärer Chicago-Jazzclub mit Mafia-/Al-Capone-Geschichte; passend zu Chicago-Musik- und Bourdain-Beiträgen.</p>
+        <div class="tv-links">
+          <a class="button" href="https://explorepartsunknown.com/chicago/" target="_blank" rel="noopener">Bourdain Guide</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Illinois</span>
+        <h3>Gemini Giant</h3>
+        <p>Berühmter Route-66-Muffler-Man in Wilmington; klassische Americana-/Roadside-Kuriosität.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.atlasobscura.com/places/gemini-giant" target="_blank" rel="noopener">Doku / Hintergrund</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=u4WYO44hGTk" target="_blank" rel="noopener">Offizieller Clip</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Illinois</span>
+        <h3>Pontiac Route 66 Museum</h3>
+        <p>Einer der bekanntesten Museumsstopps an der Illinois Route 66.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.illinoisroute66.org/experience/museums/" target="_blank" rel="noopener">Route 66 Beitrag</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">St. Louis</span>
+        <h3>Gateway Arch</h3>
+        <p>Amerikanisches Wahrzeichen; vielfach in PBS-, History- und Architektur-Dokumentationen behandelt.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.pbs.org/video/america-from-the-ground-up-the-gateway-arch/" target="_blank" rel="noopener">PBS Doku</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=r3lCUTx4ZG4" target="_blank" rel="noopener">Offizieller Clip</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">St. Louis</span>
+        <h3>Chain of Rocks Bridge</h3>
+        <p>Historische Route-66-Brücke mit markanter Kurve über den Mississippi.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.nps.gov/subjects/travelroute66/chain-of-rocks-bridge.htm" target="_blank" rel="noopener">NPS Route 66</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">St. Louis</span>
+        <h3>Ted Drewes Frozen Custard</h3>
+        <p>Route-66-Foodklassiker in St. Louis, häufig in Food- und Roadtrip-Beiträgen erwähnt.</p>
+        <div class="tv-links">
+          <a class="button" href="https://teddrewes.com/history/" target="_blank" rel="noopener">Historie / Beitrag</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Tulsa</span>
+        <h3>Tally's Good Food Café</h3>
+        <p>Bekannt aus Diners, Drive-Ins and Dives.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.foodnetwork.com/shows/diners-drive-ins-and-dives" target="_blank" rel="noopener">Food Network</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=zgOqwKDLxiE" target="_blank" rel="noopener">Food Network Clip</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Tulsa</span>
+        <h3>Cain's Ballroom</h3>
+        <p>Historische Country-/Western-Swing-Bühne; passend zu Ken Burns’ PBS-Serie „Country Music“.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.pbs.org/kenburns/country-music" target="_blank" rel="noopener">PBS Country Music</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=8rI5eAGKPsE" target="_blank" rel="noopener">PBS Clip</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Tulsa</span>
+        <h3>Blue Whale of Catoosa</h3>
+        <p>Eine der bekanntesten Route-66-Kuriositäten in Oklahoma.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.travelok.com/listings/view.profile/id.1807" target="_blank" rel="noopener">Travel Oklahoma</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=T0CGdMUPBX0" target="_blank" rel="noopener">Offizieller Clip</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Route 66</span>
+        <h3>Pops 66 & Arcadia Round Barn</h3>
+        <p>Neon-Flasche und historische Rundscheune bei Arcadia – perfekte Route-66-Kombi.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.travelok.com/listings/view.profile/id.18462" target="_blank" rel="noopener">Pops 66</a>
+          <a class="button secondary" href="https://www.nps.gov/places/arcadia-round-barn.htm" target="_blank" rel="noopener">NPS Round Barn</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Lawton</span>
+        <h3>Wichita Mountains Wildlife Refuge</h3>
+        <p>Bisons, Longhorns und wilde Landschaften nahe Lawton.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.pbs.org/video/oklahoma-wichita-mountains/" target="_blank" rel="noopener">PBS Beitrag</a>
+          <a class="button secondary" href="https://www.fws.gov/refuge/wichita-mountains" target="_blank" rel="noopener">Offizielle Seite</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Lawton</span>
+        <h3>Holy City of the Wichitas</h3>
+        <p>Skurrile biblische Film-/Passionsspiel-Kulisse mitten in Oklahoma.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.atlasobscura.com/places/the-holy-city-of-the-wichitas-cache-oklahoma" target="_blank" rel="noopener">Atlas Obscura</a>
+          <a class="button secondary" href="https://www.travelok.com/listings/view.profile/id.1305" target="_blank" rel="noopener">Travel Oklahoma</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Texas</span>
+        <h3>Dr Pepper Museum</h3>
+        <p>Food-History-Stop in Waco, gut als Zwischenstopp Richtung Austin.</p>
+        <div class="tv-links">
+          <a class="button" href="https://texastimetravel.com/directory/dr-pepper-museum/" target="_blank" rel="noopener">Texas Time Travel</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=1lzbeog10D4" target="_blank" rel="noopener">Offizieller YouTube</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Texas</span>
+        <h3>Southfork Ranch</h3>
+        <p>Drehort der TV-Serie „Dallas“ – ein echter TV-Geschichts-Stopp.</p>
+        <div class="tv-links">
+          <a class="button" href="https://southforkranch.com/history/" target="_blank" rel="noopener">TV-Historie</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Austin</span>
+        <h3>Franklin Barbecue</h3>
+        <p>Der berühmteste BBQ-Spot der Route; PBS, Netflix, Bourdain und BBQ-Kultur.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.pbs.org/video/bbq-franklin-brisket/" target="_blank" rel="noopener">PBS Episode</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=nu4p3l6LuyI" target="_blank" rel="noopener">PBS Food YouTube</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Austin</span>
+        <h3>South Congress / Austin</h3>
+        <p>Austin-Kulisse aus Food-, Musik- und Bourdain-Beiträgen.</p>
+        <div class="tv-links">
+          <a class="button" href="https://explorepartsunknown.com/destination/austin/" target="_blank" rel="noopener">Bourdain Guide</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag">Austin</span>
+        <h3>Cathedral of Junk</h3>
+        <p>Eine der schrägsten Kunst-/Roadside-Sehenswürdigkeiten in Austin.</p>
+        <div class="tv-links">
+          <a class="button" href="https://www.atlasobscura.com/places/cathedral-of-junk" target="_blank" rel="noopener">Atlas Obscura</a>
+        </div>
+      </div>
+
+    </div>
+  </details>
+</section>
 </main>
 
 <script src="./routeData.v35.js"></script>
@@ -2328,6 +2760,7 @@ function initOfflineApp(reason){
   <a href="#fahrplan"><span>🚗</span>Plan</a>
   <a href="#highlights"><span>⭐</span>Top</a>
   <a href="#musicbars"><span>🎸</span>Music</a>
+  <a href="#tvdokus"><span>📺</span>TV</a>
 </nav>
 
 <script>

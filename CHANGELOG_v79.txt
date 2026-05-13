@@ -1,0 +1,7 @@
+v79 · TV Dokus restored
+
+Geändert:
+- TV-Dokus-Karte ganz unten wiederhergestellt.
+- Nur das „📺“-Symbol im Kartentitel entfernt.
+- Direkte Doku-/Episodenlinks aus v78 übernommen.
+- Service-Worker-Cache auf v79 aktualisiert.
