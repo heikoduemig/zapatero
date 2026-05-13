@@ -1,6 +1,0 @@
-v78 · TV Dokus Direct Links
-
-- 📺 Symbol aus TV-Dokus-Karte entfernt
-- Direkte Doku-/Serienlinks statt allgemeiner Homepages
-- Verbesserte PBS-/Austin-/Route66-Links
-- Neuer Service-Worker-Cache für PWA Refresh
