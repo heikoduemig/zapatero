@@ -1,4 +1,4 @@
-# Route66 GitHub Paket v76 · TV Dokus · Online/Offline App
+# Route66 GitHub Paket v75 · Online/Offline App
 
 Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
@@ -18,7 +18,6 @@ Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und exte
 - Hotels
 - Highlights
 - MusicBars
-- TV Dokus
 - lokale Route-Daten
 - App-Layout und Icons
 
@@ -32,7 +31,7 @@ Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt
 
 ## Wichtig bei Updates
 
-Die Cache-Version wurde auf `route66-trip-v76-tv-dokus` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+Die Cache-Version wurde auf `route66-trip-v75-clean-buttons-range-2205` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
 
 ## Dateien
 
@@ -43,12 +42,3 @@ Die Cache-Version wurde auf `route66-trip-v76-tv-dokus` gesetzt. Falls auf dem S
 - `manifest.webmanifest` – PWA-Metadaten
 - `service-worker.js` – Offline-Cache
 - `icon-192.png`, `icon-512.png` – App-Icons
-
-
-## Neu in v76
-
-- Neue einklappbare Sektion **TV Dokus** ganz unten in der App.
-- Direkte Links zu TV-/Mediathek-/Sender- und Doku-Seiten.
-- Erweiterung um Kuriositäten und Sehenswürdigkeiten entlang Chicago → St. Louis → Tulsa → Lawton → Austin.
-- Bottom-Navigation um **TV** ergänzt.
-- Browser-Titel und Service-Worker-Cache auf v76 aktualisiert.
