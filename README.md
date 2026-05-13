@@ -59,3 +59,10 @@ Orte mit hinterlegten Koordinaten bleiben exakt. Für Einträge, die bisher nur 
 - 112 zusätzliche RAW_PLACES-Einträge bekommen dadurch direkte `coords` und werden nicht mehr nur über lokale Fallbacks gesetzt.
 - Der Service Worker nutzt `route66-trip-v82-coords`, damit Smartphones/PWA die neuen Daten laden.
 - Der Link zur Google-Maps-Liste konnte ohne Google-Login/Places-API nicht direkt maschinell ausgelesen werden; Einträge ohne verlässliche Koordinaten bleiben bewusst im lokalen Fallback.
+
+
+## v83 Fix
+
+- Repariert: `DAY_PLAN` und `routePlanV33` sind wieder in `routeData.v37.js` enthalten.
+- Behebt die leeren Tages-Tabs/Sections und den Fehler bei der Karteninitialisierung.
+- Koordinaten aus v82 bleiben erhalten.

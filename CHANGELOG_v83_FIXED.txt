@@ -1,0 +1,5 @@
+v83 · Fix
+
+- routeData.v36.js hatte versehentlich nur RAW_PLACES enthalten.
+- routeData.v37.js enthält wieder RAW_PLACES, DAY_PLAN und routePlanV33.
+- index.html und service-worker.js auf routeData.v37.js / Cache v83 umgestellt.
