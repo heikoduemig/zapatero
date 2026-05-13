@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Route 66 Music Trip · v85 Route Only TV Docs</title>
+<title>Route 66 Music Trip v77</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#071018">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -589,6 +589,29 @@ tbody tr:last-child td {
   color: #b9c8ce;
   font-size: 13px;
   line-height: 1.35;
+}
+
+.place-meta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.place-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(70, 214, 230, .13);
+  color: #8ef4ff;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.place-badge.must {
+  background: rgba(255, 180, 0, .20);
+  color: #ffe08a;
 }
 
 .place-row a {
@@ -1219,6 +1242,7 @@ tbody tr:last-child td {
   opacity:.9;
 }
 
+
 .pulse-highlight{
   animation:pulseGlow 1.8s ease;
 }
@@ -1227,6 +1251,7 @@ tbody tr:last-child td {
   30%{box-shadow:0 0 35px rgba(59,130,246,.45);}
   100%{box-shadow:0 0 0 rgba(59,130,246,0);}
 }
+
 
 /* Desktop / Workstation toolbar improvements */
 .toolbar{
@@ -1258,6 +1283,7 @@ tbody tr:last-child td {
     height:6px;
   }
 }
+
 
 .map-toggle-wrap{
   display:flex !important;
@@ -1378,6 +1404,7 @@ tbody tr:last-child td {
   .offline-actions button { flex:1; }
 }
 
+
 .connection-badge {
   position: fixed;
   right: 14px;
@@ -1401,46 +1428,6 @@ tbody tr:last-child td {
   border-color: rgba(70, 214, 230, .35);
 }
 
-/* TV-Dokus Karte sichtbar ganz unten */
-#tvdokus {
-  display: block !important;
-  margin-top: 24px;
-  margin-bottom: 96px;
-}
-#tvdokus summary {
-  border-radius: 18px;
-}
-#tvdokus .tv-card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-  text-decoration: none;
-}
-
-.tv-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.tv-links .button {
-  min-height: 38px;
-  padding: 8px 11px;
-  font-size: 12px;
-}
-
-.tv-links .button.secondary {
-  background: rgba(255, 255, 255, .08);
-}
-
 </style>
 </head>
 <body>
@@ -1456,10 +1443,10 @@ tbody tr:last-child td {
 </div>
 <header>
   <h1>Route 66 Music Trip</h1>
-  <p class="app-subtitle">Tagesansicht v80 · Online/Offline App · Highlights · MusicBars · TV Dokus</p>
+  <p class="app-subtitle">Tagesansicht v77 · Online/Offline App · Highlights · MusicBars · TV Dokus · City Guide</p>
   <nav class="nav">
     <a href="#tag">Heute</a><a href="#karte">Karte</a><a href="#fahrplan">Fahrplan</a><a href="#highlights">Top Highlights</a><a href="#musicbars">MusicBars</a><a href="#hotels">Hotels</a><a href="#food">Food</a><a href="#distilleries">Distilleries</a><a href="#route66">Route66 Stops</a><a href="#sonstiges">Sonstiges</a><a href="#tvdokus">TV Dokus</a>
-</nav>
+  </nav>
   <div class="editor-tools"><button onclick="resetCategoryEdits()">Kategorien zurücksetzen</button><button onclick="clearResolvedCache()">Orte neu auflösen</button></div>
 </header>
 
@@ -1507,7 +1494,9 @@ tbody tr:last-child td {
 
 <main>
 
+
 <section class="section open-default fahrplan-section" id="fahrplan">
+
 
   <div class="meta">Fahrplan</div>
   <h2>Etappen, Abfahrten & Ankünfte</h2>
@@ -1524,135 +1513,139 @@ tbody tr:last-child td {
   <section class="section collapsible" id="sonstiges"><details><summary><div><div class="meta">Sonstiges</div><h2>Sonstiges</h2></div></summary><div id="otherList"></div></details></section>
 
 
+  <section class="section collapsible" id="tvdokus">
+    <details>
+      <summary>
+        <div>
+          <div class="meta">TV · Dokumentationen · Route 66</div>
+          <h2>📺 TV Dokus</h2>
+        </div>
+      </summary>
 
-<section id="tvdokus" class="section collapsible">
-  <details>
-    <summary>
-      <div>
-        <div class="meta">Offizielle Videos · Nur vorhandene Route-Ziele</div>
-        <h2>TV Dokus</h2>
-      </div>
-    </summary>
+      <p class="note">Direkte Links zu TV-/Mediathek-, Sender- oder offiziellen Doku-Seiten plus kuratierte App-/Kartenpunkte: Sehenswürdigkeiten, Restaurants, MusicBars, Rooftops, Nightlife und 360-/StreetView-Einstiege entlang Chicago → St. Louis → Tulsa → Lawton → Austin.</p>
 
-    <p class="note">
-      Diese TV-/Doku-Links beziehen sich ausschließlich auf Orte, Restaurants,
-      Musikclubs und Sehenswürdigkeiten, die bereits in eurer bestehenden Route-66-App enthalten sind.
-    </p>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Chicago</span>
+          <h3>Lou Mitchell's</h3>
+          <p>Historischer Route-66-Startpunkt und klassischer Diner-Stop.</p>
+          <p><a class="button" href="https://interactive.wttw.com/playlist/2021/05/20/route-66-begins-chicago" target="_blank" rel="noopener">WTTW / PBS Feature</a></p>
+        </div>
 
-    <div class="grid">
+        <div class="card">
+          <span class="tag">Chicago</span>
+          <h3>Route 66 Begins in Chicago</h3>
+          <p>TV-Beitrag über den Start der Route 66 in Chicago.</p>
+          <p><a class="button" href="https://interactive.wttw.com/playlist/2021/05/20/route-66-begins-chicago" target="_blank" rel="noopener">PBS Chicago</a></p>
+        </div>
 
-      <div class="card">
-        <span class="tag">Chicago</span>
-        <h3>Buddy Guy’s Legends</h3>
-        <p>Legendärer Blues-Club aus eurer Musik-/Bar-Liste.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Buddy+Guy%27s+Legends+official+blues+club" target="_blank">Official Videos</a>
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>Gateway Arch</h3>
+          <p>Wahrzeichen von St. Louis aus mehreren US-Dokumentationen.</p>
+          <p><a class="button" href="https://www.pbs.org/video/america-from-the-ground-up-the-gateway-arch/" target="_blank" rel="noopener">PBS Doku</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>Ted Drewes Frozen Custard</h3>
+          <p>Route-66-Klassiker für Frozen Custard auf der Chippewa Street.</p>
+          <p><a class="button" href="https://www.foodnetwork.com/restaurants/photos/route-66-restaurants" target="_blank" rel="noopener">Food Network Route 66</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">St. Louis</span>
+          <h3>City Museum</h3>
+          <p>Skurriles Kunst-, Kletter- und Architektur-Labyrinth mitten in St. Louis.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/city-museum" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Route 66</span>
+          <h3>Blue Whale of Catoosa</h3>
+          <p>Eine der bekanntesten Route-66-Kuriositäten nahe Tulsa.</p>
+          <p><a class="button" href="https://www.travelok.com/listings/view.profile/id.1807" target="_blank" rel="noopener">Travel Oklahoma</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Tally's Good Food Café</h3>
+          <p>Diner in Tulsa, bekannt aus Diners, Drive-Ins and Dives.</p>
+          <p><a class="button" href="https://www.foodnetwork.com/shows/diners-drive-ins-and-dives" target="_blank" rel="noopener">Food Network</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Center of the Universe</h3>
+          <p>Akustische Kuriosität in Downtown Tulsa.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/center-of-the-universe" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Tulsa</span>
+          <h3>Golden Driller</h3>
+          <p>Riesige Öl-Arbeiter-Statue und Tulsa-Landmark.</p>
+          <p><a class="button" href="https://www.travelok.com/listings/view.profile/id.11589" target="_blank" rel="noopener">Travel Oklahoma</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Oklahoma</span>
+          <h3>Rock Cafe</h3>
+          <p>Route-66-Restaurant in Stroud und Inspiration für Pixar Cars.</p>
+          <p><a class="button" href="https://www.route66roadtrip.com/route-66-attractions.htm" target="_blank" rel="noopener">Route 66 Roadtrip</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Lawton</span>
+          <h3>Wichita Mountains Wildlife Refuge</h3>
+          <p>Bisons, Longhorns und spektakuläre Landschaften bei Lawton.</p>
+          <p><a class="button" href="https://www.fws.gov/refuge/wichita-mountains" target="_blank" rel="noopener">US Fish & Wildlife</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Lawton</span>
+          <h3>Holy City of the Wichitas</h3>
+          <p>Ungewöhnliche Bibel-Filmkulisse in den Wichita Mountains.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/the-holy-city-of-the-wichitas-cache-oklahoma" target="_blank" rel="noopener">Atlas Obscura</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Franklin Barbecue</h3>
+          <p>Berühmter BBQ-Spot, bekannt aus PBS, Netflix und Anthony-Bourdain-Formaten.</p>
+          <p><a class="button" href="https://www.pbs.org/show/bbq-franklin/" target="_blank" rel="noopener">PBS: BBQ with Franklin</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Chef’s Table: BBQ</h3>
+          <p>Netflix-Serie über Barbecue, mit Texas-BBQ-Kontext und Aaron Franklin.</p>
+          <p><a class="button" href="https://www.netflix.com/title/81292974" target="_blank" rel="noopener">Netflix</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Anthony Bourdain: Austin</h3>
+          <p>Austin-Food-Guide zur Parts-Unknown-Episode.</p>
+          <p><a class="button" href="https://explorepartsunknown.com/destination/austin/" target="_blank" rel="noopener">Parts Unknown</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>South Congress Avenue</h3>
+          <p>Musik, Food, Neon, Murals und Austin-Streetlife.</p>
+          <p><a class="button" href="https://www.austintexas.org/districts/south-congress/" target="_blank" rel="noopener">Austin Travel</a></p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Austin</span>
+          <h3>Cathedral of Junk</h3>
+          <p>Eine der schrägsten Kuriositäten der Stadt.</p>
+          <p><a class="button" href="https://www.atlasobscura.com/places/cathedral-of-junk" target="_blank" rel="noopener">Atlas Obscura</a></p>
         </div>
       </div>
-
-      <div class="card">
-        <span class="tag">Chicago</span>
-        <h3>Kingston Mines</h3>
-        <p>Berühmter Chicago-Bluesclub aus eurer Route.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Kingston+Mines+Chicago+official+blues" target="_blank">Official Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Illinois Route 66</span>
-        <h3>Gemini Giant</h3>
-        <p>Kultige Route-66-Sehenswürdigkeit aus euren Must Stops.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Gemini+Giant+Route+66+official" target="_blank">Route 66 Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">St. Louis</span>
-        <h3>Gateway Arch</h3>
-        <p>Amerika- und Architektur-Dokus zum Gateway Arch.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Gateway+Arch+official+documentary" target="_blank">Official Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">St. Louis</span>
-        <h3>Ted Drewes Frozen Custard</h3>
-        <p>Food- und Americana-Beiträge zu eurem Route-66-Foodstop.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Ted+Drewes+Frozen+Custard+Route+66+official" target="_blank">Food Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Tulsa</span>
-        <h3>Cain’s Ballroom</h3>
-        <p>Country-, Western-Swing- und Tulsa-Musikgeschichte.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Cains+Ballroom+Tulsa+official+documentary" target="_blank">Music Docs</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Route 66 Oklahoma</span>
-        <h3>Blue Whale of Catoosa</h3>
-        <p>Eine der bekanntesten Sehenswürdigkeiten entlang eurer Route.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Blue+Whale+of+Catoosa+official+video" target="_blank">Official Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Lawton</span>
-        <h3>Boomarang Diner</h3>
-        <p>Klassischer Oklahoma-Diner aus euren Route-Daten.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Oklahoma+diner+Route+66+official" target="_blank">Diner Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Lawton</span>
-        <h3>Wichita Mountains</h3>
-        <p>Natur- und Wildlife-Dokumentationen rund um eure Route.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Wichita+Mountains+Wildlife+Refuge+official" target="_blank">Nature Docs</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Austin BBQ</span>
-        <h3>Franklin Barbecue</h3>
-        <p>PBS- und BBQ-Dokumentationen zu eurem Austin-Highlight.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=BBQ+with+Franklin+PBS+official" target="_blank">PBS BBQ</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Austin Music</span>
-        <h3>Austin City Limits</h3>
-        <p>Live-Musik und Americana aus eurer Zielstadt Austin.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Austin+City+Limits+official" target="_blank">ACL Videos</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="tag">Music & Instruments</span>
-        <h3>Gibson & Fender</h3>
-        <p>Gitarrenbau und Americana passend zu Blues/Country entlang der Route.</p>
-        <div class="tv-links">
-          <a class="button" href="https://www.youtube.com/results?search_query=Gibson+official+guitar+documentary" target="_blank">Gibson</a>
-          <a class="button secondary" href="https://www.youtube.com/results?search_query=Fender+official+guitar+documentary" target="_blank">Fender</a>
-        </div>
-      </div>
-
-    </div>
-  </details>
-</section>
+    </details>
+  </section>
 
 </main>
 
@@ -1676,7 +1669,11 @@ tbody tr:last-child td {
       coords: p.coords,
       googleMapsUrl: p.googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((p.name || '') + ' ' + (p.city || ''))}`,
       query: `${p.name} ${p.city || ''}`.trim(),
-      text: p.text || ''
+      text: p.text || '',
+      badge: p.badge || '',
+      bestTime: p.bestTime || '',
+      priority: p.priority || '',
+      streetViewUrl: p.streetViewUrl || ''
     }));
   window.RAW_PLACES = [...window.RAW_PLACES, ...mapped];
   window.ALL_PLACES = window.RAW_PLACES;
@@ -1730,6 +1727,8 @@ function saveCategoryOverrides(overrides) {
 function placeKey(p) {
   return `${p.name || ""}__${p.address || ""}`.toLowerCase();
 }
+
+
 
 function forceKnownPlaceData(list = resolvedPlaces){
   if (!Array.isArray(list)) return;
@@ -1818,6 +1817,7 @@ function clearResolvedCache() {
   location.reload();
 }
 
+
 const colors = {
   music:"#fbbc04", hotel:"#4285f4", food:"#34a853", sight:"#ea4335", hidden:"#a142f4", distillery:"#9c6b30", other:"#607d8b"
 };
@@ -1859,6 +1859,7 @@ function categoryLabel(c) {
 function groupLabel(g){
   return {hotel:"Hotels", highlight:"Top Highlights", food:"Food", music:"MusicBars", distillery:"Distilleries", route66:"Route66 Stops", other:"Sonstiges"}[g] || "Sonstiges";
 }
+
 
 function smartUSAQuery(raw) {
   let q = (raw.query || raw.name || "").trim();
@@ -1982,14 +1983,17 @@ function createPopup(p) {
   const rating = p.rating ? `<p><strong>Bewertung:</strong> ${p.rating} ⭐ (${p.ratingsTotal || 0})</p>` : "";
   const addr = p.formattedAddress ? `<p>${p.formattedAddress}</p>` : "";
   const note = p.note ? `<p><strong>${p.note}</strong></p>` : "";
+  const badge = p.badge ? `<p><strong>${p.badge}</strong>${p.bestTime ? ` · ${p.bestTime}` : ""}</p>` : (p.bestTime ? `<p><strong>Beste Zeit:</strong> ${p.bestTime}</p>` : "");
   const maps = p.placeId
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.resolvedName || p.name)}&query_place_id=${p.placeId}`
     : p.googleMapsUrl;
-  return `<div style="max-width:260px;color:#111">
+  const street = p.streetViewUrl || ((p.lat && p.lng) ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${p.lat},${p.lng}` : "");
+  return `<div style="max-width:280px;color:#111">
     <h3 style="margin:0 0 8px">${p.name}</h3>
     <p style="margin:0 0 6px"><em>${categoryLabel(p.category)}</em></p>
-    ${note}${addr}${rating}
+    ${badge}${note}${addr}${rating}
     <a href="${maps}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 10px;border-radius:999px;background:#1a73e8;color:white;text-decoration:none;font-weight:700">In Google Maps öffnen</a>
+    ${street ? `<a href="${street}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;margin-left:6px;padding:8px 10px;border-radius:999px;background:#111;color:white;text-decoration:none;font-weight:700">360 / StreetView</a>` : ""}
   </div>`;
 }
 
@@ -2039,6 +2043,8 @@ function renderMarkers(filter="all") {
   setStatus(`${visibleCount} Marker angezeigt · ${filter === "all" ? "Alle" : groupLabel(filter)}`);
 }
 
+
+
 function cityForPlace(p) {
   const t = `${p.name || ""} ${p.address || ""} ${p.formattedAddress || ""} ${p.query || ""}`.toLowerCase();
   if (t.includes("chicago") || t.includes("illinois")) return "Chicago";
@@ -2076,8 +2082,15 @@ function mapsUrlFor(p){
 
 function row(p) {
   const maps = mapsUrlFor(p);
-  return `<div class="place-row"><div><strong>${p.name}</strong><span>${groupLabel(groupForPlace(p))}${p.note ? " · " + p.note : ""}</span></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a href="${maps}" target="_blank" rel="noopener noreferrer">Maps</a></div></div>`;
+  const street = p.streetViewUrl || ((p.lat && p.lng) ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${p.lat},${p.lng}` : "");
+  const badges = [p.priority === "must" ? "🔥 Pflicht" : "", p.badge || "", p.bestTime ? `⏱ ${p.bestTime}` : ""].filter(Boolean);
+  const badgeHtml = badges.length ? `<div class="place-meta-badges">${badges.map((b,i)=>`<span class="place-badge ${i===0 && p.priority==="must" ? "must" : ""}">${b}</span>`).join("")}</div>` : "";
+  return `<div class="place-row"><div><strong>${p.name}</strong><span>${groupLabel(groupForPlace(p))}${p.note ? " · " + p.note : ""}</span>${badgeHtml}</div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a href="${maps}" target="_blank" rel="noopener noreferrer">Maps</a>${street ? `<a class="secondary" href="${street}" target="_blank" rel="noopener noreferrer">360</a>` : ""}</div></div>`;
 }
+
+
+
+
 
 const PLACE_ALIASES = {
   "360 chicago": "360 CHICAGO Observation Deck",
@@ -2271,6 +2284,7 @@ function placeMatchesDay(p, day){
 
 function getSelectedDay(){ return DAY_PLAN.find(d=>d.id===selectedDayId) || DAY_PLAN[0]; }
 
+
 function targetRegionForDay(day){
   const title = `${day.title || ""} ${day.city || ""}`.toLowerCase();
 
@@ -2408,6 +2422,8 @@ function renderLists() {
   if (route66List) renderCityGrouped(route66List, resolvedPlaces.filter(p=>groupForPlace(p)==="route66"));
   if (otherList) renderCityGrouped(otherList, resolvedPlaces.filter(p=>groupForPlace(p)==="other"));
 }
+
+
 
 async function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -2570,6 +2586,9 @@ document.addEventListener("click", function(e) {
 })();
 </script>
 
+
+
+
 <script>
 
 function scrollToSection(id) {
@@ -2661,6 +2680,7 @@ window.addEventListener('load', () => {
 });
 </script>
 
+
 <script>
 (function(){
   function getOffset(){
@@ -2694,6 +2714,7 @@ window.addEventListener('load', () => {
   });
 })();
 </script>
+
 
 <script>
 (function(){

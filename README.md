@@ -1,4 +1,4 @@
-# Route66 GitHub Paket v76 · TV Dokus · Online/Offline App
+# Route66 GitHub Paket v77 · TV Dokus · City Guide · Online/Offline App
 
 Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
@@ -18,7 +18,6 @@ Diese Version ist als **eine einzige PWA-App** gebaut: online mit Karte und exte
 - Hotels
 - Highlights
 - MusicBars
-- TV Dokus
 - lokale Route-Daten
 - App-Layout und Icons
 
@@ -32,7 +31,7 @@ Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt
 
 ## Wichtig bei Updates
 
-Die Cache-Version wurde auf `route66-trip-v76-tv-dokus` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+Die Cache-Version wurde auf `route66-trip-v77-city-guide` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
 
 ## Dateien
 
@@ -45,20 +44,13 @@ Die Cache-Version wurde auf `route66-trip-v76-tv-dokus` gesetzt. Falls auf dem S
 - `icon-192.png`, `icon-512.png` – App-Icons
 
 
-## Neu in v76
+## Neu in v77
 
-- Neue einklappbare Sektion **TV Dokus** ganz unten in der App.
-- Direkte Links zu TV-/Mediathek-/Sender- und Doku-Seiten.
-- Erweiterung um Kuriositäten und Sehenswürdigkeiten entlang Chicago → St. Louis → Tulsa → Lawton → Austin.
-- Bottom-Navigation um **TV** ergänzt.
-- Browser-Titel und Service-Worker-Cache auf v76 aktualisiert.
-
-
-## v79 · TV Dokus restored
-
-Die TV-Dokus-Karte ist wieder ganz unten eingebaut. Der Titel lautet ohne Icon: „TV Dokus“.
-
-
-## v80 · TV Dokus + offizielle YouTube Clips
-
-Die TV-Dokus-Karte enthält jetzt zusätzliche YouTube-Buttons nur für offizielle bzw. institutionelle Quellen. Private Reuploads wurden bewusst nicht aufgenommen.
+- Viele neue kuratierte Kartenpunkte für **Sehenswürdigkeiten, Restaurants, MusicBars, Bars, Rooftops und Nightlife**.
+- Neue Empfehlungen u.a. für Chicago, St. Louis, Tulsa, Lawton/Medicine Park und Austin.
+- Keine Gibson/Fender-Store-Logik, Fokus auf echte Orte: Food, Bars, Musik, Viewpoints und Route-66-Feeling.
+- Karten- und Listenansicht zeigen jetzt Badges wie **Pflicht**, **Sunset Spot**, **Live Music**, **BBQ**, **Cocktails**, **Best at Night**.
+- 360-/StreetView-Links wurden für Orte mit Koordinaten ergänzt.
+- Google-Maps-Popups zeigen beste Besuchszeit und Zusatzinfos.
+- Die TV-Dokus-Sektion wurde als Inspirations-/Preview-Bereich erweitert.
+- Browser-Titel und Service-Worker-Cache auf v77 aktualisiert.

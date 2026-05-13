@@ -1264,3 +1264,46 @@ window.route66MustStops = [
 }
 
 ];
+
+// v77 · Zusätzliche kuratierte App-/Kartenpunkte: Sehenswürdigkeiten, Restaurants, MusicBars und Nightlife.
+(function(){
+  const extraV77 = [
+    { name:"Portillo's & Barnelli's Chicago", city:"Chicago", coords:[-87.6276,41.8937], type:"food", category:"Essen", text:"🌭 Chicago Klassiker · Hot Dogs / Italian Beef", badge:"Food Classic", bestTime:"Mittag / Abend", priority:"top" },
+    { name:"Au Cheval", city:"Chicago", coords:[-87.6478,41.8847], type:"food", category:"Essen", text:"🍔 Kult-Burger im West Loop", badge:"Food Highlight", bestTime:"Abend", priority:"top" },
+    { name:"Pequod's Pizza", city:"Chicago", coords:[-87.6640,41.9218], type:"food", category:"Essen", text:"🍕 Deep Dish / karamellisierter Rand", badge:"Pizza Tipp", bestTime:"Abend", priority:"top" },
+    { name:"Billy Goat Tavern", city:"Chicago", coords:[-87.6246,41.8900], type:"food", category:"Essen", text:"🍔 Chicago Kult-Bar unter der Michigan Avenue", badge:"Kult-Stop", bestTime:"Lunch / Abend" },
+    { name:"Three Dots and a Dash", city:"Chicago", coords:[-87.6305,41.8907], type:"music", category:"Musik / Bars", text:"🍹 Tiki-Bar · starker Abendspot", badge:"Bar Tipp", bestTime:"Nacht" },
+    { name:"Cindy's Rooftop", city:"Chicago", coords:[-87.6244,41.8818], type:"music", category:"Musik / Bars", text:"🌇 Rooftop mit Millennium-Park-Blick", badge:"Sunset Spot", bestTime:"Sonnenuntergang" },
+    { name:"LondonHouse Rooftop", city:"Chicago", coords:[-87.6252,41.8879], type:"music", category:"Musik / Bars", text:"🏙 Rooftop-Bar direkt am River", badge:"Skyline Bar", bestTime:"Sunset / Nacht" },
+    { name:"Skydeck Chicago / Willis Tower", city:"Chicago", coords:[-87.6359,41.8789], type:"highlight", category:"Top Highlights", text:"🔥 Top Highlight · Glasbalkon über Chicago", badge:"360 / View", bestTime:"Sunset", priority:"must" },
+    { name:"Pappy's Smokehouse", city:"St. Louis", coords:[-90.2252,38.6350], type:"food", category:"Essen", text:"🍖 St. Louis BBQ Klassiker", badge:"BBQ", bestTime:"Lunch" },
+    { name:"Bogart's Smokehouse", city:"St. Louis", coords:[-90.1994,38.6108], type:"food", category:"Essen", text:"🍖 Soulard BBQ Alternative", badge:"BBQ", bestTime:"Lunch / Abend" },
+    { name:"John D. McGurk's Irish Pub", city:"St. Louis", coords:[-90.2015,38.6101], type:"music", category:"Musik / Bars", text:"🍻 Soulard Pub mit Live-Musik & Patio", badge:"Live Music", bestTime:"Abend" },
+    { name:"Planter's House", city:"St. Louis", coords:[-90.1979,38.6128], type:"music", category:"Musik / Bars", text:"🍸 Cocktail-Bar in Lafayette Square", badge:"Cocktails", bestTime:"Abend" },
+    { name:"The Royale Food & Spirits", city:"St. Louis", coords:[-90.2503,38.5988], type:"music", category:"Musik / Bars", text:"🍸 entspannte Neighborhood Bar", badge:"Local Bar", bestTime:"Abend" },
+    { name:"Meadow Gold Sign", city:"Tulsa", coords:[-95.9851,36.1480], type:"route66", category:"Route66 Stops", text:"🌃 Route-66-Neonklassiker", badge:"Best at Night", bestTime:"Nacht", priority:"top" },
+    { name:"Blue Dome District", city:"Tulsa", coords:[-95.9867,36.1545], type:"highlight", category:"Top Highlights", text:"📍 Downtown Tulsa · Bars / Murals / Nightlife", badge:"Nightlife", bestTime:"Abend" },
+    { name:"Mother Road Market", city:"Tulsa", coords:[-95.9693,36.1415], type:"food", category:"Essen", text:"🍔 Food Hall an Route 66", badge:"Food Hall", bestTime:"Lunch / Abend" },
+    { name:"Burn Co Barbeque", city:"Tulsa", coords:[-95.9890,36.1314], type:"food", category:"Essen", text:"🔥 Tulsa BBQ Klassiker", badge:"BBQ", bestTime:"Lunch" },
+    { name:"El Rancho Grande", city:"Tulsa", coords:[-95.9753,36.1393], type:"food", category:"Essen", text:"🌮 Route-66 Tex-Mex Klassiker", badge:"Route 66 Food", bestTime:"Abend" },
+    { name:"Saturn Room", city:"Tulsa", coords:[-95.9865,36.1582], type:"music", category:"Musik / Bars", text:"🍹 Tiki-Bar im Tulsa Arts District", badge:"Bar Tipp", bestTime:"Nacht" },
+    { name:"Valkyrie", city:"Tulsa", coords:[-95.9921,36.1594], type:"music", category:"Musik / Bars", text:"🍸 Cocktail-Bar im Arts District", badge:"Cocktails", bestTime:"Abend" },
+    { name:"Meers Store and Restaurant", city:"Lawton", coords:[-98.5784,34.7870], type:"food", category:"Essen", text:"🍔 Longhorn Burger nahe Wichita Mountains", badge:"Roadfood", bestTime:"Lunch" },
+    { name:"Backporch Drafthouse Lawton", city:"Lawton", coords:[-98.3959,34.6093], type:"food", category:"Essen", text:"🍔 Burger / Craft Beer · lockerer Abend", badge:"Casual Food", bestTime:"Abend" },
+    { name:"Medicine Park Tavern", city:"Medicine Park", coords:[-98.5026,34.7298], type:"music", category:"Musik / Bars", text:"🍺 Medicine Park Abendspot", badge:"Local Bar", bestTime:"Abend" },
+    { name:"Terry Black's Barbecue", city:"Austin", coords:[-97.7545,30.2595], type:"food", category:"Essen", text:"🔥 Austin BBQ Klassiker", badge:"BBQ", bestTime:"Lunch / Abend", priority:"top" },
+    { name:"Home Slice Pizza", city:"Austin", coords:[-97.7495,30.2464], type:"food", category:"Essen", text:"🍕 South Congress Pizza Klassiker", badge:"SoCo Food", bestTime:"Abend" },
+    { name:"Casino El Camino", city:"Austin", coords:[-97.7407,30.2670], type:"food", category:"Essen", text:"🍔 Kult-Burger / Dive-Bar auf 6th Street", badge:"Dive Bar", bestTime:"Abend / Nacht" },
+    { name:"Elephant Room", city:"Austin", coords:[-97.7433,30.2668], type:"music", category:"Musik / Bars", text:"🎷 Jazz-Keller in Downtown Austin", badge:"Live Jazz", bestTime:"Abend" },
+    { name:"The Roosevelt Room", city:"Austin", coords:[-97.7468,30.2677], type:"music", category:"Musik / Bars", text:"🍸 starke Cocktail-Bar Downtown", badge:"Cocktails", bestTime:"Abend" },
+    { name:"Midnight Cowboy", city:"Austin", coords:[-97.7409,30.2669], type:"music", category:"Musik / Bars", text:"🍸 versteckte Speakeasy-Bar auf 6th Street", badge:"Speakeasy", bestTime:"Nacht" }
+  ];
+  const seen = new Set((window.route66MustStops || []).map(p => (p.name || '').toLowerCase().trim()));
+  extraV77.forEach(p => {
+    if (!seen.has((p.name || '').toLowerCase().trim())) {
+      p.googleMapsUrl = p.googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((p.name || '') + ' ' + (p.city || ''))}`;
+      if (Array.isArray(p.coords)) p.streetViewUrl = p.streetViewUrl || `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${p.coords[1]},${p.coords[0]}`;
+      window.route66MustStops.push(p);
+    }
+  });
+})();
