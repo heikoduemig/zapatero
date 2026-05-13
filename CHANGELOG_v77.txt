@@ -1,0 +1,20 @@
+v77 · TV Dokus erweitert und sichtbar unten
+
+Geändert:
+- TV-Dokus-Sektion unten in der App als zusammengeklappte Karte sichtbar eingebaut.
+- Zusätzliche Doku-/TV-/Route-66-Stopps ergänzt:
+  - Gemini Giant
+  - Pontiac Route 66 Museum
+  - Chain of Rocks Bridge
+  - Pops 66
+  - Arcadia Round Barn
+  - Cain’s Ballroom
+  - Green Mill
+  - Southfork Ranch
+  - Dr Pepper Museum
+- Direktlink in oberer Navigation und Bottom-Navigation bleibt enthalten.
+- Browser-Titel auf v77 gesetzt.
+- Service Worker Cache auf route66-trip-v77-tv-dokus-erweitert gesetzt.
+
+Hinweis:
+Nach Upload zu GitHub Pages die Seite einmal hart neu laden bzw. PWA/Browser-Cache aktualisieren, damit der neue Service Worker greift.

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v75-clean-buttons-range-2205';
+const CACHE_NAME = 'route66-trip-v77-tv-dokus-erweitert';
 const APP_SHELL = [
   './',
   './index.html',
