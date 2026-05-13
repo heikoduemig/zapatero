@@ -1219,7 +1219,6 @@ tbody tr:last-child td {
   opacity:.9;
 }
 
-
 .pulse-highlight{
   animation:pulseGlow 1.8s ease;
 }
@@ -1228,7 +1227,6 @@ tbody tr:last-child td {
   30%{box-shadow:0 0 35px rgba(59,130,246,.45);}
   100%{box-shadow:0 0 0 rgba(59,130,246,0);}
 }
-
 
 /* Desktop / Workstation toolbar improvements */
 .toolbar{
@@ -1260,7 +1258,6 @@ tbody tr:last-child td {
     height:6px;
   }
 }
-
 
 .map-toggle-wrap{
   display:flex !important;
@@ -1381,7 +1378,6 @@ tbody tr:last-child td {
   .offline-actions button { flex:1; }
 }
 
-
 .connection-badge {
   position: fixed;
   right: 14px;
@@ -1405,7 +1401,6 @@ tbody tr:last-child td {
   border-color: rgba(70, 214, 230, .35);
 }
 
-
 /* TV-Dokus Karte sichtbar ganz unten */
 #tvdokus {
   display: block !important;
@@ -1428,7 +1423,6 @@ tbody tr:last-child td {
   font-weight: 900;
   text-decoration: none;
 }
-
 
 .tv-links {
   display: flex;
@@ -1513,9 +1507,7 @@ tbody tr:last-child td {
 
 <main>
 
-
 <section class="section open-default fahrplan-section" id="fahrplan">
-
 
   <div class="meta">Fahrplan</div>
   <h2>Etappen, Abfahrten & Ankünfte</h2>
@@ -1530,7 +1522,6 @@ tbody tr:last-child td {
   <section class="section collapsible" id="distilleries"><details><summary><div><div class="meta">Distilleries</div><h2>Distilleries</h2></div></summary><div id="distilleryList"></div></details></section>
   <section class="section collapsible" id="route66"><details><summary><div><div class="meta">Route66 Stops</div><h2>Route66 Stops</h2></div></summary><div id="route66List"></div></details></section>
   <section class="section collapsible" id="sonstiges"><details><summary><div><div class="meta">Sonstiges</div><h2>Sonstiges</h2></div></summary><div id="otherList"></div></details></section>
-
 
   <section class="section collapsible" id="tvdokus">
     <details>
@@ -1663,7 +1654,6 @@ tbody tr:last-child td {
           <p><a class="button" href="https://www.atlasobscura.com/places/cathedral-of-junk" target="_blank" rel="noopener">Atlas Obscura</a></p>
         </div>
 
-
         <div class="card">
           <span class="tag">Route 66 · Illinois</span>
           <h3>Gemini Giant</h3>
@@ -1729,8 +1719,6 @@ tbody tr:last-child td {
       </div>
     </details>
   </section>
-
-
 
 <section id="tvdokus" class="section collapsible">
 <details>
@@ -1957,8 +1945,6 @@ function placeKey(p) {
   return `${p.name || ""}__${p.address || ""}`.toLowerCase();
 }
 
-
-
 function forceKnownPlaceData(list = resolvedPlaces){
   if (!Array.isArray(list)) return;
 
@@ -2046,7 +2032,6 @@ function clearResolvedCache() {
   location.reload();
 }
 
-
 const colors = {
   music:"#fbbc04", hotel:"#4285f4", food:"#34a853", sight:"#ea4335", hidden:"#a142f4", distillery:"#9c6b30", other:"#607d8b"
 };
@@ -2088,7 +2073,6 @@ function categoryLabel(c) {
 function groupLabel(g){
   return {hotel:"Hotels", highlight:"Top Highlights", food:"Food", music:"MusicBars", distillery:"Distilleries", route66:"Route66 Stops", other:"Sonstiges"}[g] || "Sonstiges";
 }
-
 
 function smartUSAQuery(raw) {
   let q = (raw.query || raw.name || "").trim();
@@ -2269,8 +2253,6 @@ function renderMarkers(filter="all") {
   setStatus(`${visibleCount} Marker angezeigt · ${filter === "all" ? "Alle" : groupLabel(filter)}`);
 }
 
-
-
 function cityForPlace(p) {
   const t = `${p.name || ""} ${p.address || ""} ${p.formattedAddress || ""} ${p.query || ""}`.toLowerCase();
   if (t.includes("chicago") || t.includes("illinois")) return "Chicago";
@@ -2310,10 +2292,6 @@ function row(p) {
   const maps = mapsUrlFor(p);
   return `<div class="place-row"><div><strong>${p.name}</strong><span>${groupLabel(groupForPlace(p))}${p.note ? " · " + p.note : ""}</span></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a href="${maps}" target="_blank" rel="noopener noreferrer">Maps</a></div></div>`;
 }
-
-
-
-
 
 const PLACE_ALIASES = {
   "360 chicago": "360 CHICAGO Observation Deck",
@@ -2507,7 +2485,6 @@ function placeMatchesDay(p, day){
 
 function getSelectedDay(){ return DAY_PLAN.find(d=>d.id===selectedDayId) || DAY_PLAN[0]; }
 
-
 function targetRegionForDay(day){
   const title = `${day.title || ""} ${day.city || ""}`.toLowerCase();
 
@@ -2645,8 +2622,6 @@ function renderLists() {
   if (route66List) renderCityGrouped(route66List, resolvedPlaces.filter(p=>groupForPlace(p)==="route66"));
   if (otherList) renderCityGrouped(otherList, resolvedPlaces.filter(p=>groupForPlace(p)==="other"));
 }
-
-
 
 async function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -2809,9 +2784,6 @@ document.addEventListener("click", function(e) {
 })();
 </script>
 
-
-
-
 <script>
 
 function scrollToSection(id) {
@@ -2903,7 +2875,6 @@ window.addEventListener('load', () => {
 });
 </script>
 
-
 <script>
 (function(){
   function getOffset(){
@@ -2937,7 +2908,6 @@ window.addEventListener('load', () => {
   });
 })();
 </script>
-
 
 <script>
 (function(){
