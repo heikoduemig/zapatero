@@ -1,0 +1,12 @@
+v81 · Coordinate Audit + Map Category Fix
+
+Geändert:
+- Alle vorhandenen Kategorien werden auf der Leaflet/OpenStreetMap-Karte berücksichtigt.
+- Hotels bleiben als Basecamp-Marker besonders hervorgehoben.
+- Duplikate wie „360 Chicago“ / „360 CHICAGO Observation Deck“ übernehmen jetzt vorhandene exakte Koordinaten statt lokaler Schätzung.
+- Falsch einsortierte Orte korrigiert: Arcadia Round Barn / Pops / Soulsby / Buck Atom usw. als Route66, ACL/Elephant Room/Sahara/Saxon usw. als MusicBars, 360/Cloud Gate/Navy/Barton Springs usw. als Highlights.
+- Marker bekommen Qualitätsstatus: echte Quellkoordinate vs. lokaler Fallback.
+- Cache-Version auf v81 erhöht.
+
+Hinweis:
+- Ohne kostenpflichtige Geocoding-/Places-API können Orte ohne echte hinterlegte Koordinate nur über lokale Tabellen oder Stadt-Fallbacks gesetzt werden. Diese Marker sind bewusst als lokal geschätzt markiert.

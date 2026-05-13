@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Route 66 Music Trip · v79 Map Complete</title>
+<title>Route 66 Music Trip</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#071018">
@@ -1579,8 +1579,8 @@ forceKnownPlaceData(RAW_PLACES);
 let map;
 let markers = new Map();
 let resolvedPlaces = [];
-const cacheKey = "route66ResolvedPlacesV79MapComplete";
-const categoryEditKey = "route66CategoryOverridesV79MapComplete";
+const cacheKey = "route66ResolvedPlacesV81CoordAudit";
+const categoryEditKey = "route66CategoryOverridesV81CoordAudit";
 
 function getCategoryOverrides() {
   try { return JSON.parse(localStorage.getItem(categoryEditKey) || "{}"); }
@@ -1698,6 +1698,89 @@ const colors = {
   other:"#607d8b"
 };
 
+
+const MANUAL_GROUP_OVERRIDES = {
+  // Route-66 / Roadside-Klassiker
+  "arcadia round barn":"route66",
+  "pops on 66":"route66",
+  "pops 66":"route66",
+  "soulsby service station":"route66",
+  "lauterbach muffler man lauterbach giant":"route66",
+  "pink elephant antique mall":"route66",
+  "uranus fudge factory and general store uranus missouri":"route66",
+  "buck atoms cosmic curios on 66":"route66",
+  "shops at mother road market":"route66",
+  "worlds largest railsplitter covered wagon":"route66",
+  "red oak ii":"route66",
+  "garys gay parita":"route66",
+  "historic rainbow bridge":"route66",
+  "route 66 historical village":"route66",
+  "route 66 association of illinois":"route66",
+  "route 66 wall art photopoint":"route66",
+  "route 66 decommissioned illinois state police headquarter":"route66",
+
+  // Top Highlights / Sightseeing
+  "360 chicago":"highlight",
+  "360 chicago observation deck":"highlight",
+  "cloud gate":"highlight",
+  "millennium park cloud gate":"highlight",
+  "navy pier":"highlight",
+  "barton springs pool":"highlight",
+  "covert park at mount bonnell":"highlight",
+  "mount bonnell":"highlight",
+  "south congress":"highlight",
+  "s congress ave":"highlight",
+  "dr pepper museum":"highlight",
+  "wonders of wildlife national museum and aquarium":"highlight",
+  "museum of the great plains":"highlight",
+  "gilcrease museum":"highlight",
+  "philbrook museum of art":"highlight",
+  "missouri botanical garden":"highlight",
+  "museum at the gateway arch":"highlight",
+  "gateway arch":"highlight",
+  "lincoln park zoo":"highlight",
+  "chicago river boat architecture tours":"highlight",
+  "griffin museum of science and industry":"highlight",
+  "field museum of natural history":"highlight",
+  "wichita falls museum of art":"highlight",
+
+  // MusicBars / Venues
+  "elephant room":"music",
+  "austin city limits live acl live and 3ten acl live":"music",
+  "acl live":"music",
+  "sahara lounge":"music",
+  "saxon pub":"music",
+  "house of blues chicago":"music",
+  "the continental club austin":"music",
+  "antones nightclub austin":"music",
+  "the white horse austin":"music",
+  "broken spoke austin":"music",
+  "c boys heart and soul":"music",
+  "hole in the wall austin":"music",
+  "stubbs bar b q austin":"music",
+  "mohawk austin":"music",
+  "gruene hall":"music",
+
+  // Sonstiges bewusst nicht als Highlight
+  "tulsa toy depot":"other",
+  "another planet comics and other stuff":"other",
+  "terra toys":"other",
+  "drysdales western wear":"other",
+  "red wing lawton ok":"other",
+  "levine hat co":"other",
+  "alcalas western wear":"other"
+};
+
+function manualGroupForPlace(p){
+  const keys = [p.name, p.query, p.address, p.resolvedName].filter(Boolean).map(simplePlaceKey);
+  for (const key of keys) {
+    if (MANUAL_GROUP_OVERRIDES[key]) return MANUAL_GROUP_OVERRIDES[key];
+    const found = Object.keys(MANUAL_GROUP_OVERRIDES).find(k => key.includes(k) || k.includes(key));
+    if (found) return MANUAL_GROUP_OVERRIDES[found];
+  }
+  return null;
+}
+
 function looksRoute66(p){
   const t = `${p.name||""} ${p.note||""} ${p.description||""} ${p.address||""} ${p.query||""}`.toLowerCase();
   // Keine bloße "66"-Erkennung mehr: reduziert Fehlzuordnungen bei Adressen/Telefonnummern.
@@ -1705,6 +1788,8 @@ function looksRoute66(p){
 }
 
 function groupForPlace(p){
+  const manual = manualGroupForPlace(p);
+  if (manual) return manual;
   if (p.category === "hotel") return "hotel";
   if (p.category === "music") return "music";
   if (p.category === "food") return "food";
@@ -1865,13 +1950,36 @@ const LOCAL_COORDS = {
 };
 
 const CITY_FALLBACK_CENTERS = {
-  chicago:{lat:41.8890,lng:-87.6298},
-  stlouis:{lat:38.6247,lng:-90.1848},
+  // bewusst leicht westlich der jeweiligen Zentren gesetzt, damit geschätzte Marker nicht in Seen/Flüsse rutschen
+  chicago:{lat:41.8840,lng:-87.6500},
+  stlouis:{lat:38.6250,lng:-90.2050},
   tulsa:{lat:36.1540,lng:-95.9928},
   lawton:{lat:34.6250,lng:-98.4350},
   austin:{lat:30.2672,lng:-97.7431},
   route:{lat:37.7500,lng:-93.2500}
 };
+
+const FALLBACK_BOUNDS = {
+  chicago:{latMin:41.75,latMax:41.98,lngMin:-87.76,lngMax:-87.615},
+  stlouis:{latMin:38.56,latMax:38.70,lngMin:-90.34,lngMax:-90.16},
+  tulsa:{latMin:36.06,latMax:36.22,lngMin:-96.08,lngMax:-95.88},
+  lawton:{latMin:34.55,latMax:34.72,lngMin:-98.55,lngMax:-98.32},
+  austin:{latMin:30.20,latMax:30.36,lngMin:-97.82,lngMax:-97.66},
+  route:{latMin:29.90,latMax:42.05,lngMin:-99.10,lngMax:-87.50}
+};
+
+function clampNumber(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function clampFallbackCoords(area, coord) {
+  const b = FALLBACK_BOUNDS[area] || FALLBACK_BOUNDS.route;
+  return {
+    ...coord,
+    lat: clampNumber(coord.lat, b.latMin, b.latMax),
+    lng: clampNumber(coord.lng, b.lngMin, b.lngMax)
+  };
+}
 
 function hashOffset(text, scale = .065) {
   let h = 0;
@@ -1895,21 +2003,27 @@ function inferFallbackArea(raw) {
 function deriveLocalFallbackCoords(raw) {
   const k = simplePlaceKey(raw.name || raw.query || raw.address || "");
   const direct = LOCAL_COORDS[k];
-  if (direct) return {...direct, estimated: !direct.exact};
+  if (direct) {
+    const area = inferFallbackArea(raw);
+    const coord = {...direct, estimated: !direct.exact};
+    return coord.estimated ? clampFallbackCoords(area, coord) : coord;
+  }
 
   // Alias-Check: falls der Name leicht anders geschrieben ist.
   const foundKey = Object.keys(LOCAL_COORDS).find(key => k.includes(key) || key.includes(k));
   if (foundKey) {
     const hit = LOCAL_COORDS[foundKey];
-    return {...hit, estimated: !hit.exact};
+    const area = inferFallbackArea(raw);
+    const coord = {...hit, estimated: !hit.exact};
+    return coord.estimated ? clampFallbackCoords(area, coord) : coord;
   }
 
   // Letzter kostenfreier Fallback: lokal berechneter Näherungsmarker rund um die passende Stadt/Etappe.
-  // Dadurch erscheinen wirklich alle Listen-Einträge auf der Karte, ohne Google Geocoding/Places API.
+  // v80: engerer Radius + Bounds, damit Chicago-Marker nicht mehr im Lake Michigan landen.
   const area = inferFallbackArea(raw);
   const center = CITY_FALLBACK_CENTERS[area] || CITY_FALLBACK_CENTERS.route;
-  const off = hashOffset(`${raw.name || ""} ${raw.query || ""}`, area === "route" ? 1.2 : .08);
-  return {lat:center.lat + off.lat, lng:center.lng + off.lng, estimated:true, city:area};
+  const off = hashOffset(`${raw.name || ""} ${raw.query || ""}`, area === "route" ? .55 : .022);
+  return clampFallbackCoords(area, {lat:center.lat + off.lat, lng:center.lng + off.lng, estimated:true, city:area});
 }
 
 function searchPlace(raw) {
@@ -1952,12 +2066,57 @@ async function resolveInBatches(items, batchSize = 8) {
   return output;
 }
 
+
+function applyExactCoordsFromDuplicateNames(list){
+  if (!Array.isArray(list)) return;
+  const exact = new Map();
+  const put = (label, p) => {
+    const k = simplePlaceKey(canonicalPlaceLabel(label || ""));
+    if (!k || !Number.isFinite(Number(p.lat)) || !Number.isFinite(Number(p.lng))) return;
+    if (!p.estimatedCoords) exact.set(k, {lat:Number(p.lat), lng:Number(p.lng), coords:[Number(p.lng), Number(p.lat)]});
+  };
+  list.forEach(p => { put(p.name, p); put(p.query, p); });
+  list.forEach(p => {
+    if (!p || !p.name) return;
+    const keys = [p.name, p.query, p.address, p.resolvedName].filter(Boolean).map(v => simplePlaceKey(canonicalPlaceLabel(v)));
+    const hitKey = keys.find(k => exact.has(k)) || keys.find(k => {
+      for (const existing of exact.keys()) if (k.includes(existing) || existing.includes(k)) return true;
+      return false;
+    });
+    let hit = hitKey && exact.get(hitKey);
+    if (!hit && p.estimatedCoords) {
+      for (const k of keys) {
+        const found = [...exact.keys()].find(existing => k.includes(existing) || existing.includes(k));
+        if (found) { hit = exact.get(found); break; }
+      }
+    }
+    if (hit && p.estimatedCoords) {
+      p.lat = hit.lat;
+      p.lng = hit.lng;
+      p.coords = hit.coords;
+      p.estimatedCoords = false;
+      p.coordSource = "dedupe-exact";
+    }
+  });
+}
+
+function addCoordinateQualityFlags(list){
+  if (!Array.isArray(list)) return;
+  list.forEach(p => {
+    p.mapGroup = groupForPlace(p);
+    p.coordQuality = p.estimatedCoords ? "estimated-local-fallback" : "exact-or-source-coordinate";
+    if (p.mapGroup === "hotel") p.basecamp = true;
+  });
+}
+
 async function resolveAllPlaces() {
   const cached = localStorage.getItem(cacheKey);
   if (cached) {
     try {
       resolvedPlaces = JSON.parse(cached).filter(p => !isExcludedRouteOutlier(p));
       forceKnownPlaceData(resolvedPlaces);
+      applyExactCoordsFromDuplicateNames(resolvedPlaces);
+      addCoordinateQualityFlags(resolvedPlaces);
       setStatus(`Geladen aus Cache: ${resolvedPlaces.filter(p=>p.lat).length} Orte`);
       return;
     } catch(e) {}
@@ -1982,8 +2141,10 @@ async function resolveAllPlaces() {
   ];
 
   forceKnownPlaceData(resolvedPlaces);
+  applyExactCoordsFromDuplicateNames(resolvedPlaces);
+  addCoordinateQualityFlags(resolvedPlaces);
   try { localStorage.setItem(cacheKey, JSON.stringify(resolvedPlaces)); } catch(e) {}
-  setStatus(`Fertig: ${resolvedPlaces.filter(p=>p.lat).length} Orte auf der Karte vorbereitet · inkl. lokaler Fallback-Koordinaten`);
+  setStatus(`Fertig: ${resolvedPlaces.filter(p=>p.lat).length} Orte auf der Karte vorbereitet · inkl. geprüfter Kategorien + lokaler Fallback-Koordinaten`);
 }
 
 function createPopup(p) {
@@ -1992,7 +2153,7 @@ function createPopup(p) {
   const note = p.note ? `<p><strong>${p.note}</strong></p>` : "";
   const maps = mapsUrlFor(p);
   const group = groupForPlace(p);
-  const estimated = p.estimatedCoords ? `<p style="margin:6px 0;color:#555;font-size:12px">Koordinate lokal geschätzt · Link öffnet den Original-Ort in Google Maps.</p>` : "";
+  const estimated = p.estimatedCoords ? `<p style="margin:6px 0;color:#555;font-size:12px">Koordinate lokal geschätzt · Marker liegt in der richtigen Stadt/Region, Google-Maps-Link öffnet den Original-Ort.</p>` : "";
   return `<div style="max-width:260px;color:#111">
     <h3 style="margin:0 0 8px">${p.name}</h3>
     <p style="margin:0 0 6px"><em>${groupLabel(group)}</em>${group === "hotel" ? " · Basecamp" : ""}</p>

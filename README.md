@@ -35,3 +35,19 @@ Orte mit hinterlegten Koordinaten bleiben exakt. Für Einträge, die bisher nur 
 2. GitHub Pages neu laden.
 3. Auf dem Smartphone einmal online öffnen, damit der neue Service Worker gespeichert wird.
 4. Falls noch alte Inhalte erscheinen: PWA schließen, Browser/PWA-Cache löschen oder Service Worker unregister.
+
+
+## Änderungen v80
+
+- Geschätzte lokale Fallback-Koordinaten enger begrenzt.
+- Chicago-Fallbacks werden westlich der Küste gehalten, damit Marker nicht mehr im Lake Michigan landen.
+- Cache-Version auf v80 erhöht.
+
+
+## Änderungen v81
+
+- Koordinaten-/Kategorien-Audit für alle Kartenmarker.
+- Hotels, Top Highlights, MusicBars, Food, Distilleries, Route66 Stops und Sonstiges werden in der Karte berücksichtigt.
+- Doppelte Einträge übernehmen vorhandene exakte Koordinaten.
+- Falsch einsortierte Orte wurden in die passenden Layer verschoben.
+- Lokal geschätzte Marker bleiben sichtbar, aber werden intern als Fallback markiert.
