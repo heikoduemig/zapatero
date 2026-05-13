@@ -1,4 +1,4 @@
-const CACHE_NAME = 'route66-trip-v83-tv-dokus-merged';
+const CACHE_NAME = 'route66-trip-v84-youtube-tv-dokus';
 const APP_SHELL = [
   './',
   './index.html',
