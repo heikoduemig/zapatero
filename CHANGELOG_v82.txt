@@ -1,6 +1,0 @@
-v82 · Route Specific Docs
-
-- TV-Dokus wieder strikt auf eure Route fokussiert
-- Nur Chicago, STL, Tulsa, Lawton, Austin und direkte Route-66-Stopps
-- Musik-/Instrumente-Einträge nur mit Bezug zur Route/Americana
-- Offizielle Quellen und stabile Links beibehalten
