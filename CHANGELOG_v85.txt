@@ -1,0 +1,7 @@
+v85 · Route Only TV Docs
+
+- TV-Dokus nur noch für Orte/Ziele, die bereits in der App vorhanden sind
+- Keine zusätzlichen fremden Sehenswürdigkeiten mehr
+- Genau eine TV-Dokus-Karte
+- Nur stabile YouTube-Suchlinks mit offiziellem Bezug
+- Route-66-, Musik-, BBQ- und Americana-Fokus beibehalten
