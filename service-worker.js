@@ -1,9 +1,9 @@
-const CACHE_NAME = 'route66-trip-v83-fixed';
+const CACHE_NAME = 'route66-trip-v84-kml-geo-sync';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './routeData.v37.js',
+  './routeData.v36.js',
   './musicBars.js',
   './route66MustStops.js',
   './icon-192.png',

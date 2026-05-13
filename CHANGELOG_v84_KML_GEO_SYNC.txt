@@ -1,0 +1,16 @@
+v84 · KML-GEO Sync
+
+Quelle:
+- USA2026GEO.kmz / doc.kml
+
+Geändert:
+- Echte KML-Koordinaten als Primärquelle übernommen.
+- 155 eindeutige Orte aus der KMZ erkannt.
+- 159 bestehende RAW_PLACES-Einträge mit KML-Koordinaten versehen.
+- 40 zusätzliche KML-Orte ergänzt.
+- MusicBars und Route66-Must-Stops soweit eindeutig möglich synchronisiert.
+- Cache-Keys und Service Worker auf v84 erhöht.
+
+Wichtig:
+- Keine Google Maps API, keine Places API, keine Geocoding API, kein API-Key.
+- Die Koordinaten stammen direkt aus der bereitgestellten KMZ/KML-Datei.

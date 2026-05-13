@@ -1,148 +1,213 @@
-// Route66 v64 · Chicago top highlights expansion
+// Route66 v84 · KML-GEO Sync
 window.route66MustStops = [
   {
     "name": "360 CHICAGO Observation Deck",
     "city": "Chicago",
     "coords": [
-      -87.6233,
-      41.8988
+      -87.6232416,
+      41.8990104
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "🔥 PFLICHTTERMIN · Top Highlight · Skyline Aussicht",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=360+CHICAGO+Observation+Deck"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=360+CHICAGO+Observation+Deck",
+    "lat": 41.8990104,
+    "lng": -87.6232416,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "360 Chicago"
   },
   {
     "name": "Gemini Giant",
     "city": "Wilmington",
     "coords": [
-      -88.1845,
-      41.3078
+      -88.1496993,
+      41.30606
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "🔥 MUST SEE · Muffler Man Klassiker"
+    "text": "🔥 MUST SEE · Muffler Man Klassiker",
+    "lat": 41.30606,
+    "lng": -88.1496993,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Gemini Giant, Wilmington IL"
   },
   {
     "name": "Cozy Dog Drive In",
     "city": "Springfield",
     "coords": [
-      -89.6501,
-      39.7817
+      -89.6488399,
+      39.7623995
     ],
     "type": "food",
     "category": "Essen",
-    "text": "🍔 Food Legend · Original Corn Dog"
+    "text": "🍔 Food Legend · Original Corn Dog",
+    "lat": 39.7623995,
+    "lng": -89.6488399,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Cozy Dog Drive In"
   },
   {
     "name": "Dell Rhea's Chicken Basket",
     "city": "Willowbrook",
     "coords": [
-      -87.9498,
-      41.7698
+      -87.939224,
+      41.745566
     ],
     "type": "food",
     "category": "Essen",
-    "text": "🍗 Historic Route 66 Roadhouse"
+    "text": "🍗 Historic Route 66 Roadhouse",
+    "lat": 41.745566,
+    "lng": -87.939224,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Dell Rhea's Chicken Basket"
   },
   {
     "name": "Ambler's Texaco Gas Station",
     "city": "Dwight",
     "coords": [
-      -88.4253,
-      41.0928
+      -88.4394402,
+      41.0940178
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "⛽ Historic Gas Station"
+    "text": "⛽ Historic Gas Station",
+    "lat": 41.0940178,
+    "lng": -88.4394402,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Ambler's Texaco Gas Station"
   },
   {
     "name": "Pontiac Murals",
     "city": "Pontiac",
     "coords": [
-      -88.6298,
-      40.8809
+      -83.3013298,
+      42.6358748
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
-    "text": "📸 Route 66 Wall Art"
+    "text": "📸 Route 66 Wall Art",
+    "lat": 42.6358748,
+    "lng": -83.3013298,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Pontiac Mural"
   },
   {
     "name": "Pontiac Museum Complex",
     "city": "Pontiac",
     "coords": [
-      -88.6291,
-      40.8807
+      -88.6290464,
+      40.8810841
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
-    "text": "🏛 Route 66 Museums"
+    "text": "🏛 Route 66 Museums",
+    "lat": 40.8810841,
+    "lng": -88.6290464,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Route 66 Association of Illinois"
   },
   {
     "name": "Cuba Murals",
     "city": "Cuba",
     "coords": [
-      -91.4032,
-      38.0625
+      -91.4064454,
+      38.0618708
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
-    "text": "🎨 Route 66 Wandkunst"
+    "text": "🎨 Route 66 Wandkunst",
+    "lat": 38.0618708,
+    "lng": -91.4064454,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Murals of Cuba"
   },
   {
     "name": "Wagon Wheel Motel",
     "city": "Cuba",
     "coords": [
-      -91.4039,
-      38.0619
+      -91.396001,
+      38.0651035
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "🌃 Neon Classic Motel"
+    "text": "🌃 Neon Classic Motel",
+    "lat": 38.0651035,
+    "lng": -91.396001,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Wagon Wheel Motel"
   },
   {
     "name": "World's Largest Rocking Chair",
     "city": "Fanning",
     "coords": [
-      -91.1937,
-      38.0752
+      -87.991236,
+      39.3000244
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "🤠 Weird Americana"
+    "text": "🤠 Weird Americana",
+    "lat": 39.3000244,
+    "lng": -87.991236,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "World's Largest Rocking Chair"
   },
   {
     "name": "Uranus Fudge Factory",
     "city": "St. Robert",
     "coords": [
-      -92.1574,
-      37.8286
+      -92.1053864,
+      37.8287218
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "🍬 Weird Americana Stop"
+    "text": "🍬 Weird Americana Stop",
+    "lat": 37.8287218,
+    "lng": -92.1053864,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Uranus Fudge Factory And General Store - Uranus Missouri"
   },
   {
     "name": "Blue Whale of Catoosa",
     "city": "Catoosa",
     "coords": [
-      -95.7545,
-      36.188
+      -95.7329234,
+      36.1938514
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "📸 Iconic Route 66 Spot"
+    "text": "📸 Iconic Route 66 Spot",
+    "lat": 36.1938514,
+    "lng": -95.7329234,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Blue Whale of Catoosa"
   },
   {
     "name": "Rock Cafe",
     "city": "Stroud",
     "coords": [
-      -96.6586,
-      35.7475
+      -96.6545073,
+      35.7487988
     ],
     "type": "food",
     "category": "Essen",
-    "text": "🚗 Pixar Cars Inspiration"
+    "text": "🚗 Pixar Cars Inspiration",
+    "lat": 35.7487988,
+    "lng": -96.6545073,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Rock Cafe"
   },
   {
     "name": "Golden Driller",
@@ -170,132 +235,187 @@ window.route66MustStops = [
     "name": "Arcadia Round Barn",
     "city": "Arcadia",
     "coords": [
-      -97.326,
-      35.658
+      -97.3259694,
+      35.6623722
     ],
     "type": "route66",
     "category": "Route66 Stops",
-    "text": "⭕ Historic Round Barn"
+    "text": "⭕ Historic Round Barn",
+    "lat": 35.6623722,
+    "lng": -97.3259694,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Arcadia Round Barn"
   },
   {
     "name": "Chicago Riverwalk",
     "city": "Chicago",
     "coords": [
-      -87.6277,
-      41.8876
+      -87.6232295,
+      41.8884689
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "📸 Top Highlight · Architektur & Riverwalk",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Riverwalk"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Riverwalk",
+    "lat": 41.8884689,
+    "lng": -87.6232295,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Chicago Riverwalk"
   },
   {
     "name": "Millennium Park / Cloud Gate",
     "city": "Chicago",
     "coords": [
-      -87.6233,
-      41.8826
+      -87.6233039,
+      41.8826572
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "📸 Top Highlight · Bean / Millennium Park",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Millennium+Park+Cloud+Gate+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Millennium+Park+Cloud+Gate+Chicago",
+    "lat": 41.8826572,
+    "lng": -87.6233039,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Cloud Gate"
   },
   {
     "name": "Lou Malnati's Pizzeria",
     "city": "Chicago",
     "coords": [
-      -87.6322,
-      41.8905
+      -87.6247701,
+      41.8900007
     ],
     "type": "food",
     "category": "Essen",
     "text": "🍕 Deep Dish Pizza Klassiker",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lou+Malnati's+Pizzeria+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lou+Malnati's+Pizzeria+Chicago",
+    "lat": 41.8900007,
+    "lng": -87.6247701,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Lou Malnati's Pizzeria"
   },
   {
     "name": "Green Mill",
     "city": "Chicago",
     "coords": [
-      -87.6602,
-      41.969
+      -87.6599222,
+      41.9692028
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎷 Chicago Jazz / Blues Klassiker",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Green+Mill+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Green+Mill+Chicago",
+    "lat": 41.9692028,
+    "lng": -87.6599222,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Green Mill"
   },
   {
     "name": "Chicago Architecture Center",
     "city": "Chicago",
     "coords": [
-      -87.6239,
-      41.8872
+      -87.6235474,
+      41.8880144
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
     "text": "🏙 Startpunkt Architecture Boat Tour",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Architecture+Center+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Architecture+Center+Chicago",
+    "lat": 41.8880144,
+    "lng": -87.6235474,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Chicago Architecture Center"
   },
   {
     "name": "Route 66 Begin Sign",
     "city": "Chicago",
     "coords": [
-      -87.6266,
-      41.876
+      -87.6092314,
+      41.8912077
     ],
     "type": "route66",
     "category": "Route66 Stops",
     "text": "🛣 Route 66 Startpunkt",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Route+66+Begin+Sign+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Route+66+Begin+Sign+Chicago",
+    "lat": 41.8912077,
+    "lng": -87.6092314,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "New Route 66 Begin Sign"
   },
   {
     "name": "Chicago Music Exchange",
     "city": "Chicago",
     "coords": [
-      -87.6681,
-      41.9393
+      -87.6704927,
+      41.9420425
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎸 Musik-Pflichtstop",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Music+Exchange"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicago+Music+Exchange",
+    "lat": 41.9420425,
+    "lng": -87.6704927,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Chicago Music Exchange"
   },
   {
     "name": "Wicker Park",
     "city": "Chicago",
     "coords": [
-      -87.6776,
-      41.9088
+      -87.6775672,
+      41.9104892
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
     "text": "📍 Chicago Viertel / Streetlife",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Wicker+Park+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Wicker+Park+Chicago",
+    "lat": 41.9104892,
+    "lng": -87.6775672,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Wicker Park"
   },
   {
     "name": "Logan Square",
     "city": "Chicago",
     "coords": [
-      -87.7087,
-      41.9231
+      -87.7058382,
+      41.9281213
     ],
     "type": "sight",
     "category": "Sehenswürdigkeiten",
     "text": "📍 Chicago Viertel / Bars & Cafés",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Logan+Square+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Logan+Square+Chicago",
+    "lat": 41.9281213,
+    "lng": -87.7058382,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Logan Square"
   },
   {
     "name": "Pontiac Route 66 Museum",
     "city": "Pontiac",
     "coords": [
-      -88.629,
-      40.8806
+      -88.6290464,
+      40.8810841
     ],
     "type": "route66",
     "category": "Route66 Stops",
     "text": "🏛 Route 66 Museum",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Pontiac+Route+66+Museum+Pontiac"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Pontiac+Route+66+Museum+Pontiac",
+    "lat": 40.8810841,
+    "lng": -88.6290464,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Route 66 Association of Illinois"
   },
   {
     "name": "Gateway Arch",
@@ -373,25 +493,35 @@ window.route66MustStops = [
     "name": "Totem Pole Park",
     "city": "Foyil",
     "coords": [
-      -95.519,
-      36.4396
+      -93.2010754,
+      45.0425024
     ],
     "type": "route66",
     "category": "Route66 Stops",
     "text": "🤠 Route 66 Americana · optional",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Totem+Pole+Park+Foyil"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Totem+Pole+Park+Foyil",
+    "lat": 45.0425024,
+    "lng": -93.2010754,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Totem Pole Park"
   },
   {
     "name": "Cyrus Avery Plaza",
     "city": "Tulsa",
     "coords": [
-      -95.9984,
-      36.1539
+      -96.0066777,
+      36.1408748
     ],
     "type": "route66",
     "category": "Route66 Stops",
     "text": "🛣 Route 66 Tulsa Landmark",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Cyrus+Avery+Plaza+Tulsa"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Cyrus+Avery+Plaza+Tulsa",
+    "lat": 36.1408748,
+    "lng": -96.0066777,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Cyrus Avery Plaza Southwest"
   },
   {
     "name": "Woody Guthrie Center",
@@ -493,50 +623,70 @@ window.route66MustStops = [
     "name": "Veracruz All Natural",
     "city": "Austin",
     "coords": [
-      -97.7218,
-      30.2624
+      -97.7444521,
+      30.2630218
     ],
     "type": "food",
     "category": "Essen",
     "text": "🌮 Tex-Mex / Taco Empfehlung",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Veracruz+All+Natural+Austin"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Veracruz+All+Natural+Austin",
+    "lat": 30.2630218,
+    "lng": -97.7444521,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Veracruz All Natural"
   },
   {
     "name": "Buddy Guy's Legends",
     "city": "Chicago",
     "coords": [
-      -87.6307,
-      41.8675
+      -87.6261904,
+      41.873022
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎸 Chicago Blues Club",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Buddy+Guy%27s+Legends+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Buddy+Guy%27s+Legends+Chicago",
+    "lat": 41.873022,
+    "lng": -87.6261904,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Buddy Guy's Legends"
   },
   {
     "name": "Kingston Mines",
     "city": "Chicago",
     "coords": [
-      -87.6601,
-      41.9316
+      -87.6490441,
+      41.9287006
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎷 Legendäre Late-Night-Blues-Sessions",
     "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Kingston+Mines+Chicago",
-    "address": "2548 N Halsted St, Chicago, IL"
+    "address": "2548 N Halsted St, Chicago, IL",
+    "lat": 41.9287006,
+    "lng": -87.6490441,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Kingston Mines"
   },
   {
     "name": "Rosa's Lounge",
     "city": "Chicago",
     "coords": [
-      -87.7072,
-      41.9091
+      -87.7128166,
+      41.9175443
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎸 Authentic Chicago Blues",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Rosa%27s+Lounge+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Rosa%27s+Lounge+Chicago",
+    "lat": 41.9175443,
+    "lng": -87.7128166,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Rosa's Lounge"
   },
   {
     "name": "Texas State Capitol",
@@ -772,13 +922,18 @@ window.route66MustStops = [
     "name": "Architecture Boat Tour",
     "city": "Chicago",
     "coords": [
-      -87.6239,
-      41.8872
+      -87.6164075,
+      41.8906778
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "🏙 Chicago Architektur-Klassiker",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Architecture+Boat+Tour+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Architecture+Boat+Tour+Chicago",
+    "lat": 41.8906778,
+    "lng": -87.6164075,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Chicago River Boat Architecture Tours"
   },
   {
     "name": "Navy Pier",
@@ -796,13 +951,18 @@ window.route66MustStops = [
     "name": "Magnificent Mile",
     "city": "Chicago",
     "coords": [
-      -87.6244,
-      41.8954
+      -87.6242142,
+      41.894809
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "🏙 Chicago Boulevard",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Magnificent+Mile+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Magnificent+Mile+Chicago",
+    "lat": 41.894809,
+    "lng": -87.6242142,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Magnificent Mile"
   },
   {
     "name": "Deep Dish Pizza",
@@ -820,25 +980,35 @@ window.route66MustStops = [
     "name": "Reggies",
     "city": "Chicago",
     "coords": [
-      -87.6245,
-      41.8535
+      -87.6268523,
+      41.853918
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎸 Rock / Blues / Americana",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Reggies+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Reggies+Chicago",
+    "lat": 41.853918,
+    "lng": -87.6268523,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Reggies Chicago"
   },
   {
     "name": "Empty Bottle",
     "city": "Chicago",
     "coords": [
-      -87.7017,
-      41.9028
+      -87.6867377,
+      41.9004139
     ],
     "type": "music",
     "category": "Musik / Bars",
     "text": "🎸 Indie / Rock / Alternative",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Empty+Bottle+Chicago"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Empty+Bottle+Chicago",
+    "lat": 41.9004139,
+    "lng": -87.6867377,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "The Empty Bottle"
   },
   {
     "name": "Union Station",
@@ -904,13 +1074,18 @@ window.route66MustStops = [
     "name": "Ted Drewes Frozen Custard",
     "city": "St. Louis",
     "coords": [
-      -90.3087,
-      38.5893
+      -90.307636,
+      38.5894255
     ],
     "type": "food",
     "category": "Essen",
     "text": "🍦 St. Louis Food Klassiker",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ted+Drewes+Frozen+Custard+St.+Louis"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ted+Drewes+Frozen+Custard+St.+Louis",
+    "lat": 38.5894255,
+    "lng": -90.307636,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Ted Drewes Frozen Custard"
   },
   {
     "name": "Philbrook Museum of Art",
@@ -1024,13 +1199,18 @@ window.route66MustStops = [
     "name": "Oklahoma Route 66 Museum",
     "city": "Clinton",
     "coords": [
-      -98.9673,
-      35.5053
+      -98.9869022,
+      35.5065289
     ],
     "type": "route66",
     "category": "Route66 Stops",
     "text": "🛣 Route 66 Museum",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Oklahoma+Route+66+Museum+Clinton"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Oklahoma+Route+66+Museum+Clinton",
+    "lat": 35.5065289,
+    "lng": -98.9869022,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Oklahoma Route 66 Museum"
   },
   {
     "name": "National Cowboy & Western Heritage Museum",
@@ -1072,13 +1252,18 @@ window.route66MustStops = [
     "name": "Holy City of the Wichitas",
     "city": "Lawton",
     "coords": [
-      -98.5779,
-      34.7441
+      -98.5911065,
+      34.7426759
     ],
     "type": "highlight",
     "category": "Top Highlights",
     "text": "⛰ Scenic Stop",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Holy+City+of+the+Wichitas+Lawton"
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Holy+City+of+the+Wichitas+Lawton",
+    "lat": 34.7426759,
+    "lng": -98.5911065,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "The Holy City of the Wichitas"
   },
   {
     "name": "The Deli",
@@ -1116,151 +1301,183 @@ window.route66MustStops = [
     "text": "🎭 OKC Venue",
     "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Tower+Theatre+OKC+Oklahoma+City"
   },
-{
-  "name": "Willis Tower Skydeck",
-  "city": "Chicago",
-  "coords": [
-    -87.6359,
-    41.8789
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🌆 Pflichtblick · Glasbalkon & Skyline",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Willis+Tower+Skydeck+Chicago"
-},
-{
-  "name": "Art Institute of Chicago",
-  "city": "Chicago",
-  "coords": [
-    -87.6237,
-    41.8796
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🏛 Weltklasse-Museum · Chicago Klassiker",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Art+Institute+of+Chicago"
-},
-{
-  "name": "Buckingham Fountain",
-  "city": "Chicago",
-  "coords": [
-    -87.6189,
-    41.8758
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "⛲ Grant Park Fotostopp",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Buckingham+Fountain+Chicago"
-},
-{
-  "name": "Lincoln Park Zoo",
-  "city": "Chicago",
-  "coords": [
-    -87.6337,
-    41.9211
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🦁 Lincoln Park Klassiker · kostenloser Zoo",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lincoln+Park+Zoo+Chicago"
-},
-{
-  "name": "Wrigley Field",
-  "city": "Chicago",
-  "coords": [
-    -87.6553,
-    41.9484
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "⚾ Baseball-Ikone · Wrigleyville",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Wrigley+Field+Chicago"
-},
-{
-  "name": "Chinatown Chicago",
-  "city": "Chicago",
-  "coords": [
-    -87.6324,
-    41.8526
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🥟 Food & Neighborhood Stop",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Chicago"
-},
-{
-  "name": "Fulton Market / West Loop",
-  "city": "Chicago",
-  "coords": [
-    -87.652,
-    41.8866
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🍽 Food, Bars & Warehouse-Vibes",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Fulton+Market+West+Loop+Chicago"
-},
-{
-  "name": "Museum Campus",
-  "city": "Chicago",
-  "coords": [
-    -87.617,
-    41.8663
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🏛 Seeufer · Museen · Skylineblick",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Museum+Campus+Chicago"
-},
-{
-  "name": "Adler Planetarium Skyline View",
-  "city": "Chicago",
-  "coords": [
-    -87.6068,
-    41.8664
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "📸 Einer der besten Skyline-Fotospots",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Adler+Planetarium+Skyline+View+Chicago"
-},
-{
-  "name": "Oak Street Beach",
-  "city": "Chicago",
-  "coords": [
-    -87.6233,
-    41.9023
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🏖 Stadtstrand direkt an der Skyline",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Oak+Street+Beach+Chicago"
-},
-{
-  "name": "Lakefront Trail",
-  "city": "Chicago",
-  "coords": [
-    -87.6194,
-    41.8919
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🚲 Spaziergang / Bike am Lake Michigan",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lakefront+Trail+Chicago"
-}
-
-,
-{
-  "name": "The Range Austin",
-  "city": "Austin",
-  "coords": [
-    -97.7314,
-    30.2218
-  ],
-  "type": "highlight",
-  "category": "Top Highlights",
-  "text": "🎯 Reservierung 22.05 · 11:30 · Pflichttermin",
-  "googleMapsUrl": "https://therangeaustin.com/"
-}
-
+  {
+    "name": "Willis Tower Skydeck",
+    "city": "Chicago",
+    "coords": [
+      -87.6359,
+      41.8789
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🌆 Pflichtblick · Glasbalkon & Skyline",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Willis+Tower+Skydeck+Chicago"
+  },
+  {
+    "name": "Art Institute of Chicago",
+    "city": "Chicago",
+    "coords": [
+      -87.6223504,
+      41.8796031
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🏛 Weltklasse-Museum · Chicago Klassiker",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Art+Institute+of+Chicago",
+    "lat": 41.8796031,
+    "lng": -87.6223504,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Art Institute of Chicago"
+  },
+  {
+    "name": "Buckingham Fountain",
+    "city": "Chicago",
+    "coords": [
+      -87.6189,
+      41.8758
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "⛲ Grant Park Fotostopp",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Buckingham+Fountain+Chicago"
+  },
+  {
+    "name": "Lincoln Park Zoo",
+    "city": "Chicago",
+    "coords": [
+      -87.6337,
+      41.9211
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🦁 Lincoln Park Klassiker · kostenloser Zoo",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lincoln+Park+Zoo+Chicago"
+  },
+  {
+    "name": "Wrigley Field",
+    "city": "Chicago",
+    "coords": [
+      -87.6553327,
+      41.9484384
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "⚾ Baseball-Ikone · Wrigleyville",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Wrigley+Field+Chicago",
+    "lat": 41.9484384,
+    "lng": -87.6553327,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Wrigley Field"
+  },
+  {
+    "name": "Chinatown Chicago",
+    "city": "Chicago",
+    "coords": [
+      -87.634049,
+      41.850691
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🥟 Food & Neighborhood Stop",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Chicago",
+    "lat": 41.850691,
+    "lng": -87.634049,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Chinatown"
+  },
+  {
+    "name": "Fulton Market / West Loop",
+    "city": "Chicago",
+    "coords": [
+      -87.652,
+      41.8866
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🍽 Food, Bars & Warehouse-Vibes",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Fulton+Market+West+Loop+Chicago"
+  },
+  {
+    "name": "Museum Campus",
+    "city": "Chicago",
+    "coords": [
+      -87.6156265,
+      41.8662202
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🏛 Seeufer · Museen · Skylineblick",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Museum+Campus+Chicago",
+    "lat": 41.8662202,
+    "lng": -87.6156265,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Museum Campus Chicago"
+  },
+  {
+    "name": "Adler Planetarium Skyline View",
+    "city": "Chicago",
+    "coords": [
+      -87.6071933,
+      41.867148
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "📸 Einer der besten Skyline-Fotospots",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Adler+Planetarium+Skyline+View+Chicago",
+    "lat": 41.867148,
+    "lng": -87.6071933,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Adler Planetarium Skyline Walk"
+  },
+  {
+    "name": "Oak Street Beach",
+    "city": "Chicago",
+    "coords": [
+      -87.6228392,
+      41.9030118
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🏖 Stadtstrand direkt an der Skyline",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Oak+Street+Beach+Chicago",
+    "lat": 41.9030118,
+    "lng": -87.6228392,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Oak Street Beach"
+  },
+  {
+    "name": "Lakefront Trail",
+    "city": "Chicago",
+    "coords": [
+      -87.6137317,
+      41.8829497
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🚲 Spaziergang / Bike am Lake Michigan",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Lakefront+Trail+Chicago",
+    "lat": 41.8829497,
+    "lng": -87.6137317,
+    "estimatedCoords": false,
+    "coordSource": "USA2026GEO.kmz",
+    "kmlName": "Lakefront Trail"
+  },
+  {
+    "name": "The Range Austin",
+    "city": "Austin",
+    "coords": [
+      -97.7314,
+      30.2218
+    ],
+    "type": "highlight",
+    "category": "Top Highlights",
+    "text": "🎯 Reservierung 22.05 · 11:30 · Pflichttermin",
+    "googleMapsUrl": "https://therangeaustin.com/"
+  }
 ];

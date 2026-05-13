@@ -53,16 +53,12 @@ Orte mit hinterlegten Koordinaten bleiben exakt. Für Einträge, die bisher nur 
 - Lokal geschätzte Marker bleiben sichtbar, aber werden intern als Fallback markiert.
 
 
-## Änderungen v82
+## Änderungen v84
 
-- `routeData.v36.js` ergänzt direkte Koordinaten an Google-Maps-Listen-Einträgen, wo bereits exakte lokale Koordinaten aus `route66MustStops.js`, `musicBars.js` oder dem lokalen `LOCAL_COORDS`-Audit vorhanden waren.
-- 112 zusätzliche RAW_PLACES-Einträge bekommen dadurch direkte `coords` und werden nicht mehr nur über lokale Fallbacks gesetzt.
-- Der Service Worker nutzt `route66-trip-v82-coords`, damit Smartphones/PWA die neuen Daten laden.
-- Der Link zur Google-Maps-Liste konnte ohne Google-Login/Places-API nicht direkt maschinell ausgelesen werden; Einträge ohne verlässliche Koordinaten bleiben bewusst im lokalen Fallback.
-
-
-## v83 Fix
-
-- Repariert: `DAY_PLAN` und `routePlanV33` sind wieder in `routeData.v37.js` enthalten.
-- Behebt die leeren Tages-Tabs/Sections und den Fehler bei der Karteninitialisierung.
-- Koordinaten aus v82 bleiben erhalten.
+- GPS-Koordinaten aus `USA2026GEO.kmz` extrahiert und als primäre Quelle übernommen.
+- 155 eindeutige KML-Orte erkannt.
+- 159 bestehende RAW_PLACES-Einträge direkt mit KML-Koordinaten synchronisiert.
+- 40 zusätzliche KML-Orte ergänzt, die in der App-Liste noch nicht eindeutig vorhanden waren.
+- MusicBars und Route66-Must-Stops ebenfalls gegen die KML-Liste abgeglichen.
+- Cache-Version erhöht: alte fehlerhafte Fallback-Koordinaten werden nicht wiederverwendet.
+- Keine Google APIs, keine API-Keys, keine kostenpflichtigen Abfragen.
