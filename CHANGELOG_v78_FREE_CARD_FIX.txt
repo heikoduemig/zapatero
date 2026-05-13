@@ -1,7 +1,0 @@
-v78 FREE · Hotel Card Fix
-
-Geändert:
-- Lange Google-Maps-URLs in Hotel-Karten werden ausgeblendet.
-- Kartentexte brechen sauber um und laufen nicht mehr aus der Box.
-- Browser-Titel auf v78 FREE gesetzt.
-- Service-Worker-Cache auf route66-trip-v78-free-openstreetmap-cardfix gesetzt.
