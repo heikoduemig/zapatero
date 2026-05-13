@@ -1,9 +1,0 @@
-v76 · TV Dokus
-
-Geändert:
-- Neue zusammengeklappte Sektion „TV Dokus“ ganz unten eingefügt.
-- Direkte Links zu TV-/Mediathek-/Sender-/Doku-Seiten ergänzt.
-- Erweiterung um Kuriositäten und Sehenswürdigkeiten auf der Route Chicago → St. Louis → Tulsa → Lawton → Austin.
-- Bottom-Navigation um „TV“ ergänzt.
-- Browser-Titel auf v76 gesetzt.
-- Service Worker Cache auf route66-trip-v76-tv-dokus gesetzt.
