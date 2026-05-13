@@ -1,4 +1,4 @@
-# Route66 GitHub Paket v77 FREE · OpenStreetMap/Leaflet
+# Route66 GitHub Paket v78 FREE · OpenStreetMap/Leaflet
 
 Diese Version ist als **eine einzige PWA-App** gebaut: online mit kostenfreier OpenStreetMap/Leaflet-Karte und externen Google-Maps-Links, offline mit lokal gespeicherten Tagesdaten, Hotels, Etappen, Highlights und MusicBars.
 
@@ -31,7 +31,7 @@ Wenn die App offline ist, wird die Karte automatisch durch einen Hinweis ersetzt
 
 ## Wichtig bei Updates
 
-Die Cache-Version wurde auf `route66-trip-v77-free-osm` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
+Die Cache-Version wurde auf `route66-trip-v78-free-osm` gesetzt. Falls auf dem Smartphone noch alte Inhalte erscheinen: App schließen, Seite neu laden oder Browser-/PWA-Cache löschen.
 
 ## Dateien
 
@@ -51,10 +51,17 @@ Die Cache-Version wurde auf `route66-trip-v77-free-osm` gesetzt. Falls auf dem S
 - Browser-Titel und Service-Worker-Cache auf v76 aktualisiert.
 
 
-## Änderungen v77 FREE
+## Änderungen v78 FREE
 
 - Google Maps JavaScript API entfernt.
 - Google Places/Geocoding-Aufrufe entfernt.
 - API-Key entfernt.
 - Karte auf Leaflet + OpenStreetMap umgestellt.
 - Google-Maps-Navigation bleibt als normaler externer Link erhalten und verursacht keine API-Kosten.
+
+
+## Änderungen v78
+
+- Fehler in den Hotel-Karten behoben: lange Google-Maps-URLs werden nicht mehr als Kartentext angezeigt.
+- CSS gegen Textüberlauf ergänzt, damit Karten auf Desktop und Smartphone sauber umbrechen.
+- Cache-Version auf v78 aktualisiert.
